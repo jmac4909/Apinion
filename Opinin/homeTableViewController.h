@@ -17,8 +17,13 @@
     
     CGRect f;
     BOOL viewingUsers;
-    
+    float latestXTranslation;
+
 }
+@property (strong, nonatomic) IBOutlet UIButton *TopicButton;
+@property (strong, nonatomic) IBOutlet UIImageView *seporateImageView;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedTopicsUsers;
 @property CLLocationManager *locationManager;
@@ -32,6 +37,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (strong, nonatomic) IBOutlet UIView *dataView;
+@property (strong, nonatomic) IBOutlet UIView *addTopicView;
+@property (strong, nonatomic) IBOutlet UIImageView *addTopicImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *dataViewImageView;
 
            

@@ -129,9 +129,14 @@ static CGFloat MKMapOriginHight = 175.f;
 
     }
     
+    self.scrollView.contentSize = CGSizeMake(750, 40);
+    NSLog(@"X: %f Y: %f",self.dataView
+          .frame.origin.x,self.dataView.frame.origin.y);
+
+    [self.addTopicView setFrame:CGRectMake(self.dataView.frame.size.width, 0, self.dataView.frame.size.width, self.dataView.frame.size.height)];
     
-
-
+    
+    [self.scrollView addSubview:self.addTopicView];
 
     
 
@@ -163,6 +168,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageRed"]];
+       [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageRed"]];
         
         color = [UIColor whiteColor];
         
@@ -175,6 +181,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
         //Red color
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -188,7 +195,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageBlue"]];
-        
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageBlue"]];
            self.tableView.separatorColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
         color = [UIColor whiteColor];
         
@@ -200,6 +207,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
            self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -210,7 +218,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGreen"]];
-
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGreen"]];
         color = [UIColor whiteColor];
         
         self.tableView.separatorColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
@@ -224,7 +232,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImagePurple"]];
-        
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImagePurple"]];
         color = [UIColor whiteColor];
         
         self.tableView.separatorColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
@@ -239,7 +247,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
-        
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
@@ -251,12 +259,15 @@ static CGFloat MKMapOriginHight = 175.f;
       [UIFont fontWithName:@"VastShadow-Regular" size:30],
       NSFontAttributeName,
       color,NSForegroundColorAttributeName, nil]];
+    //In "User"/"Topic" view
     self.userCountLabel.textColor = color;
     self.latitudeLabel.textColor = color;
     self.longitudeLabel.textColor = color;
     self.sidebarButton.tintColor = color;
     self.segmentedTopicsUsers.tintColor = color;
-
+    //In Add Topic view
+    [self.TopicButton setTitleColor:color forState:UIControlStateNormal];
+    self.seporateImageView.backgroundColor = color;
     
     
     
@@ -482,6 +493,9 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
 }
+
+
+
 - (void)showAlert: (PFObject *)alertObject {
 
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[self.alertFound objectForKey:@"alertTitle"] message:[self.alertFound objectForKey:@"infoText"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -749,8 +763,8 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (IBAction)bananaButtonPress:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"🍌BANANA🍌" message:@"THATS FUCKING RIGHT! WE GOT BANANAS UP THE ASS" delegate:self cancelButtonTitle:@"I LOVE FUCKING BANANAS" otherButtonTitles:nil, nil];
-    [alert show
-     ];
+
+    
+
 }
 @end
