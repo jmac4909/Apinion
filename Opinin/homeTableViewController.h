@@ -45,7 +45,10 @@
 @property PFObject *alertFound;
 
 @property PFObject *selectedUserData;
+- (IBAction)pressTwitterButton:(id)sender;
+- (IBAction)pressMessageButton:(id)sender;
 
+- (IBAction)newTopic:(id)sender;
 
 - (IBAction)segmentedValueDidChange:(id)sender;
 

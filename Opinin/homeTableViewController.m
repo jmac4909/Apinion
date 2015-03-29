@@ -295,7 +295,8 @@ static CGFloat MKMapOriginHight = 175.f;
         [self performSegueWithIdentifier:@"showLogin" sender:self];
         
     }else{
-
+        
+    [self.navigationController.shyNavigationBar setToFullHeight:true];
     //gets any alerts
     PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
     [alertQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -451,6 +452,8 @@ static CGFloat MKMapOriginHight = 175.f;
                         
                         
                         self.tableViewData= [NSMutableArray arrayWithArray:objects];
+                        self.userDataArray = [NSMutableArray arrayWithObject:objects];
+                        
                         [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                         [self.refreshControl endRefreshing];
                         [self.tableView reloadData];
@@ -736,6 +739,18 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 
+
+- (IBAction)pressTwitterButton:(id)sender {
+}
+
+- (IBAction)pressMessageButton:(id)sender {
+}
+
+- (IBAction)newTopic:(id)sender {
+    
+    [self performSegueWithIdentifier:@"showAddTopicView" sender:self];
+    
+}
 
 - (IBAction)segmentedValueDidChange:(id)sender {
     NSInteger selectedSegment = self.segmentedTopicsUsers.selectedSegmentIndex;

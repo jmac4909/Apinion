@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F30F0171A8A791B00BA74EB /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F30F0161A8A791B00BA74EB /* SWRevealViewController.m */; };
 		3F3A6F301A8AA59A00220E3E /* sideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A6F2F1A8AA59A00220E3E /* sideBarTableViewController.m */; };
+		3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722BA11AC85FCB00F6B614 /* addTopicViewController.m */; };
 		3F7272D61A6234470006E9FA /* signInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7272D51A6234470006E9FA /* signInViewController.m */; };
 		3F7F8C891A94202600AC6555 /* custonGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F8C881A94202600AC6555 /* custonGroupTableViewController.m */; };
 		3F833E321A64A92900E8F285 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F833E311A64A92900E8F285 /* LaunchScreen.xib */; };
@@ -71,6 +72,8 @@
 		3F30F0161A8A791B00BA74EB /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		3F3A6F2E1A8AA59A00220E3E /* sideBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sideBarTableViewController.h; sourceTree = "<group>"; };
 		3F3A6F2F1A8AA59A00220E3E /* sideBarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sideBarTableViewController.m; sourceTree = "<group>"; };
+		3F722BA01AC85FCB00F6B614 /* addTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTopicViewController.h; sourceTree = "<group>"; };
+		3F722BA11AC85FCB00F6B614 /* addTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addTopicViewController.m; sourceTree = "<group>"; };
 		3F7272D41A6234470006E9FA /* signInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = signInViewController.h; path = ../signInViewController.h; sourceTree = "<group>"; };
 		3F7272D51A6234470006E9FA /* signInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signInViewController.m; path = ../signInViewController.m; sourceTree = "<group>"; };
 		3F7F8C871A94202600AC6555 /* custonGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custonGroupTableViewController.h; sourceTree = "<group>"; };
@@ -226,6 +229,15 @@
 			name = "SideBar controller";
 			sourceTree = "<group>";
 		};
+		3F722BA31AC85FD000F6B614 /* Add Topic */ = {
+			isa = PBXGroup;
+			children = (
+				3F722BA01AC85FCB00F6B614 /* addTopicViewController.h */,
+				3F722BA11AC85FCB00F6B614 /* addTopicViewController.m */,
+			);
+			name = "Add Topic";
+			sourceTree = "<group>";
+		};
 		3F7272D01A6233310006E9FA /* Loging in / Siging up */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +353,7 @@
 				3FEC3E181A883F8400F4D83A /* Edit Email */,
 				3FEC3E161A883F7900F4D83A /* Edit School */,
 				3FEC3E171A883F7E00F4D83A /* Edit Grade */,
+				3F722BA31AC85FD000F6B614 /* Add Topic */,
 				3FB8EF2B1A60AC0600B875DF /* Main.storyboard */,
 				3F833E311A64A92900E8F285 /* LaunchScreen.xib */,
 				3FD092FB1A91BE2C0072BE41 /* Resorces */,
@@ -590,6 +603,7 @@
 				3FAEA7821AB0C41500D96783 /* createGroupViewController.m in Sources */,
 				3FEDE9471A62DDBC0010BDD2 /* homeTableViewController.m in Sources */,
 				3F7272D61A6234470006E9FA /* signInViewController.m in Sources */,
+				3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */,
 				3FB8EF211A60AC0600B875DF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
