@@ -622,9 +622,17 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.selectedUserData = [self.tableViewData objectAtIndex:indexPath.row];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (viewingUsers == true) {
+        
+    
+    self.selectedUserData = [self.tableViewData objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"showUserPage" sender:self];
+        
+    }else if (viewingUsers == false){
+        
+    }
     
 }
 

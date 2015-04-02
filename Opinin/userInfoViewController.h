@@ -20,6 +20,7 @@
     UITextView *cellTextView;
     UIActionSheet *addActionSheet;
     float latestXTranslation;
+    float defaultDetailViewCenterX;
     
 
 }

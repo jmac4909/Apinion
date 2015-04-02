@@ -30,7 +30,7 @@
     
     self.bgView.hidden = NO;
 
-    [self.groupNameLabel becomeFirstResponder];
+
     
     
     
@@ -45,7 +45,12 @@
     }];
     
 }
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

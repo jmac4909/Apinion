@@ -110,6 +110,9 @@
     UIButton *addtoGroupButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [addtoGroupButton setFrame:CGRectMake(self.tableView.frame.size.width/2, 40, 50, 50)];
     [self.tableView insertSubview:addtoGroupButton belowSubview:self.tableViewDetailView];
+    
+    defaultDetailViewCenterX = self.tableViewDetailView.center.x;
+    
  
 }
 
@@ -214,7 +217,8 @@
         
     }];
         
-        
+    NSLog(@"X: %f Y: %f",self.tableViewDetailView.center.x,self.tableViewDetailView.center.y);
+
 
 
 
@@ -426,18 +430,22 @@
 
     if (recognizer.state == UIGestureRecognizerStateEnded) {
 
+        float centerX = self.tableViewDetailView.frame.size.width/4.5;
+        
         if (latestXTranslation < 0) {
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.2];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-            [self.tableViewDetailView setCenter:CGPointMake( -75,61.5 )];
+            //was - 75
+            [self.tableViewDetailView setCenter:CGPointMake( -centerX,52.5 )];
             [UIView commitAnimations];
             latestXTranslation = 0;
         }else{
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [self.tableViewDetailView setCenter:CGPointMake( 187.5,61.5 )];
+            //was 187.5
+        [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,52.5 )];
         [UIView commitAnimations];
             latestXTranslation = 0;
         }
