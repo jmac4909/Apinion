@@ -107,9 +107,10 @@
     [self.tableViewDetailView addGestureRecognizer:swipeLeftGestureRecognizer];
     
   
-    UIButton *addtoGroupButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [addtoGroupButton setFrame:CGRectMake(self.tableView.frame.size.width/2, 40, 50, 50)];
-    [self.tableView insertSubview:addtoGroupButton belowSubview:self.tableViewDetailView];
+    UIButton *addApinionButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addApinionButton setFrame:CGRectMake(self.tableView.frame.size.width/2, 40, 50, 50)];
+    [self.tableView insertSubview:addApinionButton belowSubview:self.tableViewDetailView];
+    [addApinionButton addTarget:self action:@selector(addApinion) forControlEvents:UIControlEventTouchUpInside];
     
     defaultDetailViewCenterX = self.tableViewDetailView.center.x;
     
@@ -345,49 +346,7 @@
 }
 
 - (void)addApinion {
-    if (self.aponionTextField.text.length != 0 && self.aponionTextField.text.length <= 140) {
-
-      
-    PFObject *apinion = [PFObject objectWithClassName:@"Apinions"];
-    [apinion setObject:self.aponionTextField.text forKey:@"postText"];
-    [apinion setObject:self.selectedUserData.objectId forKey:@"selectedUserID"];
-    [apinion setObject:[PFUser currentUser].objectId forKey:@"posterID"];
-    [apinion setObject:@0 forKey:@"postVotes"];
-    self.aponionTextField.text = @"";
-
-    [apinion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            
-        
-            
-
-            
-
-        PFQuery *postQuery = [PFQuery queryWithClassName:@"Apinions"];
-        [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
-        [postQuery orderByDescending:@"createdAt"];
-        [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-            self.selectedUserPosts = objects;
-            [self.tableView reloadData];
-                
-                PFPush *push = [[PFPush alloc] init];
-                [push setChannel:[@"A" stringByAppendingString:self.selectedUserData.objectId]];
-                [push setMessage:@"New Apinion about you!"];
-
-                [push sendPushInBackground];
-                          
-                
-            }else{
-                NSLog(@"%@",error.userInfo);
-            }
-        }];
-        }else{
-            NSLog(@"%@",error.userInfo);
-        }
-    }];
-    [self.aponionTextField resignFirstResponder];
-}
+    [self performSegueWithIdentifier:@"showAddApinion" sender:self];
 }
 
 
@@ -464,6 +423,13 @@
     
     [self.navigationController.shyNavigationBar scrollViewDidScroll:scrollView];
     }
+}
+
+
+- (void)closeAddApinion:(UIViewController*)sender{
+    [self dismissViewControllerAnimated:true completion:^{
+        
+    }];
 }
 
 #pragma mark - Table view functions
@@ -801,7 +767,16 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
 
-    [self.navigationController.shyNavigationBar prepareForSegueAway:YES];
+    
+    if ([segue.identifier isEqualToString:@"showAddApinion"]) {
+        
+        addApinionViewController *addApinionView = (addApinionViewController *)[segue.destinationViewController topViewController];
+        addApinionView.selectedUserData = self.selectedUserData;
+        addApinionView.delagate = self;
+        
+//        [self.navigationController.shyNavigationBar prepareForSegueAway:YES];
+
+    }
 
 }
 @end

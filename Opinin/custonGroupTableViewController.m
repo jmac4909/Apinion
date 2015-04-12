@@ -23,7 +23,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-#warning change Based on userDefaults
+
     UINavigationBar *navBar = [[self navigationController] navigationBar];
     UIImage *backgroundImage = [UIImage imageNamed:@"navBarImage.png"];
     [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];

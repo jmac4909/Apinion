@@ -32,6 +32,7 @@
 		3FB8EF2F1A60AC0600B875DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8EF2E1A60AC0600B875DF /* Images.xcassets */; };
 		3FB8EF3E1A60AC0600B875DF /* OpininTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8EF3D1A60AC0600B875DF /* OpininTests.m */; };
 		3FC630C21A636EFF0024370D /* accountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC630C11A636EFF0024370D /* accountViewController.m */; };
+		3FC632471ADAF72A00C435C7 /* addApinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC632461ADAF72A00C435C7 /* addApinionViewController.m */; };
 		3FC706C71A8FEEAA003B96CE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC706C51A8FEE99003B96CE /* MapKit.framework */; };
 		3FCAF6431A64C94B001CA21D /* userInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCAF6421A64C94B001CA21D /* userInfoViewController.m */; };
 		3FEC3E1B1A88401C00F4D83A /* editNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC3E1A1A88401C00F4D83A /* editNameViewController.m */; };
@@ -109,6 +110,8 @@
 		3FB8EF3D1A60AC0600B875DF /* OpininTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpininTests.m; sourceTree = "<group>"; };
 		3FC630C01A636EFF0024370D /* accountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountViewController.h; sourceTree = "<group>"; };
 		3FC630C11A636EFF0024370D /* accountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountViewController.m; sourceTree = "<group>"; };
+		3FC632451ADAF72A00C435C7 /* addApinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addApinionViewController.h; sourceTree = "<group>"; };
+		3FC632461ADAF72A00C435C7 /* addApinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addApinionViewController.m; sourceTree = "<group>"; };
 		3FC706C51A8FEE99003B96CE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3FCAF6411A64C94B001CA21D /* userInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfoViewController.h; sourceTree = "<group>"; };
 		3FCAF6421A64C94B001CA21D /* userInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfoViewController.m; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 				3F00F1961A6882FC00C598CF /* Home Table View */,
 				3F7F8C8A1A94202D00AC6555 /* custom group */,
 				3F00F1971A68833100C598CF /* User Info */,
+				3FC632481ADAF72E00C435C7 /* Add Apinion view controller */,
 				3F00F1981A68834F00C598CF /* Account */,
 				3FEC3E151A883F7400F4D83A /* Edit Name */,
 				3FEC3E181A883F8400F4D83A /* Edit Email */,
@@ -387,6 +391,15 @@
 				3FB8EF3C1A60AC0600B875DF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FC632481ADAF72E00C435C7 /* Add Apinion view controller */ = {
+			isa = PBXGroup;
+			children = (
+				3FC632451ADAF72A00C435C7 /* addApinionViewController.h */,
+				3FC632461ADAF72A00C435C7 /* addApinionViewController.m */,
+			);
+			name = "Add Apinion view controller";
 			sourceTree = "<group>";
 		};
 		3FD092FB1A91BE2C0072BE41 /* Resorces */ = {
@@ -587,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC632471ADAF72A00C435C7 /* addApinionViewController.m in Sources */,
 				3FEC3E211A88404800F4D83A /* editSchoolViewController.m in Sources */,
 				3FEC3E1E1A88403300F4D83A /* editEmailViewController.m in Sources */,
 				3FCAF6431A64C94B001CA21D /* userInfoViewController.m in Sources */,

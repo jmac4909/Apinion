@@ -10,8 +10,8 @@
 #import <Parse/Parse.h>
 #import "userInfoTableViewCell.h"
 #import "ShyNavigationBar.h"
-
-@interface userInfoViewController : UIViewController<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>{
+#import "addApinionViewController.h"
+@interface userInfoViewController : UIViewController<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,addApinionProtocol>{
     
     NSMutableArray *selectedCellIArray;
     NSIndexPath *selectedCellIndexPath;
