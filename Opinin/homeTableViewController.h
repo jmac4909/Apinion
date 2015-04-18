@@ -40,6 +40,7 @@
 @property (strong, nonatomic) IBOutlet UIView *addTopicView;
 @property (strong, nonatomic) IBOutlet UIImageView *addTopicImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *dataViewImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *scrollViewImageView;
 
            
 @property PFObject *alertFound;

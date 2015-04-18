@@ -100,7 +100,8 @@
                     [push setMessage:@"New Apinion about you!"];
     
                     [push sendPushInBackground];
-    
+                [self.delagate closeAddApinion:self];
+
     
                 }else{
                     NSLog(@"%@",error.userInfo);

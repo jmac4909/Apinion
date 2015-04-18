@@ -71,6 +71,7 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
 #pragma mark - External
 
 - (void)setToFullHeight:(BOOL)animated {
+    NSLog(@"Full height");
     CGRect frame = self.frame;
     
     // Grab the latest full height
@@ -89,6 +90,8 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
 }
 
 - (void)setToShyHeight:(BOOL)animated {
+    NSLog(@"shy height");
+
     CGRect frame = self.frame;
     
     if (self.shouldSnap) {

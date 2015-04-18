@@ -556,7 +556,7 @@
                         </scrollView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="xPD-or-YFh" detailTextLabel="2nH-KG-fhu" style="IBUITableViewCellStyleSubtitle" id="zOJ-Kh-faV">
-                                <rect key="frame" x="0.0" y="62" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOJ-Kh-faV" id="4oX-tW-MtF">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
@@ -606,6 +606,7 @@
                         <outlet property="latitudeLabel" destination="ogj-N2-tRd" id="cD4-o3-oCW"/>
                         <outlet property="longitudeLabel" destination="mAv-9z-uBf" id="YGR-PL-3EU"/>
                         <outlet property="scrollView" destination="Y9P-FA-fah" id="7JK-BT-DKG"/>
+                        <outlet property="scrollViewImageView" destination="55D-KK-tl3" id="QU4-Ge-Tae"/>
                         <outlet property="searchDisplayController" destination="1dX-sn-ltf" id="1CE-eL-WPT"/>
                         <outlet property="segmentedTopicsUsers" destination="QQV-Ah-tEM" id="m7d-As-PAr"/>
                         <outlet property="seporateImageView" destination="647-GF-gsc" id="bfP-Oo-ccV"/>
@@ -618,6 +619,10 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTH-Tl-n8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="55D-KK-tl3">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" id="97W-gK-Bna" userLabel="add topic view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -770,7 +775,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qjz-SY-8yf">
-                                <rect key="frame" x="166.99999650411513" y="94" width="80" height="21"/>
+                                <rect key="frame" x="167" y="94" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
@@ -837,19 +842,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="H14-ia-mXd">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items/>
-                                <color key="barTintColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
-                            </toolbar>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="90" sectionHeaderHeight="20" sectionFooterHeight="1" id="bBq-MJ-UtO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="iTH-aB-5gW">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
+                                    <rect key="frame" x="0.0" y="44" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="UEG-fg-6m3" userLabel="bottom line">
@@ -862,7 +861,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wl6-h0-c4b" userLabel="Name Text Label">
-                                            <rect key="frame" x="8" y="28" width="206" height="21"/>
+                                            <rect key="frame" x="8" y="28" width="206" height="15"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Apinion">
@@ -877,7 +876,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rTf-wp-miE" userLabel="School Text Label">
-                                            <rect key="frame" x="8" y="49" width="206" height="16"/>
+                                            <rect key="frame" x="8" y="49" width="206" height="10"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Apinion">
@@ -895,7 +894,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="HSH-bf-B3j" detailTextLabel="MeB-Ja-WJ2" rowHeight="90" style="IBUITableViewCellStyleValue1" id="rDz-N8-Gf1" customClass="userInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="125" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDz-N8-Gf1" id="Vnm-qv-NWQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
@@ -948,7 +947,6 @@
                         <outlet property="selectedUserSchoolLabel" destination="rTf-wp-miE" id="Shx-hG-W91"/>
                         <outlet property="tableView" destination="bBq-MJ-UtO" id="ES4-wg-ebo"/>
                         <outlet property="tableViewDetailView" destination="iTH-aB-5gW" id="IOL-8q-ctq"/>
-                        <outlet property="toolbar" destination="H14-ia-mXd" id="Z6H-nd-4vH"/>
                         <outlet property="underlineImageView" destination="UEG-fg-6m3" id="cHp-UK-OP2"/>
                         <outlet property="userPhotoImageView" destination="tNF-DP-JvJ" id="wUj-ou-xMM"/>
                         <segue destination="tZY-dk-Fds" kind="modal" identifier="showAddApinion" id="4Vc-bV-4hu"/>

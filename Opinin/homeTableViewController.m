@@ -138,7 +138,11 @@ static CGFloat MKMapOriginHight = 175.f;
     
     [self.scrollView addSubview:self.addTopicView];
 
+    [self.scrollViewImageView setFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.contentSize.width, self.scrollView.contentSize.height)];
+    self.scrollViewImageView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.scrollViewImageView];
     
+    [self.view sendSubviewToBack:self.scrollViewImageView];
 
 }
 
@@ -170,6 +174,9 @@ static CGFloat MKMapOriginHight = 175.f;
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageRed"]];
        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageRed"]];
         
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageRed"]];
+        
+        
         color = [UIColor whiteColor];
         
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -182,6 +189,10 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
+        
+        
         //Red color
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -196,6 +207,10 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageBlue"]];
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageBlue"]];
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageBlue"]];
+        
+        
            self.tableView.separatorColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
         color = [UIColor whiteColor];
         
@@ -208,6 +223,10 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
+        
+        
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
            self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -220,6 +239,10 @@ static CGFloat MKMapOriginHight = 175.f;
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGreen"]];
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGreen"]];
         color = [UIColor whiteColor];
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGreen"]];
+        
+        
         
         self.tableView.separatorColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
         
@@ -235,6 +258,10 @@ static CGFloat MKMapOriginHight = 175.f;
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImagePurple"]];
         color = [UIColor whiteColor];
         
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImagePurple"]];
+        
+        
+        
         self.tableView.separatorColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
         
         
@@ -248,6 +275,12 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
         [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
+        
+        
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageYellow"]];
+        
+        
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         

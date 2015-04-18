@@ -21,6 +21,8 @@
     UIActionSheet *addActionSheet;
     float latestXTranslation;
     float defaultDetailViewCenterX;
+    float defaultDetailViewCenterY;
+
     
 
 }

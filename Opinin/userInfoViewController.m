@@ -62,33 +62,7 @@
     
     selectedCellIArray = [[NSMutableArray alloc]init];
 
-    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.toolbar.frame.size.height/2, self.toolbar.frame.size.width * 0.746667, 30)];
-    textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.aponionTextField = textView;
-    self.aponionTextField.delegate = self;
- 
-    textView.clipsToBounds = YES;
-    textView.layer.cornerRadius = 3.0f;
 
-    textView.enablesReturnKeyAutomatically = NO;
-    [textView setReturnKeyType:UIReturnKeyDone];
-    [textView  setFont: [UIFont fontWithName:@"ArialMT" size:18]];
-
-    UIBarButtonItem * barItem = [[UIBarButtonItem alloc] initWithCustomView:textView] ;
-
-    UIBarButtonItem *postButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"postImage"] style:UIBarButtonItemStyleBordered target:self action:@selector(addApinion)];
-    postButton.tintColor = self.userThemeColor;
-    
-    charaterLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width * 0.053333, 30)];
-    charaterLabel.text = @"140";
-    [charaterLabel setFont:[UIFont fontWithName:@"Helvetica" size:10]];
-    charaterLabel.textAlignment = NSTextAlignmentCenter;
-    charaterLabel.textColor = self.userThemeColor;
-    
-    UIBarButtonItem *labelItem = [[UIBarButtonItem alloc]initWithCustomView:charaterLabel];
-    
-    self.toolbar.items = [NSArray arrayWithObjects:barItem,labelItem,postButton, nil];
-    
  
     
     self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.size.width / 2;
@@ -113,6 +87,8 @@
     [addApinionButton addTarget:self action:@selector(addApinion) forControlEvents:UIControlEventTouchUpInside];
     
     defaultDetailViewCenterX = self.tableViewDetailView.center.x;
+    defaultDetailViewCenterY = 0 + self.tableViewDetailView.frame.size.height/2;
+
     
  
 }
@@ -160,6 +136,7 @@
     self.selectedUserNameLabel.text = [selectedUserName stringByAppendingString:[self.selectedUserData objectForKey:@"Last_Name"]];
     self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"School_Name"];
     self.selectedUserBananaLabel.text = [self.selectedUserData objectForKey:@""];
+    
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -168,8 +145,6 @@
     [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
 
 
-    
-    
 
     
     //gets any alerts
@@ -218,7 +193,7 @@
         
     }];
         
-    NSLog(@"X: %f Y: %f",self.tableViewDetailView.center.x,self.tableViewDetailView.center.y);
+ 
 
 
 
@@ -396,7 +371,7 @@
             [UIView setAnimationDuration:0.2];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
             //was - 75
-            [self.tableViewDetailView setCenter:CGPointMake( -centerX,52.5 )];
+            [self.tableViewDetailView setCenter:CGPointMake( -centerX,defaultDetailViewCenterY )];
             [UIView commitAnimations];
             latestXTranslation = 0;
         }else{
@@ -404,7 +379,7 @@
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
             //was 187.5
-        [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,52.5 )];
+        [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,defaultDetailViewCenterY )];
         [UIView commitAnimations];
             latestXTranslation = 0;
         }
@@ -455,98 +430,98 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 
-    [self.upVoteButton removeFromSuperview];
-    [self.postVotesLabel removeFromSuperview];
-    [self.downVoteButton removeFromSuperview];
-    
-    [self.upVoteButton setImage:[UIImage imageNamed:@"upVotePost"] forState:UIControlStateNormal];
-    [self.downVoteButton setImage:[UIImage imageNamed:@"downVotePost"] forState:UIControlStateNormal];
-    
-    if ([selectedCellIArray containsObject:indexPath]) {
-        if (selectedCellIndexPath) {
-
-
-        [selectedCellIArray removeObject:indexPath];
-        selectedCellIndexPath = nil;
-            if (indexPath.row == self.selectedUserPosts.count - 1) {
-                
-            }else{
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
-            }
-        }
-    }else{
-        
-        
-        
-   
-        
-        
-        
-        if (indexPath.row == self.selectedUserPosts.count - 1) {
-            
-        }else{
-            if (selectedCellIndexPath) {
-                
-            
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedCellIndexPath] withRowAnimation:UITableViewRowAnimationRight];
-                [selectedCellIArray removeObject:selectedCellIndexPath];
-            }
-            [selectedCellIArray addObject:indexPath];
-
-            selectedCellIndexPath = indexPath;
-
-            
-    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        }
-
-        
-    UITableViewCell *selectedCell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-        
-        PFObject *selectedPostObject = [self.selectedUserPosts objectAtIndex:indexPath.row];
-        
-        if ([[[PFUser currentUser]objectForKey:@"upVotedPosts"]containsObject:selectedPostObject.objectId]) {
-
-            [self.upVoteButton setImage:[UIImage imageNamed:@"upPostSelected"] forState:UIControlStateNormal];
-
-        }else if ([[[PFUser currentUser]objectForKey:@"downVotedPosts"]containsObject:selectedPostObject.objectId]){
-            
-            [self.downVoteButton setImage:[UIImage imageNamed:@"downVoteSelected"] forState:UIControlStateNormal];
-
-        }
-        
-        
-    [selectedCell.contentView addSubview:self.upVoteButton];
-        
-    self.upVoteButton.frame = CGRectMake(self.upVoteButton.frame.size.width/2, selectedCell.contentView.frame.size.height - 35, 40, 40);
-        
-        
-        
-    [selectedCell.contentView addSubview:self.downVoteButton];
-        
-    self.downVoteButton.frame = CGRectMake(self.downVoteButton.frame.size.width * 2, selectedCell.contentView.frame.size.height - 35, 40, 40);
-
-    
-    
-    [self.upVoteButton addTarget:self action:@selector(upVotePost) forControlEvents:UIControlEventTouchDown];
-    [self.downVoteButton addTarget:self action:@selector(downVotePost) forControlEvents:UIControlEventTouchDown];
-        
-    if ([[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]integerValue] > 0) {
-           self.postVotesLabel.text = [NSString stringWithFormat:@"+ %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
-        self.postVotesLabel.textColor = [UIColor greenColor];
-    }else{
-         self.postVotesLabel.text = [NSString stringWithFormat:@" %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
-        self.postVotesLabel.textColor = [UIColor redColor];
-
-    }
-    
-        
-        
-    
-
-    [selectedCell.contentView addSubview:self.postVotesLabel];
-    self.postVotesLabel.frame = CGRectMake(self.downVoteButton.frame.origin.x * 1.5 + self.postVotesLabel.frame.size.width, selectedCell.contentView.frame.size.height - 25, 60, 20);
-    
-}
+//    [self.upVoteButton removeFromSuperview];
+//    [self.postVotesLabel removeFromSuperview];
+//    [self.downVoteButton removeFromSuperview];
+//    
+//    [self.upVoteButton setImage:[UIImage imageNamed:@"upVotePost"] forState:UIControlStateNormal];
+//    [self.downVoteButton setImage:[UIImage imageNamed:@"downVotePost"] forState:UIControlStateNormal];
+//    
+//    if ([selectedCellIArray containsObject:indexPath]) {
+//        if (selectedCellIndexPath) {
+//
+//
+//        [selectedCellIArray removeObject:indexPath];
+//        selectedCellIndexPath = nil;
+//            if (indexPath.row == self.selectedUserPosts.count - 1) {
+//                
+//            }else{
+//        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+//            }
+//        }
+//    }else{
+//        
+//        
+//        
+//   
+//        
+//        
+//        
+//        if (indexPath.row == self.selectedUserPosts.count - 1) {
+//            
+//        }else{
+//            if (selectedCellIndexPath) {
+//                
+//            
+//        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedCellIndexPath] withRowAnimation:UITableViewRowAnimationRight];
+//                [selectedCellIArray removeObject:selectedCellIndexPath];
+//            }
+//            [selectedCellIArray addObject:indexPath];
+//
+//            selectedCellIndexPath = indexPath;
+//
+//            
+//    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+//        }
+//
+//        
+//    UITableViewCell *selectedCell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        
+//        PFObject *selectedPostObject = [self.selectedUserPosts objectAtIndex:indexPath.row];
+//        
+//        if ([[[PFUser currentUser]objectForKey:@"upVotedPosts"]containsObject:selectedPostObject.objectId]) {
+//
+//            [self.upVoteButton setImage:[UIImage imageNamed:@"upPostSelected"] forState:UIControlStateNormal];
+//
+//        }else if ([[[PFUser currentUser]objectForKey:@"downVotedPosts"]containsObject:selectedPostObject.objectId]){
+//            
+//            [self.downVoteButton setImage:[UIImage imageNamed:@"downVoteSelected"] forState:UIControlStateNormal];
+//
+//        }
+//        
+//        
+//    [selectedCell.contentView addSubview:self.upVoteButton];
+//        
+//    self.upVoteButton.frame = CGRectMake(self.upVoteButton.frame.size.width/2, selectedCell.contentView.frame.size.height - 35, 40, 40);
+//        
+//        
+//        
+//    [selectedCell.contentView addSubview:self.downVoteButton];
+//        
+//    self.downVoteButton.frame = CGRectMake(self.downVoteButton.frame.size.width * 2, selectedCell.contentView.frame.size.height - 35, 40, 40);
+//
+//    
+//    
+//    [self.upVoteButton addTarget:self action:@selector(upVotePost) forControlEvents:UIControlEventTouchDown];
+//    [self.downVoteButton addTarget:self action:@selector(downVotePost) forControlEvents:UIControlEventTouchDown];
+//        
+//    if ([[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]integerValue] > 0) {
+//           self.postVotesLabel.text = [NSString stringWithFormat:@"+ %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
+//        self.postVotesLabel.textColor = [UIColor greenColor];
+//    }else{
+//         self.postVotesLabel.text = [NSString stringWithFormat:@" %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
+//        self.postVotesLabel.textColor = [UIColor redColor];
+//
+//    }
+//    
+//        
+//        
+//    
+//
+//    [selectedCell.contentView addSubview:self.postVotesLabel];
+//    self.postVotesLabel.frame = CGRectMake(self.downVoteButton.frame.origin.x * 1.5 + self.postVotesLabel.frame.size.width, selectedCell.contentView.frame.size.height - 25, 60, 20);
+//    
+//}
 }
 
 
