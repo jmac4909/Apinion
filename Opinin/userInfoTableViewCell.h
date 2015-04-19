@@ -10,4 +10,7 @@
 
 @interface userInfoTableViewCell : UITableViewCell
 
+@property(strong,nonatomic)    UIImageView *dotsImage;
+
+
 @end

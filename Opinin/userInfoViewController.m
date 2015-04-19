@@ -416,11 +416,15 @@
         [selectedCellIArray removeAllObjects];
         [selectedCellIArray addObject:indexPath];
         [self.tableView reloadData];
+        selectedCellIndexPath = indexPath;
 
     }else{
-        [selectedCellIArray removeAllObjects];
+                [selectedCellIArray removeAllObjects];
+
 
         [self.tableView reloadData];
+        [tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
     }
 }
 
@@ -444,6 +448,7 @@
     
     userInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
+    
     UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
 
    
@@ -465,6 +470,27 @@
     cell.detailTextLabel.text = [self retrivePostTime:dateString];
     cell.detailTextLabel.textColor = self.userThemeColor;
     
+
+    CGFloat fixedWidth = customCellTextView.frame.size.width;
+    CGSize newSize = [customCellTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = customCellTextView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+
+    
+    
+        
+    
+    
+    if (newFrame.size.height < 90) {
+        cell.dotsImage.hidden = YES;
+
+    }else{
+       
+       cell.dotsImage.hidden = NO;
+  
+       
+
+    }
 
     
     
@@ -499,6 +525,8 @@
         
         if (customCellTextView.frame.size.height < 90) {
             return 90;
+        }else{
+
         }
         return customCellTextView.frame.size.height;
     }else{
