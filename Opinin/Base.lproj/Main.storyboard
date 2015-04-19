@@ -556,7 +556,7 @@
                         </scrollView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="xPD-or-YFh" detailTextLabel="2nH-KG-fhu" style="IBUITableViewCellStyleSubtitle" id="zOJ-Kh-faV">
-                                <rect key="frame" x="0.0" y="126" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOJ-Kh-faV" id="4oX-tW-MtF">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
@@ -775,7 +775,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qjz-SY-8yf">
-                                <rect key="frame" x="167" y="94" width="80" height="21"/>
+                                <rect key="frame" x="166.99999847710131" y="94" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>

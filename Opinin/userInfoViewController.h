@@ -12,12 +12,13 @@
 #import "ShyNavigationBar.h"
 #import "addApinionViewController.h"
 @interface userInfoViewController : UIViewController<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,addApinionProtocol>{
-    
     NSMutableArray *selectedCellIArray;
     NSIndexPath *selectedCellIndexPath;
     NSString *newPostVotesNum;
     UILabel *charaterLabel;
-    UITextView *cellTextView;
+
+    UITextView *customCellTextView;
+    
     UIActionSheet *addActionSheet;
     float latestXTranslation;
     float defaultDetailViewCenterX;
@@ -31,6 +32,7 @@
 @property (strong,nonatomic) UIColor *userThemeColor;
 @property (strong,nonatomic) UIColor *userSecondaryThemeColor;
 
+@property(strong,nonatomic) userInfoTableViewCell *customUserInfoCell;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;

@@ -90,7 +90,7 @@
     defaultDetailViewCenterY = 0 + self.tableViewDetailView.frame.size.height/2;
 
     
- 
+    customCellTextView = [[UITextView alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -408,120 +408,20 @@
 }
 
 #pragma mark - Table view functions
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  
 
-    
-    CGFloat height = 90;
-    
-    
-    if ([selectedCellIArray containsObject:indexPath]) {
-        
-        height = 140;
-        
-    
-    }
-    
-    return height;
-
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (![selectedCellIArray containsObject:indexPath]) {
+        [selectedCellIArray removeAllObjects];
+        [selectedCellIArray addObject:indexPath];
+        [self.tableView reloadData];
 
-//    [self.upVoteButton removeFromSuperview];
-//    [self.postVotesLabel removeFromSuperview];
-//    [self.downVoteButton removeFromSuperview];
-//    
-//    [self.upVoteButton setImage:[UIImage imageNamed:@"upVotePost"] forState:UIControlStateNormal];
-//    [self.downVoteButton setImage:[UIImage imageNamed:@"downVotePost"] forState:UIControlStateNormal];
-//    
-//    if ([selectedCellIArray containsObject:indexPath]) {
-//        if (selectedCellIndexPath) {
-//
-//
-//        [selectedCellIArray removeObject:indexPath];
-//        selectedCellIndexPath = nil;
-//            if (indexPath.row == self.selectedUserPosts.count - 1) {
-//                
-//            }else{
-//        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
-//            }
-//        }
-//    }else{
-//        
-//        
-//        
-//   
-//        
-//        
-//        
-//        if (indexPath.row == self.selectedUserPosts.count - 1) {
-//            
-//        }else{
-//            if (selectedCellIndexPath) {
-//                
-//            
-//        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedCellIndexPath] withRowAnimation:UITableViewRowAnimationRight];
-//                [selectedCellIArray removeObject:selectedCellIndexPath];
-//            }
-//            [selectedCellIArray addObject:indexPath];
-//
-//            selectedCellIndexPath = indexPath;
-//
-//            
-//    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-//        }
-//
-//        
-//    UITableViewCell *selectedCell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        
-//        PFObject *selectedPostObject = [self.selectedUserPosts objectAtIndex:indexPath.row];
-//        
-//        if ([[[PFUser currentUser]objectForKey:@"upVotedPosts"]containsObject:selectedPostObject.objectId]) {
-//
-//            [self.upVoteButton setImage:[UIImage imageNamed:@"upPostSelected"] forState:UIControlStateNormal];
-//
-//        }else if ([[[PFUser currentUser]objectForKey:@"downVotedPosts"]containsObject:selectedPostObject.objectId]){
-//            
-//            [self.downVoteButton setImage:[UIImage imageNamed:@"downVoteSelected"] forState:UIControlStateNormal];
-//
-//        }
-//        
-//        
-//    [selectedCell.contentView addSubview:self.upVoteButton];
-//        
-//    self.upVoteButton.frame = CGRectMake(self.upVoteButton.frame.size.width/2, selectedCell.contentView.frame.size.height - 35, 40, 40);
-//        
-//        
-//        
-//    [selectedCell.contentView addSubview:self.downVoteButton];
-//        
-//    self.downVoteButton.frame = CGRectMake(self.downVoteButton.frame.size.width * 2, selectedCell.contentView.frame.size.height - 35, 40, 40);
-//
-//    
-//    
-//    [self.upVoteButton addTarget:self action:@selector(upVotePost) forControlEvents:UIControlEventTouchDown];
-//    [self.downVoteButton addTarget:self action:@selector(downVotePost) forControlEvents:UIControlEventTouchDown];
-//        
-//    if ([[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]integerValue] > 0) {
-//           self.postVotesLabel.text = [NSString stringWithFormat:@"+ %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
-//        self.postVotesLabel.textColor = [UIColor greenColor];
-//    }else{
-//         self.postVotesLabel.text = [NSString stringWithFormat:@" %@",[[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postVotes"]stringValue]];
-//        self.postVotesLabel.textColor = [UIColor redColor];
-//
-//    }
-//    
-//        
-//        
-//    
-//
-//    [selectedCell.contentView addSubview:self.postVotesLabel];
-//    self.postVotesLabel.frame = CGRectMake(self.downVoteButton.frame.origin.x * 1.5 + self.postVotesLabel.frame.size.width, selectedCell.contentView.frame.size.height - 25, 60, 20);
-//    
-//}
+    }else{
+        [selectedCellIArray removeAllObjects];
+
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -538,40 +438,25 @@
 
     return self.selectedUserPosts.count;
 }
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
-    if (selectedCellIndexPath) {
-        
-        
-        [self.upVoteButton removeFromSuperview];
-        [self.postVotesLabel removeFromSuperview];
-        [self.downVoteButton removeFromSuperview];
-        [selectedCellIArray removeObject:selectedCellIndexPath];
-        [self.upVoteButton setImage:[UIImage imageNamed:@"upVotePost"] forState:UIControlStateNormal];
-        [self.downVoteButton setImage:[UIImage imageNamed:@"downVotePost"] forState:UIControlStateNormal];
-        
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedCellIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        selectedCellIndexPath = nil;
-    }
-    
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     
     userInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
+    UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
 
    
-    cellTextView=[[UITextView alloc] initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, 90)];
     cellTextView.editable=NO;
     cellTextView.font = [UIFont systemFontOfSize:13.5];
     cellTextView.textColor=[UIColor blackColor];
     cellTextView.userInteractionEnabled = NO;
     cellTextView.text = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
+    cellTextView.scrollEnabled = NO;
+
     [cell.contentView addSubview:cellTextView];
 
-
+    
     NSDate *date = [[self.selectedUserPosts objectAtIndex:indexPath.row] createdAt];
     NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
     [dateformate setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"]; // Date formater
@@ -585,7 +470,47 @@
     
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    userInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
+    
+    customCellTextView.editable=NO;
+    customCellTextView.font = [UIFont systemFontOfSize:13.5];
+    customCellTextView.textColor=[UIColor blackColor];
+    customCellTextView.userInteractionEnabled = NO;
+    customCellTextView.text = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
+    customCellTextView.scrollEnabled = NO;
+    
+    [cell.contentView addSubview:customCellTextView];
+    
 
+    
+    
+    
+    if ([selectedCellIArray containsObject:indexPath]) {
+        CGFloat fixedWidth = customCellTextView.frame.size.width;
+        CGSize newSize = [customCellTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+        CGRect newFrame = customCellTextView.frame;
+        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+        customCellTextView.frame = newFrame;
+        
+        if (customCellTextView.frame.size.height < 90) {
+            return 90;
+        }
+        return customCellTextView.frame.size.height;
+    }else{
+        [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
+        
+        
+    }
+    
+    return 90;
+    
+    
+}
 #pragma mark - Post options
 
 - (void)refreshPosts {
