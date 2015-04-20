@@ -762,9 +762,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="YDN-ok-eQF">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="YDN-ok-eQF">
                                 <rect key="frame" x="255" y="89" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="hideNameValeChanged:" destination="0KI-pS-tFg" eventType="valueChanged" id="B1u-ZR-zqw"/>
+                                </connections>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Whats your Apinion?" id="3Ua-cT-HaQ">
                                 <rect key="frame" x="16" y="165" width="288" height="343"/>
@@ -782,11 +785,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="E49-Ip-Uvo">
-                                <rect key="frame" x="16" y="65" width="50" height="50"/>
+                                <rect key="frame" x="16" y="65" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nim-vY-qWP">
-                                <rect key="frame" x="16" y="123" width="160" height="21"/>
+                                <rect key="frame" x="15" y="127" width="160" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
@@ -813,6 +816,11 @@
                                     <action selector="postApinionButtonPress:" destination="0KI-pS-tFg" eventType="touchUpInside" id="0sH-Hn-Ybn"/>
                                 </connections>
                             </button>
+                            <view alpha="0.0" contentMode="scaleToFill" id="ybB-dj-Jsw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -825,6 +833,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="apinionTextView" destination="3Ua-cT-HaQ" id="Vuf-Rr-Ter"/>
+                        <outlet property="coverVie" destination="ybB-dj-Jsw" id="ZYL-rF-kTB"/>
+                        <outlet property="hideNameSwitch" destination="YDN-ok-eQF" id="6Ef-Vm-NQJ"/>
                         <outlet property="postApinion" destination="vO4-do-e7D" id="tkQ-9N-lWU"/>
                         <outlet property="userImageView" destination="E49-Ip-Uvo" id="wdI-fo-Mgc"/>
                         <outlet property="userLabel" destination="Nim-vY-qWP" id="WHp-PH-Izp"/>
@@ -894,7 +904,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="HSH-bf-B3j" detailTextLabel="MeB-Ja-WJ2" rowHeight="90" style="IBUITableViewCellStyleValue1" id="rDz-N8-Gf1" customClass="userInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDz-N8-Gf1" id="Vnm-qv-NWQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>

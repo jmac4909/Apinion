@@ -130,8 +130,6 @@ static CGFloat MKMapOriginHight = 175.f;
     }
     
     self.scrollView.contentSize = CGSizeMake(750, 40);
-    NSLog(@"X: %f Y: %f",self.dataView
-          .frame.origin.x,self.dataView.frame.origin.y);
 
     [self.addTopicView setFrame:CGRectMake(self.dataView.frame.size.width, 0, self.dataView.frame.size.width, self.dataView.frame.size.height)];
     
@@ -595,7 +593,6 @@ static CGFloat MKMapOriginHight = 175.f;
     
 
     if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
-        NSLog(@"Here");
 
         //Red
         cell.detailTextLabel.textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -798,14 +795,12 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
     if (selectedSegment == 0) {
-        NSLog(@"Segmented 0");
         viewingUsers = true;
         self.tableViewData = self.userDataArray;
         [self.tableView reloadData];
         //View Users
             }
     else if (selectedSegment == 1){
-        NSLog(@"Segmented 1");
         viewingUsers = false;
 
         self.tableViewData = self.topicDataArray;

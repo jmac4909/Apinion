@@ -23,6 +23,7 @@
 }
 
 
+@property (strong, nonatomic) IBOutlet UIView *coverVie;
 @property (strong,nonatomic)UIViewController <addApinionProtocol> *delagate;
 @property (strong,nonatomic)PFObject *selectedUserData;
 
@@ -32,5 +33,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *apinionTextView;
 @property (strong, nonatomic) IBOutlet UIButton *postApinion;
 - (IBAction)postApinionButtonPress:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwitch *hideNameSwitch;
+- (IBAction)hideNameValeChanged:(id)sender;
 
 @end

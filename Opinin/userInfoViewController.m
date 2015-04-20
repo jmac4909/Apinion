@@ -282,7 +282,6 @@
     else if (newHeight < self.view.frame.size.height){
         float offset = (newHeight - self.toolbar.frame.size.height);
         
-        NSLog(@"%f",offset);
         [self.toolbar setFrame:CGRectMake(self.toolbar.frame.origin.x,  self.toolbar.frame.origin.y - offset, self.toolbar.frame.size.width, newHeight)];
         [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, newHeight - 14)];
     }
@@ -413,17 +412,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (![selectedCellIArray containsObject:indexPath]) {
+       
         [selectedCellIArray removeAllObjects];
         [selectedCellIArray addObject:indexPath];
         [self.tableView reloadData];
         selectedCellIndexPath = indexPath;
+        [tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
     }else{
                 [selectedCellIArray removeAllObjects];
 
 
         [self.tableView reloadData];
-        [tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 
     }
 }
@@ -448,19 +449,33 @@
     
     userInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    
-    UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
+    for (UITextView *txtView in cell.contentView.subviews)
+    {
+        if([txtView isKindOfClass:[UITextView class]])
+        {
+            [txtView removeFromSuperview];
+        }        
+    }
 
-   
+    
+    UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.contentView.frame.size.height)];
+
+
+    
+    NSLog(@"Cell content height %f",cell.frame.size.height);
+    NSLog(@"Cell textView height %f",cellTextView.frame.size.height);
+
     cellTextView.editable=NO;
     cellTextView.font = [UIFont systemFontOfSize:13.5];
     cellTextView.textColor=[UIColor blackColor];
     cellTextView.userInteractionEnabled = NO;
     cellTextView.text = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
     cellTextView.scrollEnabled = NO;
-
+    [cellTextView layoutSubviews];
     [cell.contentView addSubview:cellTextView];
-
+    
+    cell.displayNameLabel.text =[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"displayName"];
+    [cell.displayNameLabel layoutSubviews];
     
     NSDate *date = [[self.selectedUserPosts objectAtIndex:indexPath.row] createdAt];
     NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
@@ -686,7 +701,6 @@
         
         [[self.userGroups objectAtIndex:buttonIndex - 1] addObject:self.selectedUserData.objectId forKey:@"userIdInGroup"];
         //Index 0 is cancel
-        NSLog(@"%@",[self.userGroups objectAtIndex:buttonIndex - 1]);
         [[self.userGroups objectAtIndex:buttonIndex - 1] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
         }];

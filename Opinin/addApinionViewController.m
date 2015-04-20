@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.apinionTextView.delegate = self;
+    self.coverVie.userInteractionEnabled = NO;
     
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -86,6 +87,15 @@
         [apinion setObject:@0 forKey:@"postVotes"];
         self.apinionTextView.text = @"";
     
+    if (self.hideNameSwitch.on) {
+        [apinion setObject:@"" forKey:@"displayName"];
+    }else{
+        NSString *displayname = [NSString stringWithFormat:@"- %@ %@",[[PFUser currentUser]objectForKey:@"First_Name"],[[PFUser currentUser]objectForKey:@"Last_Name"]];
+        [apinion setObject:displayname forKey:@"displayName"];
+
+    }
+    
+
         [apinion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
     
@@ -100,7 +110,6 @@
                     [push setMessage:@"New Apinion about you!"];
     
                     [push sendPushInBackground];
-                [self.delagate closeAddApinion:self];
 
     
                 }else{
@@ -110,7 +119,19 @@
             
     
 
+    [self.delagate closeAddApinion:self];
+
     
-    
+}
+- (IBAction)hideNameValeChanged:(id)sender {
+    if (self.hideNameSwitch.on) {
+        self.coverVie.alpha = 0.6;
+
+
+    }else{
+        self.coverVie.alpha = 0.0;
+
+
+    }
 }
 @end

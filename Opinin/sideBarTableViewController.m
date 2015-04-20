@@ -39,7 +39,6 @@
     
     
     if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
-        NSLog(@"Here");
         
         //Red
         settingColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];

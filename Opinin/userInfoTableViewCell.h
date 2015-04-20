@@ -11,6 +11,6 @@
 @interface userInfoTableViewCell : UITableViewCell
 
 @property(strong,nonatomic)    UIImageView *dotsImage;
-
+@property(strong,nonatomic)UILabel *displayNameLabel;
 
 @end
