@@ -24,7 +24,7 @@
     float defaultDetailViewCenterX;
     float defaultDetailViewCenterY;
 
-    
+    float userCellWidth;
 
 }
 @property PFObject *selectedUserData;

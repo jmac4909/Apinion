@@ -460,19 +460,22 @@
     
     UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.contentView.frame.size.height)];
 
+    NSString *postString = [[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        userCellWidth = cell.contentView.frame.size.width;
 
     
-    NSLog(@"Cell content height %f",cell.frame.size.height);
-    NSLog(@"Cell textView height %f",cellTextView.frame.size.height);
+
 
     cellTextView.editable=NO;
     cellTextView.font = [UIFont systemFontOfSize:13.5];
     cellTextView.textColor=[UIColor blackColor];
     cellTextView.userInteractionEnabled = NO;
-    cellTextView.text = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
+    cellTextView.text = postString;
     cellTextView.scrollEnabled = NO;
     [cellTextView layoutSubviews];
     [cell.contentView addSubview:cellTextView];
+    [cellTextView layoutIfNeeded]; //added
     
     cell.displayNameLabel.text =[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"displayName"];
     [cell.displayNameLabel layoutSubviews];
@@ -491,7 +494,7 @@
     CGRect newFrame = customCellTextView.frame;
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
 
-    
+
     
         
     
@@ -516,34 +519,41 @@
     
     userInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
+    
     [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
+    
+    if (userCellWidth) {
+        [customCellTextView setFrame:CGRectMake(15, 0, userCellWidth, cell.frame.size.height)];
+    }
+
+    
+        NSString *postString = [[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     
     customCellTextView.editable=NO;
     customCellTextView.font = [UIFont systemFontOfSize:13.5];
     customCellTextView.textColor=[UIColor blackColor];
     customCellTextView.userInteractionEnabled = NO;
-    customCellTextView.text = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
+    customCellTextView.text = postString;
     customCellTextView.scrollEnabled = NO;
-    
     [cell.contentView addSubview:customCellTextView];
-    
+
 
     
     
     
     if ([selectedCellIArray containsObject:indexPath]) {
-        CGFloat fixedWidth = customCellTextView.frame.size.width;
-        CGSize newSize = [customCellTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-        CGRect newFrame = customCellTextView.frame;
-        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-        customCellTextView.frame = newFrame;
+
         
-        if (customCellTextView.frame.size.height < 90) {
+
+        
+
+        if (  [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width - 10, CGFLOAT_MAX)].height < 90) {
             return 90;
         }else{
-
+            return   [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width, CGFLOAT_MAX)].height + customCellTextView.font.pointSize;
         }
-        return customCellTextView.frame.size.height;
+        
     }else{
         [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
         

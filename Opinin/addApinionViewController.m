@@ -29,10 +29,11 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if([text isEqualToString:@"\n"]) {
+
+    if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
-        return NO;
     }
+    
     return YES;
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -80,8 +81,10 @@
 - (IBAction)postApinionButtonPress:(id)sender {
     
     
+    NSString *postString = [self.apinionTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
         PFObject *apinion = [PFObject objectWithClassName:@"Apinions"];
-        [apinion setObject:self.apinionTextView.text forKey:@"postText"];
+        [apinion setObject:postString forKey:@"postText"];
         [apinion setObject:self.selectedUserData.objectId forKey:@"selectedUserID"];
         [apinion setObject:[PFUser currentUser].objectId forKey:@"posterID"];
         [apinion setObject:@0 forKey:@"postVotes"];
