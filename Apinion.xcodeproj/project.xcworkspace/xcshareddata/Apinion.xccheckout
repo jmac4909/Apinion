@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>87D24C3A-DBDB-44F1-91CE-89ADCE92A382</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Apinion</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>437326784573A401D9D9F39F24D8E47D7D3673A6</key>
 		<string>https://github.com/jmac4909/Apinion.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Apinion.xcodeproj/project.xcworkspace</string>
+	<string>Apinion.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>437326784573A401D9D9F39F24D8E47D7D3673A6</key>

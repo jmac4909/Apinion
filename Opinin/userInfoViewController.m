@@ -460,9 +460,10 @@
     
     UITextView *cellTextView = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.contentView.frame.size.height)];
 
-    NSString *postString = [[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+       NSString *postString = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
 
-        userCellWidth = cell.contentView.frame.size.width;
+
+        userCellWidth = cellTextView.frame.size.width;
 
     
 
@@ -475,7 +476,7 @@
     cellTextView.scrollEnabled = NO;
     [cellTextView layoutSubviews];
     [cell.contentView addSubview:cellTextView];
-    [cellTextView layoutIfNeeded]; //added
+//    [cellTextView layoutIfNeeded]; //added
     
     cell.displayNameLabel.text =[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"displayName"];
     [cell.displayNameLabel layoutSubviews];
@@ -521,13 +522,13 @@
     
     
     [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
-    
     if (userCellWidth) {
         [customCellTextView setFrame:CGRectMake(15, 0, userCellWidth, cell.frame.size.height)];
+
     }
 
     
-        NSString *postString = [[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *postString = [[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"postText"];
     
     
     customCellTextView.editable=NO;
@@ -548,14 +549,14 @@
 
         
 
-        if (  [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width - 10, CGFLOAT_MAX)].height < 90) {
+        if (  [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width , CGFLOAT_MAX)].height < 90) {
             return 90;
         }else{
             return   [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width, CGFLOAT_MAX)].height + customCellTextView.font.pointSize;
         }
         
     }else{
-        [customCellTextView setFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.746667, cell.frame.size.height)];
+        [customCellTextView setFrame:CGRectMake(15, 0, customCellTextView.frame.size.width, cell.frame.size.height)];
         
         
     }
