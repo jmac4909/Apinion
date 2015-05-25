@@ -25,7 +25,6 @@
     
     [self.view bringSubviewToFront:self.toolbar];
     
-    self.aponionTextField.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardFrameWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -67,30 +66,63 @@
     
     self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.size.width / 2;
     self.userPhotoImageView.clipsToBounds = YES;
-    self.userPhotoImageView.layer.borderWidth = 3.0f;
+    self.userPhotoImageView.layer.borderWidth = 2.0f;
 
     
     self.userPhotoImageView.layer.borderColor = self.userThemeColor.CGColor;
-    [self.underlineImageView setBackgroundColor: self.userThemeColor];
     
-
+ 
     
     UIPanGestureRecognizer* swipeLeftGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeftFrom:)];
-    
-
     [self.tableViewDetailView addGestureRecognizer:swipeLeftGestureRecognizer];
     
+    
+    
+    
   
-    UIButton *addApinionButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [addApinionButton setFrame:CGRectMake(self.tableView.frame.size.width/2, 40, 50, 50)];
+    self.underlineImageVIew = [[UIImageView alloc]initWithFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width - self.userPhotoImageView.frame.size.width/2, 2)];
+    
+    [self.underlineImageVIew setBackgroundColor:self.userThemeColor];
+    [self.tableView insertSubview:self.underlineImageVIew aboveSubview:self.tableViewDetailView];
+    
+    
+    
+    
+    
+    UIButton *addApinionButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [addApinionButton setImage:[UIImage imageNamed:@"postImage"] forState:UIControlStateNormal];
+    
+    addApinionButton.tintColor = self.userThemeColor;
+    [addApinionButton setFrame:CGRectMake(self.tableViewDetailView.frame.size.width/3  , self.tableViewDetailView.frame.size.height/2 - 14 , 28, 28)];
+    
     [self.tableView insertSubview:addApinionButton belowSubview:self.tableViewDetailView];
+    
     [addApinionButton addTarget:self action:@selector(addApinion) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    
+    UIButton *addToGroupButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
+    addToGroupButton.tintColor = self.userThemeColor;
+
+    [addToGroupButton setFrame:CGRectMake(self.tableView.frame.size.width/2 , self.tableViewDetailView.frame.size.height/2 - 14 , 28, 28)];
+    
+    
+    [self.tableView insertSubview:addToGroupButton belowSubview:self.tableViewDetailView];
+    [addToGroupButton addTarget:self action:@selector(addUserToGroup:) forControlEvents:UIControlEventTouchUpInside];
     
     defaultDetailViewCenterX = self.tableViewDetailView.center.x;
     defaultDetailViewCenterY = 0 + self.tableViewDetailView.frame.size.height/2;
 
     
     customCellTextView = [[UITextView alloc]init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,7 +131,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
 
     self.addButton.tintColor = self.userThemeColor;
     self.backButton.tintColor = self.userThemeColor;
@@ -137,13 +169,31 @@
     self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"School_Name"];
     self.selectedUserBananaLabel.text = [self.selectedUserData objectForKey:@""];
     
+
 }
+- (void)appDidBecomeActive:(NSNotification *)notification {
+    [self.navigationController.shyNavigationBar setToShyHeight:YES];
+ 
+ 
+}
+
+- (void)appWillEnterForeground:(NSNotification *)notification {
+
+    
+}
+
+
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
-    [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
 
+    [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
+    
+
+
+
+    
 
 
     
@@ -366,6 +416,7 @@
         float centerX = self.tableViewDetailView.frame.size.width/4.5;
         
         if (latestXTranslation < 0) {
+            NSLog(@" < 0");
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.2];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -373,7 +424,16 @@
             [self.tableViewDetailView setCenter:CGPointMake( -centerX,defaultDetailViewCenterY )];
             [UIView commitAnimations];
             latestXTranslation = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                
+                
+                [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width, 2)];
+                
+                
+            }];
         }else{
+            NSLog(@"> 0");
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -381,6 +441,14 @@
         [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,defaultDetailViewCenterY )];
         [UIView commitAnimations];
             latestXTranslation = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                
+                
+                [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width - self.userPhotoImageView.frame.size.width/2, 2)];
+                
+                
+            }];
         }
     }
 
@@ -401,8 +469,18 @@
 
 
 - (void)closeAddApinion:(UIViewController*)sender{
-    [self dismissViewControllerAnimated:true completion:^{
+
+    [self.navigationController.shyNavigationBar setToFullHeight:YES];
+    [UIView animateWithDuration:0.2 animations:^{
         
+        
+        
+        [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width - self.userPhotoImageView.frame.size.width/2, 2)];
+        
+        
+    }];
+    [self dismissViewControllerAnimated:true completion:^{
+
     }];
 }
 
@@ -417,7 +495,6 @@
         [selectedCellIArray addObject:indexPath];
         [self.tableView reloadData];
         selectedCellIndexPath = indexPath;
-        [tableView scrollToRowAtIndexPath:selectedCellIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
     }else{
                 [selectedCellIArray removeAllObjects];
@@ -726,7 +803,7 @@
         addApinionViewController *addApinionView = (addApinionViewController *)[segue.destinationViewController topViewController];
         addApinionView.selectedUserData = self.selectedUserData;
         addApinionView.delagate = self;
-        
+        addApinionView.userThemeColor = self.userThemeColor;
 //        [self.navigationController.shyNavigationBar prepareForSegueAway:YES];
 
     }

@@ -26,9 +26,12 @@
 @property (strong, nonatomic) IBOutlet UIView *coverVie;
 @property (strong,nonatomic)UIViewController <addApinionProtocol> *delagate;
 @property (strong,nonatomic)PFObject *selectedUserData;
+@property (strong,nonatomic) UIColor *userThemeColor;
 
 - (IBAction)cancelButtonPress:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *seporatorImageView;
+
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
 @property (strong, nonatomic) IBOutlet UITextView *apinionTextView;
 @property (strong, nonatomic) IBOutlet UIButton *postApinion;

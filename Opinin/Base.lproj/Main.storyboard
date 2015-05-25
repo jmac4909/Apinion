@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2w1-W8-IaY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2w1-W8-IaY">
     <dependencies>
         <deployment version="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Sign In View Controller-->
@@ -530,13 +530,6 @@
                                             <color key="textColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 users nearby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5UQ-cz-KDU" userLabel="user count Label">
-                                            <rect key="frame" x="8" y="12" width="184" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                            <color key="textColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="QQV-Ah-tEM">
                                             <rect key="frame" x="113" y="6" width="95" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -549,6 +542,13 @@
                                                 <action selector="segmentedValueDidChange:" destination="lg4-yC-NOO" eventType="valueChanged" id="UhQ-8x-hur"/>
                                             </connections>
                                         </segmentedControl>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 users nearby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5UQ-cz-KDU" userLabel="user count Label">
+                                            <rect key="frame" x="8" y="9" width="184" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                            <color key="textColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96126529719999998" green="0.76048951050000002" blue="0.03786057692" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
@@ -556,7 +556,7 @@
                         </scrollView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="xPD-or-YFh" detailTextLabel="2nH-KG-fhu" style="IBUITableViewCellStyleSubtitle" id="zOJ-Kh-faV">
-                                <rect key="frame" x="0.0" y="62" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOJ-Kh-faV" id="4oX-tW-MtF">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
@@ -778,16 +778,12 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qjz-SY-8yf">
-                                <rect key="frame" x="166.99999650411513" y="94" width="80" height="21"/>
+                                <rect key="frame" x="167" y="94" width="79.999998477101329" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="E49-Ip-Uvo">
-                                <rect key="frame" x="16" y="65" width="55" height="55"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nim-vY-qWP">
                                 <rect key="frame" x="15" y="127" width="160" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -816,6 +812,10 @@
                                     <action selector="postApinionButtonPress:" destination="0KI-pS-tFg" eventType="touchUpInside" id="0sH-Hn-Ybn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="E49-Ip-Uvo">
+                                <rect key="frame" x="16" y="70" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view alpha="0.0" contentMode="scaleToFill" id="ybB-dj-Jsw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -836,6 +836,7 @@
                         <outlet property="coverVie" destination="ybB-dj-Jsw" id="ZYL-rF-kTB"/>
                         <outlet property="hideNameSwitch" destination="YDN-ok-eQF" id="6Ef-Vm-NQJ"/>
                         <outlet property="postApinion" destination="vO4-do-e7D" id="tkQ-9N-lWU"/>
+                        <outlet property="seporatorImageView" destination="zyD-4E-aZ0" id="qHq-zT-xMJ"/>
                         <outlet property="userImageView" destination="E49-Ip-Uvo" id="wdI-fo-Mgc"/>
                         <outlet property="userLabel" destination="Nim-vY-qWP" id="WHp-PH-Izp"/>
                     </connections>
@@ -861,11 +862,6 @@
                                     <rect key="frame" x="0.0" y="44" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="UEG-fg-6m3" userLabel="bottom line">
-                                            <rect key="frame" x="0.0" y="86" width="278" height="2"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tNF-DP-JvJ" userLabel="User ImageImage View">
                                             <rect key="frame" x="229" y="0.0" width="90" height="88"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -936,10 +932,9 @@
                         <color key="backgroundColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Apinion" id="Qw4-Eh-KJU">
-                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="qRK-eM-4ND">
-                            <color key="tintColor" red="0.55983382940000004" green="0.0" blue="0.16862495520000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="sxL-JH-Dan">
                             <connections>
-                                <action selector="backButtonPress:" destination="y9f-wq-s8P" id="cnJ-Zh-kkA"/>
+                                <action selector="backButtonPress:" destination="y9f-wq-s8P" id="mVU-dT-VqR"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Rq6-rS-ABb">
@@ -952,12 +947,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="Rq6-rS-ABb" id="ZC4-XN-nHk"/>
-                        <outlet property="backButton" destination="qRK-eM-4ND" id="IdE-eH-glf"/>
+                        <outlet property="backButton" destination="sxL-JH-Dan" id="Gib-rd-SLn"/>
                         <outlet property="selectedUserNameLabel" destination="wl6-h0-c4b" id="4Mr-l9-rhF"/>
                         <outlet property="selectedUserSchoolLabel" destination="rTf-wp-miE" id="Shx-hG-W91"/>
                         <outlet property="tableView" destination="bBq-MJ-UtO" id="ES4-wg-ebo"/>
                         <outlet property="tableViewDetailView" destination="iTH-aB-5gW" id="IOL-8q-ctq"/>
-                        <outlet property="underlineImageView" destination="UEG-fg-6m3" id="cHp-UK-OP2"/>
                         <outlet property="userPhotoImageView" destination="tNF-DP-JvJ" id="wUj-ou-xMM"/>
                         <segue destination="tZY-dk-Fds" kind="modal" identifier="showAddApinion" id="4Vc-bV-4hu"/>
                     </connections>

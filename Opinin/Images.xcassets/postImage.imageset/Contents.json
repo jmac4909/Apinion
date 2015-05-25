@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "postButton.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "UpArrow60x60.png"
+      "filename" : "postButton@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "postButton@3x.png"
     }
   ],
   "info" : {

@@ -34,17 +34,16 @@
 
 @property(strong,nonatomic) userInfoTableViewCell *customUserInfoCell;
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 
-@property (strong, nonatomic) IBOutlet UIImageView *underlineImageView;
+@property (strong,nonatomic)UIImageView *underlineImageVIew;
 
 @property (strong, nonatomic) IBOutlet UIView *tableViewDetailView;
 @property NSArray *selectedUserPosts;
 @property (strong, nonatomic) IBOutlet UIImageView *userPhotoImageView;
-@property (strong, nonatomic) IBOutlet UITextView *aponionTextField;
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+ @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) UIButton *upVoteButton;
 @property (strong,nonatomic) UIButton *downVoteButton;

@@ -20,6 +20,14 @@
     self.apinionTextView.delegate = self;
     self.coverVie.userInteractionEnabled = NO;
     
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
+    self.userImageView.clipsToBounds = YES;
+    self.userImageView.layer.borderWidth = 1.0f;
+    
+    
+    self.userImageView.layer.borderColor = self.userThemeColor.CGColor;
+
+    
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if ([textView.text isEqualToString:@"Whats your Apinion?"]) {
@@ -39,10 +47,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [self.seporatorImageView setBackgroundColor:self.userThemeColor];
+    
     NSString *firstName = [[[PFUser currentUser] objectForKey:@"First_Name"]stringByAppendingString:@" "];
     
     NSString *fullName = [firstName stringByAppendingString:[[PFUser currentUser] objectForKey:@"Last_Name"]];
     self.userLabel.text = fullName;
+    [self.userImageView setFrame:CGRectMake(self.userImageView.frame.origin.x, self.userImageView.frame.origin.y, self.userImageView.frame.size.width, self.userImageView.frame.size.height)];
     //Get user Image
     PFFile *imageFile = [[PFUser currentUser] objectForKey:@"userPicture"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -59,6 +70,7 @@
         }
     }];
 
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

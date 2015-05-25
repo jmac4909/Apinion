@@ -70,6 +70,18 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
 
 #pragma mark - External
 
+-(void)showContentsOfView{
+    
+    if (self.frame.size.height == self.shyHeight) {
+        NSLog(@"shyHeight");
+    }else{
+        NSLog(@"fullHeught");
+    }
+
+    
+
+    
+}
 - (void)setToFullHeight:(BOOL)animated {
     CGRect frame = self.frame;
     
@@ -86,6 +98,14 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
     
     // Set frame
     [self moveToFrame:frame animated:animated];
+    for (UIView *view in self.subviews)
+    {
+        
+        view.alpha = 1.0;
+        
+        
+    }
+
 }
 
 - (void)setToShyHeight:(BOOL)animated {
