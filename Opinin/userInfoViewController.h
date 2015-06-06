@@ -39,11 +39,11 @@
 
 
 @property (strong,nonatomic)UIImageView *underlineImageVIew;
+@property(strong,nonatomic)UIToolbar *toolbar;
 
 @property (strong, nonatomic) IBOutlet UIView *tableViewDetailView;
 @property NSArray *selectedUserPosts;
 @property (strong, nonatomic) IBOutlet UIImageView *userPhotoImageView;
- @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) UIButton *upVoteButton;
 @property (strong,nonatomic) UIButton *downVoteButton;

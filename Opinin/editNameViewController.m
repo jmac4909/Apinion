@@ -26,8 +26,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.firstNameTextFeild.text = [[PFUser currentUser]objectForKey:@"First_Name"];
-    self.lastNameTextFeild.text = [[PFUser currentUser]objectForKey:@"Last_Name"];
+    self.firstNameTextFeild.text = [[PFUser currentUser]objectForKey:@"Object_FirstName"];
+    self.lastNameTextFeild.text = [[PFUser currentUser]objectForKey:@"Object_LastName"];
     
 }
 
@@ -49,8 +49,8 @@
 - (IBAction)saveButtonPress:(id)sender {
     
     
-    [[PFUser currentUser]setObject:self.firstNameTextFeild.text forKey:@"First_Name"];
-    [[PFUser currentUser]setObject:self.lastNameTextFeild.text forKey:@"Last_Name"];
+    [[PFUser currentUser]setObject:self.firstNameTextFeild.text forKey:@"Object_FirstName"];
+    [[PFUser currentUser]setObject:self.lastNameTextFeild.text forKey:@"Object_LastName"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self.firstNameTextFeild resignFirstResponder];
         [self.lastNameTextFeild resignFirstResponder];

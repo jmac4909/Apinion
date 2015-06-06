@@ -22,7 +22,7 @@
 //    color = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
     // Do any additional setup after loading the view.
 
-    
+
     [self.view bringSubviewToFront:self.toolbar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -31,13 +31,7 @@
     
     
     
-    addActionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                 delegate:self
-                                        cancelButtonTitle:@"Cancel"
-                                   destructiveButtonTitle:nil
-                                        otherButtonTitles: nil];
-    
-    addActionSheet.title = [NSString stringWithFormat:@"Add %@ to which group?",[self.selectedUserData objectForKey:@"First_Name"]];
+   
     
     
     NSString *userIdString = [@"A" stringByAppendingString:[PFUser currentUser].objectId];
@@ -144,18 +138,27 @@
     [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         self.userGroups = [[NSMutableArray alloc]initWithArray:objects];
+        addActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                       destructiveButtonTitle:nil
+                                            otherButtonTitles: nil];
         
+        addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to which group?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
         for (int x = 0; x <= objects.count; x++) {
             
+            
+            
             [addActionSheet addButtonWithTitle:[[self.userGroups objectAtIndex:x]objectForKey:@"groupName"]];
-        }
+            
+         }
         
     }];
 
     
     
     //Get user Image
-    PFFile *imageFile = [self.selectedUserData objectForKey:@"userPicture"];
+    PFFile *imageFile = [self.selectedUserData objectForKey:@"objectImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *userImage = [UIImage imageWithData:data];
@@ -163,10 +166,20 @@
             
         }
     }];
-    NSString *selectedUserName = [[self.selectedUserData objectForKey:@"First_Name"]stringByAppendingString:@" "];
+    NSString *selectedUserName = [[self.selectedUserData objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
+    if ([self.selectedUserData objectForKey:@"Object_LastName"]!=nil) {
+            self.selectedUserNameLabel.text = [selectedUserName stringByAppendingString:[self.selectedUserData objectForKey:@"Object_LastName"]];
+    }else{
+        self.selectedUserNameLabel.text = selectedUserName;
+        
+    }
     
-    self.selectedUserNameLabel.text = [selectedUserName stringByAppendingString:[self.selectedUserData objectForKey:@"Last_Name"]];
-    self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"School_Name"];
+    if ([self.selectedUserData objectForKey:@"School_Name"] != nil) {
+         self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"School_Name"];
+    }else{
+         self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"topic_Detail"];
+    }
+   
     self.selectedUserBananaLabel.text = [self.selectedUserData objectForKey:@""];
     
 
@@ -219,7 +232,7 @@
     }
      ];
 
-//    self.aponionTextField.placeholder = [NSString stringWithFormat:@"Wanna share your Apinion on %@?",[self.selectedUserData objectForKey:@"First_Name"]];
+//    self.aponionTextField.placeholder = [NSString stringWithFormat:@"Wanna share your Apinion on %@?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
     
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Apinions"];
     [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
@@ -424,13 +437,17 @@
             [self.tableViewDetailView setCenter:CGPointMake( -centerX,defaultDetailViewCenterY )];
             [UIView commitAnimations];
             latestXTranslation = 0;
-            [UIView animateWithDuration:0.2 animations:^{
+            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
+            
+      
+            
+             [UIView animateWithDuration:0.2 animations:^{
                 
                 
                 
                 [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width, 2)];
                 
-                
+                 
             }];
         }else{
             NSLog(@"> 0");
@@ -441,7 +458,10 @@
         [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,defaultDetailViewCenterY )];
         [UIView commitAnimations];
             latestXTranslation = 0;
-            [UIView animateWithDuration:0.2 animations:^{
+            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
+            
+            
+             [UIView animateWithDuration:0.2 animations:^{
                 
                 
                 
@@ -464,6 +484,19 @@
         
     
     [self.navigationController.shyNavigationBar scrollViewDidScroll:scrollView];
+    
+        
+        if (defaultDetailViewCenterX != self.tableViewDetailView.frame.origin.x) {
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                
+                
+                [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width - self.userPhotoImageView.frame.size.width/2, 2)];
+                
+                
+            }];
+
+        }
     }
 }
 
@@ -480,15 +513,21 @@
         
     }];
     [self dismissViewControllerAnimated:true completion:^{
-
+ 
     }];
 }
 
 #pragma mark - Table view functions
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+ - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     [UIView animateWithDuration:0.2 animations:^{
+         
+         
+         
+         [self.underlineImageVIew setFrame:CGRectMake(0, self.tableViewDetailView.frame.size.height - self.userPhotoImageView.layer.borderWidth, self.tableViewDetailView.frame.size.width - self.userPhotoImageView.frame.size.width/2, 2)];
+         
+         
+     }];
     if (![selectedCellIArray containsObject:indexPath]) {
        
         [selectedCellIArray removeAllObjects];
@@ -776,6 +815,7 @@
     
     [addActionSheet showInView:self.view];
 
+    
     
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

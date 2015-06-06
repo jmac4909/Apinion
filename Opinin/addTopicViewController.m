@@ -50,7 +50,7 @@
     if (self.topicDetailTextView.text.length > 0 && self.topicTitleTextFeild.text.length > 0) {
         
         PFObject *topic = [PFObject objectWithClassName:@"Topics"];
-        [topic setObject:self.topicTitleTextFeild.text forKey:@"topic_Name"];
+        [topic setObject:self.topicTitleTextFeild.text forKey:@"Object_FirstName"];
         [topic setObject:self.topicDetailTextView.text forKey:@"topic_Detail"];
         [topic setObject:[self getdeviceLocation] forKey:@"Created_Position"];
         [topic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

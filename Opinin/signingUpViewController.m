@@ -69,7 +69,7 @@
     [metaData setObject:@0 forKey:@"userViews"];
     [metaData setObject:[PFUser currentUser] forKey:@"user"];
     [metaData setObject:[PFUser currentUser].objectId forKey:@"userId"];
-    [metaData setObject:[[PFUser currentUser]objectForKey:@"First_Name"] forKey:@"userName"];
+    [metaData setObject:[[PFUser currentUser]objectForKey:@"Object_FirstName"] forKey:@"userName"];
 
 
     [metaData saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -116,8 +116,8 @@
         }else{
     
     PFUser *user = [PFUser user];
-    [user setObject:self.firstNameField.text forKey:@"First_Name"];
-    [user setObject:self.lastNameField.text forKey:@"Last_Name"];
+    [user setObject:self.firstNameField.text forKey:@"Object_FirstName"];
+    [user setObject:self.lastNameField.text forKey:@"Object_LastName"];
     user.email = self.emailField.text;
     user.username = self.usernameField.text;
     [user setObject:self.schoolNameField.text forKey:@"School_Name"];

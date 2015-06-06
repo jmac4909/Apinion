@@ -101,7 +101,7 @@
     if (userObject) {
         
         
-    NSString *fullName = [[[userObject objectForKey:@"First_Name"] stringByAppendingString: @" "]stringByAppendingString:[userObject objectForKey:@"Last_Name"]];
+    NSString *fullName = [[[userObject objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[userObject objectForKey:@"Object_LastName"]];
     cell.textLabel.text = fullName;
     cell.detailTextLabel.text = [userObject objectForKey:@"School_Name"];
     }

@@ -49,13 +49,13 @@
     
     [self.seporatorImageView setBackgroundColor:self.userThemeColor];
     
-    NSString *firstName = [[[PFUser currentUser] objectForKey:@"First_Name"]stringByAppendingString:@" "];
+    NSString *firstName = [[[PFUser currentUser] objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
     
-    NSString *fullName = [firstName stringByAppendingString:[[PFUser currentUser] objectForKey:@"Last_Name"]];
+    NSString *fullName = [firstName stringByAppendingString:[[PFUser currentUser] objectForKey:@"Object_LastName"]];
     self.userLabel.text = fullName;
     [self.userImageView setFrame:CGRectMake(self.userImageView.frame.origin.x, self.userImageView.frame.origin.y, self.userImageView.frame.size.width, self.userImageView.frame.size.height)];
     //Get user Image
-    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"userPicture"];
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"objectImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *recievedUserImage = [UIImage imageWithData:data];
@@ -105,7 +105,7 @@
     if (self.hideNameSwitch.on) {
         [apinion setObject:@"" forKey:@"displayName"];
     }else{
-        NSString *displayname = [NSString stringWithFormat:@"- %@ %@",[[PFUser currentUser]objectForKey:@"First_Name"],[[PFUser currentUser]objectForKey:@"Last_Name"]];
+        NSString *displayname = [NSString stringWithFormat:@"- %@ %@",[[PFUser currentUser]objectForKey:@"Object_FirstName"],[[PFUser currentUser]objectForKey:@"Object_LastName"]];
         [apinion setObject:displayname forKey:@"displayName"];
 
     }

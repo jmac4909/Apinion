@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "navigationBarImageTan.png"
+      "filename" : "navigationBarImageTanTest.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "navigationBarImageTan-1.png"
+      "filename" : "navigationBarImageTanTest-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "navigationBarImageTan-2.png"
+      "filename" : "navigationBarImageTanTest-2.png"
     }
   ],
   "info" : {

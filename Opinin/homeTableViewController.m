@@ -91,7 +91,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [getPeople whereKey:@"Last_Position" nearGeoPoint:[self getdeviceLocation] withinMiles:10.0];
         [getPeople findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
-                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"First_Name" ascending:YES];
+                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
              
                 
                 self.userDataArray= [NSMutableArray arrayWithArray:objects];
@@ -115,7 +115,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [getTopic findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 
-                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Topic_Name" ascending:YES];
+                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                 
                 
                 self.topicDataArray= [NSMutableArray arrayWithArray:objects];
@@ -377,7 +377,7 @@ static CGFloat MKMapOriginHight = 175.f;
                 [getPeople findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
                         
-                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"First_Name" ascending:YES];
+                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                         
                         
                         self.userDataArray= [NSMutableArray arrayWithArray:objects];
@@ -402,7 +402,7 @@ static CGFloat MKMapOriginHight = 175.f;
                     [getTopic findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         if (!error) {
                             
-                            NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Topic_Name" ascending:YES];
+                            NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                             
                             
                             self.topicDataArray= [NSMutableArray arrayWithArray:objects];
@@ -471,6 +471,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
 -(void)refreshTableView {
     if (viewingUsers == true) {
+        self.segmentedTopicsUsers.enabled = false;
         [[PFUser currentUser] setObject:[self getdeviceLocation] forKey:@"Last_Position"];
         [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -479,7 +480,7 @@ static CGFloat MKMapOriginHight = 175.f;
                 [getPeople findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
                         
-                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"First_Name" ascending:YES];
+                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                         
                         
                         self.tableViewData= [NSMutableArray arrayWithArray:objects];
@@ -488,6 +489,8 @@ static CGFloat MKMapOriginHight = 175.f;
                         [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                         [self.refreshControl endRefreshing];
                         [self.tableView reloadData];
+                        self.segmentedTopicsUsers.enabled = true;
+
                     }else{
                         NSLog(@"%@",[error userInfo]);
                     }
@@ -500,14 +503,15 @@ static CGFloat MKMapOriginHight = 175.f;
 
     }else if (viewingUsers == false){
         
-        
+        self.segmentedTopicsUsers.enabled = false;
+
         //View Topics
         PFQuery *getTopic = [PFQuery queryWithClassName:@"Topics"];
         [getTopic whereKey:@"Created_Position" nearGeoPoint:[self getdeviceLocation] withinMiles:10.0];
         [getTopic findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 
-                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Topic_Name" ascending:YES];
+                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                 
                 
                 self.topicDataArray= [NSMutableArray arrayWithArray:objects];
@@ -516,7 +520,8 @@ static CGFloat MKMapOriginHight = 175.f;
                 [self.refreshControl endRefreshing];
                 [self.tableView reloadData];
                     
-                
+                self.segmentedTopicsUsers.enabled = true;
+
             }
         }];
         
@@ -569,13 +574,13 @@ static CGFloat MKMapOriginHight = 175.f;
     
  
     if (viewingUsers == true) {
-        NSString *fullName = [[[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"First_Name"] stringByAppendingString: @" "]stringByAppendingString:[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Last_Name"]];
+        NSString *fullName = [[[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_LastName"]];
         cell.textLabel.text = fullName;
         
         cell.detailTextLabel.text = [[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"School_Name"];
     }else{
         
-        cell.textLabel.text = [[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"topic_Name"];
+        cell.textLabel.text = [[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"];
         cell.detailTextLabel.text = [[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"topic_Detail"];
     }
     
@@ -661,7 +666,9 @@ static CGFloat MKMapOriginHight = 175.f;
     [self performSegueWithIdentifier:@"showUserPage" sender:self];
         
     }else if (viewingUsers == false){
-        
+        self.selectedUserData = [self.topicDataArray objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"showUserPage" sender:self];
+
     }
     
 }

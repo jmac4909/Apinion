@@ -37,7 +37,7 @@
     mediaPicker.allowsEditing = YES;
     
     //Get user Image
-    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"userPicture"];
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"objectImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *recievedUserImage = [UIImage imageWithData:data];
@@ -60,7 +60,7 @@
     [self.tableView reloadData];
     
     //Get user Image
-    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"userPicture"];
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"objectImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *recievedUserImage = [UIImage imageWithData:data];
@@ -102,7 +102,7 @@
 }
 
 - (IBAction)changeToYellowTheme:(id)sender {
-    [[PFUser currentUser]setObject:@"Yelloe" forKey:@"userTheme"];
+    [[PFUser currentUser]setObject:@"Yellow" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
     }];
@@ -165,16 +165,15 @@
     // Convert to JPEG with 100% quality
 
     NSData* data = UIImageJPEGRepresentation(userImage, 1.0f);
-    PFFile *imageFile = [PFFile fileWithName:@"userImage.jpg" data:data];
-    [[PFUser currentUser]setObject:imageFile forKey:@"userPicture"];
+    PFFile *imageFile = [PFFile fileWithName:@"objectImage.jpg" data:data];
+    [[PFUser currentUser]setObject:imageFile forKey:@"objectImage"];
     
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"%@",error.userInfo);
         }
         
-        [self.delagate closeAccountView:self];
-        
+         
     }];
 
 }
@@ -240,8 +239,8 @@
 
     
     if (indexPath.row == 0) {
-        NSString *Name = [[[PFUser currentUser]objectForKey:@"First_Name"]stringByAppendingString:@" "];
-        NSString *userFullName = [Name stringByAppendingString:[[PFUser currentUser]objectForKey:@"Last_Name"]];
+        NSString *Name = [[[PFUser currentUser]objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
+        NSString *userFullName = [Name stringByAppendingString:[[PFUser currentUser]objectForKey:@"Object_LastName"]];
         cell.textLabel.text = userFullName;
         
     }
