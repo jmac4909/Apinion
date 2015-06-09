@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+         
 //    //Red
 //    UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
 //    //Blue
@@ -114,9 +116,13 @@
     customCellTextView = [[UITextView alloc]init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+ 
 
-    self.navigationItem.hidesBackButton = YES;
+  
+    
+
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,9 +131,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
-
-    self.addButton.tintColor = self.userThemeColor;
+    self.navigationItem.backBarButtonItem = nil;
+     self.addButton.tintColor = self.userThemeColor;
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
@@ -190,17 +195,14 @@
  
 }
 
-- (void)appWillEnterForeground:(NSNotification *)notification {
 
-    
-}
 
 
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-
+ 
     [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
     
 

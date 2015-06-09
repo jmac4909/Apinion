@@ -160,7 +160,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         
     }];
-    userImage =(UIImage*)[info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    userImage =(UIImage*)[info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.userImageView.image = userImage;
     // Convert to JPEG with 100% quality
 

@@ -141,7 +141,8 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.view addSubview:self.scrollViewImageView];
     
     [self.view sendSubviewToBack:self.scrollViewImageView];
-
+    
+    
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -159,8 +160,8 @@ static CGFloat MKMapOriginHight = 175.f;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    //Red color
+    self.navigationItem.backBarButtonItem = nil;
+     //Red color
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
     
