@@ -119,9 +119,8 @@
  
 
   
+    self.navigationItem.backBarButtonItem = self.backButton;
     
-
-
     
 }
 
@@ -131,8 +130,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationItem.backBarButtonItem = nil;
-     self.addButton.tintColor = self.userThemeColor;
+      self.addButton.tintColor = self.userThemeColor;
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
@@ -374,7 +372,10 @@
 
 
 - (IBAction)backButtonPress:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+        [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 - (void)showAlert: (PFObject *)alertObject {

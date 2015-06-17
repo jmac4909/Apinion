@@ -55,7 +55,8 @@
     
 
 
-//
+    [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
+
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarImage.png"] forBarMetrics:UIBarMetricsDefault];
 //
 // 

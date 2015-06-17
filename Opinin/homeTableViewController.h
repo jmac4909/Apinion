@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
 #import "accountViewController.h"
-#import "SWRevealViewController.h"
 #import <MapKit/MapKit.h>
 
 @interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate>{

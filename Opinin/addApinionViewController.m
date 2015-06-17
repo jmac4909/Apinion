@@ -70,6 +70,7 @@
         }
     }];
 
+    self.navigationItem.leftBarButtonItem.tintColor = self.userThemeColor;
     
 }
 - (void)didReceiveMemoryWarning {

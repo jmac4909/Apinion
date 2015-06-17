@@ -34,16 +34,8 @@
       NSFontAttributeName,
       color,NSForegroundColorAttributeName, nil]];
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        UITapGestureRecognizer *tap = [self.revealViewController tapGestureRecognizer];
-        
-        [self.view addGestureRecognizer:tap];
-    }
+ 
+    
 
 }
 

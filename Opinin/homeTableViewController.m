@@ -43,17 +43,7 @@ static CGFloat MKMapOriginHight = 175.f;
     self.userLocationMap.delegate = self;
 
         
-        SWRevealViewController *revealViewController = self.revealViewController;
-        if ( revealViewController )
-        {
-            [self.sidebarButton setTarget: self.revealViewController];
-            [self.sidebarButton setAction: @selector( revealToggle: )];
-            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-            UITapGestureRecognizer *tap = [self.revealViewController tapGestureRecognizer];
-            
-            [self.view addGestureRecognizer:tap];
-        }
-        
+                 
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -141,8 +131,6 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.view addSubview:self.scrollViewImageView];
     
     [self.view sendSubviewToBack:self.scrollViewImageView];
-    
-    
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -160,8 +148,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationItem.backBarButtonItem = nil;
-     //Red color
+      //Red color
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
     
