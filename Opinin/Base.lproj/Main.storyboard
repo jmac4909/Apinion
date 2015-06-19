@@ -655,6 +655,9 @@
                     <navigationItem key="navigationItem" title="Apinion" id="eV9-Aj-t5u">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="L0C-9A-1TH">
                             <color key="tintColor" red="0.55983382940000004" green="0.0" blue="0.16862495520000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="pressDropDownButton:" destination="lg4-yC-NOO" id="IUu-Ia-vjw"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZfE-0s-nk7">
@@ -667,6 +670,7 @@
                         <outlet property="addTopicView" destination="97W-gK-Bna" id="qIB-He-q8C"/>
                         <outlet property="dataView" destination="cOC-r5-xEX" id="b5Q-pc-LdC"/>
                         <outlet property="dataViewImageView" destination="1Gh-6D-g6d" id="AhQ-GD-TLR"/>
+                        <outlet property="dropDownMenuView" destination="nbf-52-6RZ" id="Bfo-ve-Ru0"/>
                         <outlet property="latitudeLabel" destination="ogj-N2-tRd" id="cD4-o3-oCW"/>
                         <outlet property="longitudeLabel" destination="mAv-9z-uBf" id="YGR-PL-3EU"/>
                         <outlet property="scrollView" destination="Y9P-FA-fah" id="7JK-BT-DKG"/>
@@ -760,6 +764,12 @@
                         <outlet property="delegate" destination="lg4-yC-NOO" id="A6p-dA-6WJ"/>
                     </connections>
                 </mapView>
+                <view contentMode="scaleToFill" id="nbf-52-6RZ" userLabel="Drop Down Menu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <searchDisplayController id="1dX-sn-ltf">
                     <connections>
                         <outlet property="delegate" destination="lg4-yC-NOO" id="AW4-g6-8OU"/>
@@ -993,7 +1003,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="HSH-bf-B3j" detailTextLabel="MeB-Ja-WJ2" rowHeight="90" style="IBUITableViewCellStyleValue1" id="rDz-N8-Gf1" customClass="userInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDz-N8-Gf1" id="Vnm-qv-NWQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
@@ -1401,7 +1411,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="S4w-aB-WQ2" detailTextLabel="pIi-Nn-Zhc" style="IBUITableViewCellStyleSubtitle" id="gWG-Ea-cNP">
-                                <rect key="frame" x="0.0" y="191" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="127" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gWG-Ea-cNP" id="Odc-Se-CFN">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -1511,8 +1521,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Ads-uG-kjg"/>
         <segue reference="zDh-M8-cIM"/>
-        <segue reference="frE-2S-VLb"/>
         <segue reference="seo-sf-aMq"/>
     </inferredMetricsTieBreakers>
 </document>

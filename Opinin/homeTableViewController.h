@@ -17,7 +17,11 @@
     CGRect f;
     BOOL viewingUsers;
     float latestXTranslation;
-
+    UIView *coverView;
+    UIButton *homeDropButton;
+    UIButton *popularDropButton;
+    UIButton *favoritesDropButton;
+    UITapGestureRecognizer *screenTap;
 }
 @property (strong, nonatomic) IBOutlet UIButton *TopicButton;
 @property (strong, nonatomic) IBOutlet UIImageView *seporateImageView;
@@ -40,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *addTopicImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *dataViewImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *scrollViewImageView;
+@property (strong, nonatomic) IBOutlet UIView *dropDownMenuView;
 
            
 @property PFObject *alertFound;

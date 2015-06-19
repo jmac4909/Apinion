@@ -131,7 +131,64 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.view addSubview:self.scrollViewImageView];
     
     [self.view sendSubviewToBack:self.scrollViewImageView];
+    
+ 
+
+     self.dropDownMenuView.userInteractionEnabled = true;
+    homeDropButton = [[UIButton alloc]init];
+    [homeDropButton addTarget:self action:@selector(homeButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    homeDropButton.userInteractionEnabled = true;
+    
+    favoritesDropButton = [[UIButton alloc]init];
+    [favoritesDropButton addTarget:self action:@selector(favoriteButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    favoritesDropButton.userInteractionEnabled = true;
+
+    popularDropButton = [[UIButton alloc]init];
+    [popularDropButton addTarget:self action:@selector(popularButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    popularDropButton.userInteractionEnabled = true;
+    
+
+  
+     self.dropDownMenuView.userInteractionEnabled = YES;
+
+    self.tableView.canCancelContentTouches = YES;
+    
+     screenTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self
+                                         action:@selector(tapScreen:)];
+
+    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height)];
+    
+    coverView.backgroundColor = [UIColor blackColor];
+    [coverView setAlpha:0.4];
+
 }
+
+
+- (IBAction)tapScreen:(id)sender {
+    CGPoint tapPoint = [sender locationInView:self.view];
+    
+    CGRect homeFrame = [self.dropDownMenuView convertRect:homeDropButton.frame toView:self.view];
+    
+
+    
+    if (CGRectContainsPoint(homeFrame, tapPoint)) {
+        [self homeButtonPress];
+         return;
+    }
+    CGRect popularFrame = [self.dropDownMenuView convertRect:popularDropButton.frame toView:self.view];
+    if (CGRectContainsPoint(popularFrame, tapPoint)) {
+        [self popularButtonPress];
+        return;
+    }
+    CGRect favoriteFrame = [self.dropDownMenuView convertRect:favoritesDropButton.frame toView:self.view];
+    if (CGRectContainsPoint(favoriteFrame, tapPoint)) {
+        [self favoriteButtonPress];
+        return;
+    }
+}
+
+
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
@@ -299,10 +356,102 @@ static CGFloat MKMapOriginHight = 175.f;
     self.userLocationMap.frame = f;
     
     
+    
+    
+    self.userLocationMap.tintColor = [self getUserColor];
+    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight- (MKMapOriginHight/3))];
+    
+    self.navigationController.navigationBar.userInteractionEnabled = true;
+    [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
+    self.dropDownMenuView.hidden = true;
+    
+    
+    [homeDropButton setFrame:CGRectMake(0, 0, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    [homeDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [homeDropButton setTitle:@"  Home" forState:UIControlStateNormal];
+    [self.dropDownMenuView addSubview:homeDropButton];
+    [homeDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [homeDropButton setImage:[UIImage imageNamed:@"homeIcon"] forState:UIControlStateNormal];
+
+    
+    
+    [popularDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    
+    [popularDropButton setBackgroundColor:[UIColor whiteColor]];
+    [popularDropButton setTitle:@"  Popular" forState:UIControlStateNormal];
+    [popularDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+
+    [popularDropButton setImage:[UIImage imageNamed:@"popularMedal"] forState:UIControlStateNormal];
+    
+    [self.dropDownMenuView addSubview:popularDropButton];
+    
+    
+    [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    
+    
+    [favoritesDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [favoritesDropButton setTitle:@"  Favorites" forState:UIControlStateNormal];
+    [favoritesDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+
+    [favoritesDropButton setImage:[UIImage imageNamed:@"FavoriteStar"] forState:UIControlStateNormal];
+    
+    [self.dropDownMenuView addSubview:favoritesDropButton];
+    
+    self.dropDownMenuView.userInteractionEnabled = true;
+
+
 }
 
 
+- (UIColor *)getUserColor{
+    UIColor *returnColor = [UIColor colorWithRed:103/255.0f green:5/255.0f blue:3/255.0f alpha:1.0f];
+    
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
+        
+        returnColor = [UIColor colorWithRed:103/255.0f green:5/255.0f blue:3/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
+        
+        
+        //Red
+        returnColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
+        //Blue
+        returnColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
+        
+        //Red
+        returnColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
+        
+        //Green
+        returnColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
+        
+        //Green
+        returnColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
+        
+    }
+    else{
+        
+        
+        //Red
+        returnColor  = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+        
+    }
+    return returnColor;
 
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -444,9 +593,7 @@ static CGFloat MKMapOriginHight = 175.f;
             
         }
         
-
         
-
     }
 
     
@@ -575,69 +722,8 @@ static CGFloat MKMapOriginHight = 175.f;
 
 
         
-  
-        
+    cell.detailTextLabel.textColor = [self getUserColor];
     
-
-
-    
-#warning Make this a one time check, it would be faster and more efficient
-    
-    
-
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
-
-        //Red
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-    }
-    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
-        
-        
-        //Red
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-        
-
-        
-    }
-    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
-        //Blue
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
-        
-        
-    }
-    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
-        
-        //Red
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-        
-    }
-    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
-        
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
-        
-        
-    }
-    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
-        
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
-        
-        
-    }
-    else{
-        
-        
-        //Red
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-        
-       
-        
-        
-    }
-
-    
-    
-    
-
 
     return cell;
     
@@ -708,56 +794,16 @@ static CGFloat MKMapOriginHight = 175.f;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    
+    [self.dropDownMenuView removeFromSuperview];
+     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"showUserPage"]) {
         
         userInfoViewController *userInfoViewControler = segue.destinationViewController;
         userInfoViewControler.selectedUserData = self.selectedUserData;
         
-        if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
-           
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:103/255.0f green:5/255.0f blue:3/255.0f alpha:1.0f];
-            
-        }
-        else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
-            
-            
-            //Red
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-            
-        }
-        else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
-            //Blue
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
-            
-        }
-        else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
-            
-            //Red
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-            
-        }
-        else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
-            
-            //Green
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
-            
-        }
-        else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
-            
-            //Green
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
-            
-        }
-        else{
-
-            
-            //Red
-            userInfoViewControler.userThemeColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-            
-            
-        }
+        userInfoViewControler.userThemeColor = [self getUserColor];
 
     
     }
@@ -770,10 +816,86 @@ static CGFloat MKMapOriginHight = 175.f;
         
     }
 }
+#pragma mark
 
+-(void)homeButtonPress{
+    NSLog(@"Home");
+    
+}
+-(void)popularButtonPress{
+    NSLog(@"Popular");
+    
+}
+-(void)favoriteButtonPress{
+    NSLog(@"Favorite");
+    
+}
+#pragma mark
 
+-(void)dropMenu{
+     if (self.dropDownMenuView.hidden == true) {
+         
+
+         
+         
+         self.dropDownMenuView.hidden = false;
+         [self.view addGestureRecognizer:screenTap];
+
+    [UIView animateWithDuration:.3 animations:^{
+        
+        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+        
+        [self.navigationController.navigationBar insertSubview:coverView belowSubview:self.dropDownMenuView];
+
+        
+    } completion:^(BOOL finished) {
+  
+
+        self.tableView.scrollEnabled = false;
+        self.tableView.allowsSelection = NO;
+        self.segmentedTopicsUsers.enabled = NO;
+        self.userLocationMap.userInteractionEnabled = NO;
+        self.scrollView.scrollEnabled = false;
+
+    }];
+    
+        
+    }else{
+        
+  
+ 
+        [UIView animateWithDuration:.3 animations:^{
+            
+            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+            [coverView setAlpha:0.0];
+            
+        } completion:^(BOOL finished) {
+            self.dropDownMenuView.hidden = true;
+            self.tableView.scrollEnabled = true;
+            self.userLocationMap.userInteractionEnabled = YES;
+
+            self.tableView.allowsSelection = YES;
+            self.segmentedTopicsUsers.enabled = YES;
+
+            [coverView removeFromSuperview];
+            [coverView setAlpha:0.4];
+            self.scrollView.scrollEnabled = true;
+
+            [self.view removeGestureRecognizer:screenTap];
+
+         }];
+
+        
+    }
+}
+- (IBAction)pressDropDownButton:(id)sender {
+    [self dropMenu];
+
+}
 
 - (IBAction)pressTwitterButton:(id)sender {
+    
+
 }
 
 - (IBAction)pressMessageButton:(id)sender {
