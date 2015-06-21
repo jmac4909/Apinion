@@ -8,11 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface custonGroupTableViewController : UITableViewController
+#import "accountViewController.h"
+
+@interface custonGroupTableViewController : UITableViewController<accountViewProtocol>{
+    
+    UIView *coverView;
+    UITapGestureRecognizer *screenTap;
+    UIButton *homeDropButton;
+    UIButton *popularDropButton;
+    UIButton *favoritesDropButton;
+
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (strong,nonatomic)PFObject *group;
 @property (strong,nonatomic)NSArray *userInGroup;
 @property PFObject *selectedUserData;
+@property (strong, nonatomic) IBOutlet UIView *dropDownMenuView;
 
 - (IBAction)editGroupPress:(id)sender;
 @end

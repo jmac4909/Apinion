@@ -143,9 +143,9 @@ static CGFloat MKMapOriginHight = 175.f;
     [favoritesDropButton addTarget:self action:@selector(favoriteButtonPress) forControlEvents:UIControlEventTouchUpInside];
     favoritesDropButton.userInteractionEnabled = true;
 
-    popularDropButton = [[UIButton alloc]init];
-    [popularDropButton addTarget:self action:@selector(popularButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    popularDropButton.userInteractionEnabled = true;
+    profileDropButton = [[UIButton alloc]init];
+    [profileDropButton addTarget:self action:@selector(profileButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    profileDropButton.userInteractionEnabled = true;
     
 
   
@@ -157,7 +157,7 @@ static CGFloat MKMapOriginHight = 175.f;
                                          initWithTarget:self
                                          action:@selector(tapScreen:)];
 
-    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height)];
+    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height)];
     
     coverView.backgroundColor = [UIColor blackColor];
     [coverView setAlpha:0.4];
@@ -176,9 +176,9 @@ static CGFloat MKMapOriginHight = 175.f;
         [self homeButtonPress];
          return;
     }
-    CGRect popularFrame = [self.dropDownMenuView convertRect:popularDropButton.frame toView:self.view];
-    if (CGRectContainsPoint(popularFrame, tapPoint)) {
-        [self popularButtonPress];
+    CGRect profileFrame = [self.dropDownMenuView convertRect:profileDropButton.frame toView:self.view];
+    if (CGRectContainsPoint(profileFrame, tapPoint)) {
+        [self profileButtonPress];
         return;
     }
     CGRect favoriteFrame = [self.dropDownMenuView convertRect:favoritesDropButton.frame toView:self.view];
@@ -209,6 +209,8 @@ static CGFloat MKMapOriginHight = 175.f;
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
     
+    //Gets the color the navigationBar should be
+
     if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
         UINavigationBar *navBar = [[self navigationController] navigationBar];
         UIImage *backgroundImage = [UIImage imageNamed:@"navBarImageRed.png"];
@@ -370,26 +372,27 @@ static CGFloat MKMapOriginHight = 175.f;
     [homeDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
     [homeDropButton setTitle:@"  Home" forState:UIControlStateNormal];
     [self.dropDownMenuView addSubview:homeDropButton];
+    
     [homeDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [homeDropButton setImage:[UIImage imageNamed:@"homeIcon"] forState:UIControlStateNormal];
 
     
     
-    [popularDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    [profileDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
-    [popularDropButton setBackgroundColor:[UIColor whiteColor]];
-    [popularDropButton setTitle:@"  Popular" forState:UIControlStateNormal];
-    [popularDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [profileDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [profileDropButton setTitle:@"  Profile" forState:UIControlStateNormal];
+    [profileDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
-    [popularDropButton setImage:[UIImage imageNamed:@"popularMedal"] forState:UIControlStateNormal];
+    [profileDropButton setImage:[UIImage imageNamed:@"profileIcon"] forState:UIControlStateNormal];
     
-    [self.dropDownMenuView addSubview:popularDropButton];
-    
-    
-    [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    [self.dropDownMenuView addSubview:profileDropButton];
     
     
-    [favoritesDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    
+    
+    [favoritesDropButton setBackgroundColor:[UIColor whiteColor]];
     [favoritesDropButton setTitle:@"  Favorites" forState:UIControlStateNormal];
     [favoritesDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
@@ -749,7 +752,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
 - (void)closeAccountView:(UIViewController*)sender;
 {
-    [sender dismissViewControllerAnimated:YES completion:^{
+     [sender dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
@@ -796,8 +799,25 @@ static CGFloat MKMapOriginHight = 175.f;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     [self.dropDownMenuView removeFromSuperview];
+    
+    self.dropDownMenuView.hidden = true;
+    self.tableView.scrollEnabled = true;
+    self.userLocationMap.userInteractionEnabled = YES;
+    
+    self.tableView.allowsSelection = YES;
+    self.segmentedTopicsUsers.enabled = YES;
+    
+    [coverView removeFromSuperview];
+    [coverView setAlpha:0.4];
+    self.scrollView.scrollEnabled = true;
+    
+    [self.view removeGestureRecognizer:screenTap];
+
      // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showFavorite"]) {
+        
+    }
     if ([segue.identifier isEqualToString:@"showUserPage"]) {
         
         userInfoViewController *userInfoViewControler = segue.destinationViewController;
@@ -807,11 +827,24 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
     }
-    if ([segue.identifier isEqualToString:@"openSettings"]) {
+    if ([segue.identifier isEqualToString:@"showSettings1"]) {
         
         accountViewController *accountView = (accountViewController *)[segue.destinationViewController topViewController];
         
         accountView.delagate = self;
+        self.dropDownMenuView.hidden = true;
+        self.tableView.scrollEnabled = true;
+        self.userLocationMap.userInteractionEnabled = YES;
+        
+        self.tableView.allowsSelection = YES;
+        self.segmentedTopicsUsers.enabled = YES;
+        
+        [coverView removeFromSuperview];
+        [coverView setAlpha:0.4];
+        self.scrollView.scrollEnabled = true;
+        
+        [self.view removeGestureRecognizer:screenTap];
+
         
         
     }
@@ -820,14 +853,17 @@ static CGFloat MKMapOriginHight = 175.f;
 
 -(void)homeButtonPress{
     NSLog(@"Home");
-    
+    [self performSegueWithIdentifier:@"showHome1" sender:self];
 }
--(void)popularButtonPress{
+-(void)profileButtonPress{
     NSLog(@"Popular");
+    [self performSegueWithIdentifier:@"showSettings1" sender:self];
+
     
 }
 -(void)favoriteButtonPress{
     NSLog(@"Favorite");
+    [self performSegueWithIdentifier:@"showFavorite" sender:self];
     
 }
 #pragma mark

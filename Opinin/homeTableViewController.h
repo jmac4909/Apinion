@@ -19,7 +19,7 @@
     float latestXTranslation;
     UIView *coverView;
     UIButton *homeDropButton;
-    UIButton *popularDropButton;
+    UIButton *profileDropButton;
     UIButton *favoritesDropButton;
     UITapGestureRecognizer *screenTap;
 }
