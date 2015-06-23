@@ -361,7 +361,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     self.userLocationMap.tintColor = [self getUserColor];
-    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight- (MKMapOriginHight/3))];
+    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight)];
     
     self.navigationController.navigationBar.userInteractionEnabled = true;
     [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
@@ -381,7 +381,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [profileDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
     [profileDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
-    [profileDropButton setTitle:@"  Profile" forState:UIControlStateNormal];
+    [profileDropButton setTitle:@"    Profile" forState:UIControlStateNormal];
     [profileDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
     [profileDropButton setImage:[UIImage imageNamed:@"profileIcon"] forState:UIControlStateNormal];

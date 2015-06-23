@@ -98,6 +98,10 @@
         self.schoolNameField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
     }else { self.schoolNameField.backgroundColor = [UIColor whiteColor];}
   
+    if (!self.gradeField.text.length > 0) {
+        self.gradeField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
+    }else { self.schoolNameField.backgroundColor = [UIColor whiteColor];}
+    
     if (!self.passwordField.text.length > 0) {
         self.passwordField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
     }else { self.passwordField.backgroundColor = [UIColor whiteColor];}
@@ -109,9 +113,12 @@
     if ([self validateEmail:self.emailField.text]) {
     
     
-    if (self.firstNameField.text.length > 0 && self.lastNameField.text.length > 0 && self.emailField.text.length > 0 && self.usernameField.text.length > 0 && self.schoolNameField.text.length > 0 && self.passwordField.text.length > 0 && self.passwordConfirmField.text.length > 0) {
+    if (self.firstNameField.text.length > 0 && self.lastNameField.text.length > 0 && self.emailField.text.length > 0 && self.usernameField.text.length > 0 && self.schoolNameField.text.length > 0 && self.passwordField.text.length > 0 && self.passwordConfirmField.text.length > 0 && self.gradeField.text.length > 0) {
         
         if (![self.passwordField.text isEqualToString:self.passwordConfirmField.text]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"your passwords don't match" delegate:self cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+            [alert show];
+            
             NSLog(@"differnt passwords");
         }else{
     
@@ -122,6 +129,7 @@
     user.username = self.usernameField.text;
     [user setObject:self.schoolNameField.text forKey:@"School_Name"];
     user.password = self.passwordField.text;
+    [user setObject:self.gradeField.text forKey:@"User_Grade"];
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {

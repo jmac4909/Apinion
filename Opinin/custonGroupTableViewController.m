@@ -48,9 +48,9 @@ static CGFloat MKMapOriginHight = 175.f;
     [favoritesDropButton addTarget:self action:@selector(favoriteButtonPress) forControlEvents:UIControlEventTouchUpInside];
     favoritesDropButton.userInteractionEnabled = true;
     
-    popularDropButton = [[UIButton alloc]init];
-    [popularDropButton addTarget:self action:@selector(popularButtonPress) forControlEvents:UIControlEventTouchUpInside];
-    popularDropButton.userInteractionEnabled = true;
+    profileDropButton = [[UIButton alloc]init];
+    [profileDropButton addTarget:self action:@selector(profileButtonPress) forControlEvents:UIControlEventTouchUpInside];
+    profileDropButton.userInteractionEnabled = true;
 
     
     
@@ -77,9 +77,9 @@ static CGFloat MKMapOriginHight = 175.f;
         [self homeButtonPress];
         return;
     }
-    CGRect popularFrame = [self.dropDownMenuView convertRect:popularDropButton.frame toView:self.view];
-    if (CGRectContainsPoint(popularFrame, tapPoint)) {
-        [self popularButtonPress];
+    CGRect profileFrame = [self.dropDownMenuView convertRect:profileDropButton.frame toView:self.view];
+    if (CGRectContainsPoint(profileFrame, tapPoint)) {
+        [self profileButtonPress];
         return;
     }
     CGRect favoriteFrame = [self.dropDownMenuView convertRect:favoritesDropButton.frame toView:self.view];
@@ -207,7 +207,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
     self.dropDownMenuView.hidden = true;
     
-    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight- (MKMapOriginHight/3))];
+    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight)];
 
     
     [homeDropButton setFrame:CGRectMake(0, 0, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
@@ -219,15 +219,15 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     
-    [popularDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
+    [profileDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
-    [popularDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
-    [popularDropButton setTitle:@"  Popular" forState:UIControlStateNormal];
-    [popularDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [profileDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [profileDropButton setTitle:@"    Profile" forState:UIControlStateNormal];
+    [profileDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
-    [popularDropButton setImage:[UIImage imageNamed:@"profileIcon"] forState:UIControlStateNormal];
+    [profileDropButton setImage:[UIImage imageNamed:@"profileIcon"] forState:UIControlStateNormal];
     
-    [self.dropDownMenuView addSubview:popularDropButton];
+    [self.dropDownMenuView addSubview:profileDropButton];
     
     
     [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
@@ -436,7 +436,7 @@ static CGFloat MKMapOriginHight = 175.f;
     NSLog(@"Home");
     [self performSegueWithIdentifier:@"showHome2" sender:self];
 }
--(void)popularButtonPress{
+-(void)profileButtonPress{
     NSLog(@"Popular");
     [self performSegueWithIdentifier:@"showSettings2" sender:self];
 }

@@ -15,7 +15,7 @@
     UIView *coverView;
     UITapGestureRecognizer *screenTap;
     UIButton *homeDropButton;
-    UIButton *popularDropButton;
+    UIButton *profileDropButton;
     UIButton *favoritesDropButton;
 
 }

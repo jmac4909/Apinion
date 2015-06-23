@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *schoolNameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordConfirmField;
+@property (strong, nonatomic) IBOutlet UITextField *gradeField;
+
 
 
 

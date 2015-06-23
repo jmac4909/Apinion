@@ -40,14 +40,18 @@
     
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
         if (!error) {
-        [self performSegueWithIdentifier:@"completedSignIn" sender:self];
-            NSString *userIdString = [@"A" stringByAppendingString:[PFUser currentUser].objectId];
+         NSString *userIdString = [@"A" stringByAppendingString:[PFUser currentUser].objectId];
             NSArray *subcribtionArray = @[userIdString];
             [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
             [[PFInstallation currentInstallation] setObject:subcribtionArray forKey:@"channels"];
             [[PFInstallation currentInstallation] saveEventually];
+            [self performSegueWithIdentifier:@"completedLogIn" sender:self];
+           
         }else{
             NSLog(@"%@",[error userInfo]);
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Invalid login credentials " delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            [alert show];
         }
     }];
     
