@@ -44,16 +44,7 @@
 
     self.tableView.delegate = self;
 
-    self.upVoteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [self.upVoteButton setImage:[UIImage imageNamed:@"upVotePost"] forState:UIControlStateNormal];
     
-    self.downVoteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [self.downVoteButton setImage:[UIImage imageNamed:@"downVotePost"] forState:UIControlStateNormal];
-    
-    self.postVotesLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
-
-    
-
     
     selectedCellIArray = [[NSMutableArray alloc]init];
 
@@ -121,7 +112,11 @@
   
     self.navigationItem.backBarButtonItem = self.backButton;
     
-    
+    addActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:nil
+                                        otherButtonTitles: @"Add To Favorites", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,34 +125,21 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-      self.addButton.tintColor = self.userThemeColor;
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
     self.tableView.separatorColor = self.userThemeColor;
     
-    PFQuery *groupQuery = [PFQuery queryWithClassName:@"Groups"];
-    [groupQuery whereKey:@"creatorId" equalTo:[PFUser currentUser].objectId];
-    [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-        self.userGroups = [[NSMutableArray alloc]initWithArray:objects];
-        addActionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                     delegate:self
-                                            cancelButtonTitle:@"Cancel"
-                                       destructiveButtonTitle:nil
-                                            otherButtonTitles: nil];
+    
         
-        addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to which group?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
-        for (int x = 0; x <= objects.count; x++) {
+        addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+ 
             
             
+    
             
-            [addActionSheet addButtonWithTitle:[[self.userGroups objectAtIndex:x]objectForKey:@"groupName"]];
-            
-         }
-        
-    }];
-
+ 
     
     
     //Get user Image
@@ -363,9 +345,6 @@
     
     [self.view sendSubviewToBack:self.tableView];
     
-    [self.upVoteButton removeFromSuperview];
-    [self.downVoteButton removeFromSuperview];
-    [self.postVotesLabel removeFromSuperview];
     [selectedCellIArray removeObject:selectedCellIndexPath];
 }
 
@@ -723,95 +702,7 @@
 
 }
 
--(void)upVotePost{
-    
 
-    PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
-    NSArray *usersWhoPosted = [post objectForKey:@"userIdWhoVoted"];
-    
-    if ([usersWhoPosted containsObject:[PFUser currentUser].objectId]) {
-        
-        // already voted
-        
-    }else{
-        [self.upVoteButton setImage:[UIImage imageNamed:@"upPostSelected"] forState:UIControlStateNormal];
-
-        [[PFUser currentUser]addObject:post.objectId forKey:@"upVotedPosts"];
-        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-        }];
-        [post addObject:[PFUser currentUser].objectId forKey:@"userIdWhoVoted"];
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-        }];
-        NSNumber *postVotes = [post objectForKey:@"postVotes"];
-        int postCount = [postVotes intValue] + 1;
-        
-        
-        postVotes = [[NSNumber alloc]initWithInt:postCount];
-        
-        if (postVotes > 0) {
-            newPostVotesNum = [NSString stringWithFormat:@"+ %@",[postVotes stringValue]];
-            self.postVotesLabel.textColor = [UIColor greenColor];
-        }else{
-            self.postVotesLabel.textColor = [UIColor redColor];
-
-            newPostVotesNum = [NSString stringWithFormat:@"- %@",[postVotes stringValue]];
-        }
-        self.postVotesLabel.text = newPostVotesNum;
-        [post setObject:postVotes forKey:@"postVotes"];
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-
-  
-        }];
-
-    
-    }
-}
--(void)downVotePost{
-
-    PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
-    NSArray *usersWhoPosted = [post objectForKey:@"userIdWhoVoted"];
-
-    if ([usersWhoPosted containsObject:[PFUser currentUser].objectId]) {
-        
-        // already voted
-        
-    }else{
-        [self.downVoteButton setImage:[UIImage imageNamed:@"downVoteSelected"] forState:UIControlStateNormal];
-
-        [[PFUser currentUser]addObject:post.objectId forKey:@"downVotedPosts"];
-        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-        }];
-        [post addObject:[PFUser currentUser].objectId forKey:@"userIdWhoVoted"];
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-        }];
-        NSNumber *postVotes = [post objectForKey:@"postVotes"];
-        int postCount = [postVotes intValue] - 1;
-        
-        
-        postVotes = [[NSNumber alloc]initWithInt:postCount];
-        
-        if (postCount > 0) {
-            newPostVotesNum = [NSString stringWithFormat:@"+ %@",[postVotes stringValue]];
-            self.postVotesLabel.textColor = [UIColor greenColor];
-        }else if (postCount < 0){
-            self.postVotesLabel.textColor = [UIColor redColor];
-
-            newPostVotesNum = [NSString stringWithFormat:@" %@",[postVotes stringValue]];
-        }
-        self.postVotesLabel.text = newPostVotesNum;
-        [post setObject:postVotes forKey:@"postVotes"];
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-            
-        }];
-        
-        
-    }
-}
 #pragma mark - Adding selected user to group
 -(void)addUserToGroup:(id)sender{
     
@@ -827,14 +718,9 @@
         [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
         
     }
-    else if (![[[self.userGroups objectAtIndex:buttonIndex - 1]objectForKey:@"userIdInGroup"]containsObject:self.selectedUserData.objectId]) {
+    else {
+        //add to favorites
         
-        
-        [[self.userGroups objectAtIndex:buttonIndex - 1] addObject:self.selectedUserData.objectId forKey:@"userIdInGroup"];
-        //Index 0 is cancel
-        [[self.userGroups objectAtIndex:buttonIndex - 1] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-        }];
     }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

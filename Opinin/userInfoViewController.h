@@ -34,7 +34,6 @@
 
 @property(strong,nonatomic) userInfoTableViewCell *customUserInfoCell;
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 
@@ -45,15 +44,12 @@
 @property NSArray *selectedUserPosts;
 @property (strong, nonatomic) IBOutlet UIImageView *userPhotoImageView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) UIButton *upVoteButton;
-@property (strong,nonatomic) UIButton *downVoteButton;
-@property (strong,nonatomic) UILabel *postVotesLabel;
+
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserSchoolLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserBananaLabel;
 
-@property (strong,nonatomic)NSMutableArray *userGroups;
 
 
 - (IBAction)backButtonPress:(id)sender;

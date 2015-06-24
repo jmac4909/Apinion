@@ -9,7 +9,7 @@
 #import "homeTableViewController.h"
 #import "userInfoViewController.h"
 #import "accountViewController.h"
-
+#import "custonGroupTableViewController.h"
 
 static CGFloat MKMapOriginHight = 175.f;
 
@@ -847,6 +847,15 @@ static CGFloat MKMapOriginHight = 175.f;
 
         
         
+    }
+    if ([segue.identifier isEqualToString:@"showFavorite"]) {
+        custonGroupTableViewController *customGroupView = (custonGroupTableViewController *)[segue.destinationViewController topViewController];
+        
+        customGroupView.userThemeColor = [self getUserColor];
+        
+        
+        
+
     }
 }
 #pragma mark

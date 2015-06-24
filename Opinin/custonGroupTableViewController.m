@@ -26,17 +26,13 @@ static CGFloat MKMapOriginHight = 175.f;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+ 
 
     UINavigationBar *navBar = [[self navigationController] navigationBar];
     UIImage *backgroundImage = [UIImage imageNamed:@"navBarImage.png"];
     [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIFont fontWithName:@"VastShadow-Regular" size:30],
-      NSFontAttributeName,
-      color,NSForegroundColorAttributeName, nil]];
+
     
     
     
@@ -189,8 +185,22 @@ static CGFloat MKMapOriginHight = 175.f;
         
         
     }
+    UIColor *textColor;
     
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"] || [[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
+        textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+    }else{
+        textColor = [UIColor whiteColor];
+    }
 
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:@"VastShadow-Regular" size:30],
+      NSFontAttributeName,
+      textColor,NSForegroundColorAttributeName, nil]];
+    
+    self.sidebarButton.tintColor = textColor;
+    self.editGroupButton.tintColor = textColor;
     
 //    if ([self.group objectForKey:@"userIdInGroup"]) {
 //        
@@ -497,7 +507,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"no no no" message:@"not so fast cowboy" delegate:self cancelButtonTitle:@"I like men *wink wink*" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Almost" message:@"This page will be editable later" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
     [alert show];
     
 }

@@ -2250,11 +2250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "456620113.630274"
+            timestampString = "456857635.765564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "874"
-            endingLineNumber = "874"
+            startingLineNumber = "883"
+            endingLineNumber = "883"
             landmarkName = "-dropMenu"
             landmarkType = "5">
          </BreakpointContent>
