@@ -21,6 +21,8 @@
     UIButton *addToGroupButton;
     
     UIActionSheet *addActionSheet;
+    UIActionSheet *removeActionSheet;
+
     float latestXTranslation;
     float defaultDetailViewCenterX;
     float defaultDetailViewCenterY;

@@ -116,7 +116,14 @@
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
-                                        otherButtonTitles: @"Confirm", nil];
+                                        otherButtonTitles:@"Add", nil];
+    removeActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                   destructiveButtonTitle:nil
+                                        otherButtonTitles:@"Remove", nil];
+    addActionSheet.delegate = self;
+    removeActionSheet.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,19 +138,23 @@
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
     self.tableView.separatorColor = self.userThemeColor;
     
-        
+    removeActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+    addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+    
+
+
+    
     if ([[[PFUser currentUser]objectForKey:@"userFavotitesID"]containsObject:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]]) {
         
           [addToGroupButton setImage:[UIImage imageNamed:@"removeFromGroup"] forState:UIControlStateNormal];
         
-           addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+        
         
     }else{
         
         [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
         
-          addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
-    }
+        }
  
     
     
@@ -720,14 +731,37 @@
 -(void)addUserToGroup:(id)sender{
     
     
-    [addActionSheet showInView:self.view];
+    
+    
+    if ([[[PFUser currentUser]objectForKey:@"userFavotitesID"]containsObject:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]]) {
+        
+        [removeActionSheet showInView:self.view];
+
+        
+        
+    }else{
+        
+        [addActionSheet showInView:self.view];
+
+        
+        
+    }
+
+    
+    
 
     
     
 }
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+ 
+    
+    
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"CLick");
-    if (buttonIndex == 0) {
+     if (buttonIndex == 0) {
         //add to favorites
 
    
@@ -737,15 +771,14 @@
             
             [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
             
-            addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+            
         }else{
             
             [[PFUser currentUser]addObject:self.selectedUserData.objectId forKey:@"userFavotitesID"];
             
             [addToGroupButton setImage:[UIImage imageNamed:@"removeFromGroup"] forState:UIControlStateNormal];
             
-            addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
-        }
+                    }
         [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
                 NSLog(@"%@",error.userInfo);

@@ -26,8 +26,34 @@
     }
     [self.locationManager startUpdatingLocation];
 
-}
 
+    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    
+    self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
+    self.userImageView.clipsToBounds = YES;
+    self.userImageView.layer.borderWidth = 3.0f;
+    UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+    self.userImageView.layer.borderColor = color.CGColor;
+    
+    
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                              delegate:self
+                                     cancelButtonTitle:@"Cancel"
+                                destructiveButtonTitle:nil
+                                     otherButtonTitles:@"Take photo", @"Choose Existing", nil];
+    
+    
+   
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
+    mediaPicker = [[UIImagePickerController alloc] init];
+    [mediaPicker setDelegate:self];
+    mediaPicker.allowsEditing = YES;
+    
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -35,6 +61,55 @@
 - (PFGeoPoint *)getdeviceLocation {
     return [PFGeoPoint geoPointWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude];
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    userImage =(UIImage*)[info objectForKey:@"UIImagePickerControllerEditedImage"];
+    self.userImageView.image = userImage;
+    // Convert to JPEG with 100% quality
+    
+    NSData* data = UIImageJPEGRepresentation(userImage, 1.0f);
+    imageFile = [PFFile fileWithName:@"objectImage.jpg" data:data];
+    
+
+}
+
+- (IBAction)selectUserImage:(id)sender {
+    
+    
+    
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        [actionSheet showInView:self.view];
+    } else {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];
+    }
+    
+    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];
+    } else if (buttonIndex == 1) {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];}
+}
+
+
 /*
 #pragma mark - Navigation
 
@@ -47,9 +122,13 @@
 
 - (IBAction)createTopic:(id)sender {
     
-    if (self.topicDetailTextView.text.length > 0 && self.topicTitleTextFeild.text.length > 0) {
-        
+    if (self.topicDetailTextView.text.length < 35 && self.topicTitleTextFeild.text.length > 0 && self.topicTitleTextFeild.text.length < 25) {
+
         PFObject *topic = [PFObject objectWithClassName:@"Topics"];
+        if (imageFile) {
+            [topic setObject:imageFile forKey:@"objectImage"];
+            
+        }
         [topic setObject:self.topicTitleTextFeild.text forKey:@"Object_FirstName"];
         [topic setObject:self.topicDetailTextView.text forKey:@"topic_Detail"];
         [topic setObject:[self getdeviceLocation] forKey:@"Created_Position"];
@@ -59,5 +138,11 @@
         
         
     }
+}
+-(IBAction)cancelPress:(id)sender{
+    
+    [self.navigationController popToRootViewControllerAnimated:true];
+    
+    
 }
 @end
