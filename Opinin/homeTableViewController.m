@@ -361,7 +361,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     self.userLocationMap.tintColor = [self getUserColor];
-    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight)];
+    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight - (MKMapOriginHight /6))];
     
     self.navigationController.navigationBar.userInteractionEnabled = true;
     [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
@@ -620,14 +620,18 @@ static CGFloat MKMapOriginHight = 175.f;
                         
                         NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                         
+                        self.userDataArray = [NSMutableArray arrayWithObject:objects];
+  
+                        [self.userDataArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                         
                         self.tableViewData= [NSMutableArray arrayWithArray:objects];
-                        self.userDataArray = [NSMutableArray arrayWithObject:objects];
                         
-                        [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-                        [self.refreshControl endRefreshing];
+                      
                         [self.tableView reloadData];
+
+                        [self.refreshControl endRefreshing];
                         self.segmentedTopicsUsers.enabled = true;
+                        self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)objects.count];
 
                     }else{
                         NSLog(@"%@",[error userInfo]);
@@ -655,9 +659,14 @@ static CGFloat MKMapOriginHight = 175.f;
                 self.topicDataArray= [NSMutableArray arrayWithArray:objects];
                 [self.topicDataArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                 self.tableViewData = self.topicDataArray;
-                [self.refreshControl endRefreshing];
                 [self.tableView reloadData];
-                    
+
+                [self.refreshControl endRefreshing];
+                
+                
+                self.userCountLabel.text = [NSString stringWithFormat:@"%lu topics nearby",(unsigned long)self.topicDataArray.count];
+
+                
                 self.segmentedTopicsUsers.enabled = true;
 
             }
@@ -844,7 +853,7 @@ static CGFloat MKMapOriginHight = 175.f;
         self.scrollView.scrollEnabled = true;
         
         [self.view removeGestureRecognizer:screenTap];
-
+        accountView.userThemeColor = [self getUserColor];
         
         
     }
@@ -886,9 +895,9 @@ static CGFloat MKMapOriginHight = 175.f;
          self.dropDownMenuView.hidden = false;
          [self.view addGestureRecognizer:screenTap];
 
-    [UIView animateWithDuration:.3 animations:^{
+    [UIView animateWithDuration:.2 animations:^{
         
-        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/6)))];
         
         [self.navigationController.navigationBar insertSubview:coverView belowSubview:self.dropDownMenuView];
 
@@ -960,14 +969,16 @@ static CGFloat MKMapOriginHight = 175.f;
         viewingUsers = true;
         self.tableViewData = self.userDataArray;
         [self.tableView reloadData];
+        
+        self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)self.userDataArray.count];
         //View Users
             }
     else if (selectedSegment == 1){
         viewingUsers = false;
-
         self.tableViewData = self.topicDataArray;
+        
         [self.tableView reloadData];
-       
+       self.userCountLabel.text = [NSString stringWithFormat:@"%lu topics nearby",(unsigned long)self.topicDataArray.count];
         
         
         

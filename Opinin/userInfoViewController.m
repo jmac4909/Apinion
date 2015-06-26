@@ -90,7 +90,7 @@
     
     
     
-    UIButton *addToGroupButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    addToGroupButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
     addToGroupButton.tintColor = self.userThemeColor;
 
@@ -116,7 +116,7 @@
                                                  delegate:self
                                         cancelButtonTitle:@"Cancel"
                                    destructiveButtonTitle:nil
-                                        otherButtonTitles: @"Add To Favorites", nil];
+                                        otherButtonTitles: @"Confirm", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,6 +124,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
@@ -131,9 +132,21 @@
     self.tableView.separatorColor = self.userThemeColor;
     
         
-    
+    if ([[[PFUser currentUser]objectForKey:@"userFavotitesID"]containsObject:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]]) {
         
-        addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+          [addToGroupButton setImage:[UIImage imageNamed:@"removeFromGroup"] forState:UIControlStateNormal];
+        
+           addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+        
+    }else{
+        
+        [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
+        
+          addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+    }
+ 
+    
+    
  
             
             
@@ -713,15 +726,47 @@
     
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //User canceled add
+    NSLog(@"CLick");
     if (buttonIndex == 0) {
-        [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-        
-    }
-    else {
         //add to favorites
+
+   
+        if ([[[PFUser currentUser]objectForKey:@"userFavotitesID"]containsObject:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]]) {
+            
+            [[PFUser currentUser]removeObject:self.selectedUserData.objectId forKey:@"userFavotitesID"];
+            
+            [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
+            
+            addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+        }else{
+            
+            [[PFUser currentUser]addObject:self.selectedUserData.objectId forKey:@"userFavotitesID"];
+            
+            [addToGroupButton setImage:[UIImage imageNamed:@"removeFromGroup"] forState:UIControlStateNormal];
+            
+            addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+        }
+        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                NSLog(@"%@",error.userInfo);
+            }
+            
+        }];
+
         
     }
+
+        
+    
+    else {
+        //User canceled add
+        [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+
+ 
+        }
+    
+        
+
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 

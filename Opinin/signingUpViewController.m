@@ -142,7 +142,7 @@
 
         }else{
             NSLog(@"%@",[error userInfo]);
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oh no" message:[NSString stringWithFormat:@"%@",[error userInfo]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oh no" message:[NSString stringWithFormat:@"Something fishy just happened"] delegate:self cancelButtonTitle:@"Whoops" otherButtonTitles:nil, nil];
             
             [alert show];
             }

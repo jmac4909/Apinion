@@ -10,10 +10,8 @@
 		3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722BA11AC85FCB00F6B614 /* addTopicViewController.m */; };
 		3F7272D61A6234470006E9FA /* signInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7272D51A6234470006E9FA /* signInViewController.m */; };
 		3F7F8C891A94202600AC6555 /* custonGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F8C881A94202600AC6555 /* custonGroupTableViewController.m */; };
-		3F833E321A64A92900E8F285 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F833E311A64A92900E8F285 /* LaunchScreen.xib */; };
 		3F9A1E131AAB8F10006E49ED /* ShyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A1E121AAB8F10006E49ED /* ShyNavigationBar.m */; };
 		3FA14E611A619A1900CE9FA5 /* signingUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA14E601A619A1900CE9FA5 /* signingUpViewController.m */; };
-		3FAEA7821AB0C41500D96783 /* createGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEA7811AB0C41500D96783 /* createGroupViewController.m */; };
 		3FB68C9E1A8879CE00DCB2CD /* userInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB68C9D1A8879CE00DCB2CD /* userInfoTableViewCell.m */; };
 		3FB6A7761A92B03000AA9967 /* 1001fonts-nauert-eula.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6A7721A92B03000AA9967 /* 1001fonts-nauert-eula.txt */; };
 		3FB6A7771A92B03000AA9967 /* Nauert-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6A7731A92B03000AA9967 /* Nauert-Italic.ttf */; };
@@ -73,14 +71,11 @@
 		3F7272D51A6234470006E9FA /* signInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signInViewController.m; path = ../signInViewController.m; sourceTree = "<group>"; };
 		3F7F8C871A94202600AC6555 /* custonGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custonGroupTableViewController.h; sourceTree = "<group>"; };
 		3F7F8C881A94202600AC6555 /* custonGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = custonGroupTableViewController.m; sourceTree = "<group>"; };
-		3F833E311A64A92900E8F285 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3F99EEFE1A736F7F00B57FF1 /* comJMACApinion.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = comJMACApinion.mobileprovision; sourceTree = "<group>"; };
 		3F9A1E111AAB8F10006E49ED /* ShyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShyNavigationBar.h; sourceTree = "<group>"; };
 		3F9A1E121AAB8F10006E49ED /* ShyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShyNavigationBar.m; sourceTree = "<group>"; };
 		3FA14E5F1A619A1900CE9FA5 /* signingUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signingUpViewController.h; sourceTree = "<group>"; };
 		3FA14E601A619A1900CE9FA5 /* signingUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signingUpViewController.m; sourceTree = "<group>"; };
-		3FAEA7801AB0C41500D96783 /* createGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createGroupViewController.h; sourceTree = "<group>"; };
-		3FAEA7811AB0C41500D96783 /* createGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createGroupViewController.m; sourceTree = "<group>"; };
 		3FB68C9C1A8879CE00DCB2CD /* userInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfoTableViewCell.h; sourceTree = "<group>"; };
 		3FB68C9D1A8879CE00DCB2CD /* userInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfoTableViewCell.m; sourceTree = "<group>"; };
 		3FB6A7721A92B03000AA9967 /* 1001fonts-nauert-eula.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1001fonts-nauert-eula.txt"; sourceTree = "<group>"; };
@@ -246,15 +241,6 @@
 			name = "Shy Nav Bar";
 			sourceTree = "<group>";
 		};
-		3FAEA77F1AB0851500D96783 /* Create Group */ = {
-			isa = PBXGroup;
-			children = (
-				3FAEA7801AB0C41500D96783 /* createGroupViewController.h */,
-				3FAEA7811AB0C41500D96783 /* createGroupViewController.m */,
-			);
-			name = "Create Group";
-			sourceTree = "<group>";
-		};
 		3FB68C9B1A88799D00DCB2CD /* Custom Table View Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +307,6 @@
 				3FB68C9B1A88799D00DCB2CD /* Custom Table View Cell */,
 				3F00F1991A68836900C598CF /* Delegates */,
 				3F7272D01A6233310006E9FA /* Loging in / Siging up */,
-				3FAEA77F1AB0851500D96783 /* Create Group */,
 				3F00F1961A6882FC00C598CF /* Home Table View */,
 				3F7F8C8A1A94202D00AC6555 /* custom group */,
 				3F00F1971A68833100C598CF /* User Info */,
@@ -333,7 +318,6 @@
 				3FEC3E171A883F7E00F4D83A /* Edit Grade */,
 				3F722BA31AC85FD000F6B614 /* Add Topic */,
 				3FB8EF2B1A60AC0600B875DF /* Main.storyboard */,
-				3F833E311A64A92900E8F285 /* LaunchScreen.xib */,
 				3FD092FB1A91BE2C0072BE41 /* Resorces */,
 				3FB8EF1E1A60AC0600B875DF /* Supporting Files */,
 			);
@@ -508,7 +492,7 @@
 		3FB8EF131A60AC0600B875DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jeremy Mackey";
 				TargetAttributes = {
 					3FB8EF1A1A60AC0600B875DF = {
@@ -550,7 +534,6 @@
 				3FB6A7841A92B04E00AA9967 /* OFL.txt in Resources */,
 				3FB6A7781A92B03000AA9967 /* NauertRegular.ttf in Resources */,
 				3FB8EF2D1A60AC0600B875DF /* Main.storyboard in Resources */,
-				3F833E321A64A92900E8F285 /* LaunchScreen.xib in Resources */,
 				3FB8EF2F1A60AC0600B875DF /* Images.xcassets in Resources */,
 				3FB6A7761A92B03000AA9967 /* 1001fonts-nauert-eula.txt in Resources */,
 				3FB6A77E1A92B03B00AA9967 /* 1001fonts-underground-eula.txt in Resources */,
@@ -586,7 +569,6 @@
 				3FEC3E241A88405800F4D83A /* editGradeViewController.m in Sources */,
 				3FB8EF241A60AC0600B875DF /* AppDelegate.m in Sources */,
 				3FA14E611A619A1900CE9FA5 /* signingUpViewController.m in Sources */,
-				3FAEA7821AB0C41500D96783 /* createGroupViewController.m in Sources */,
 				3FEDE9471A62DDBC0010BDD2 /* homeTableViewController.m in Sources */,
 				3F7272D61A6234470006E9FA /* signInViewController.m in Sources */,
 				3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */,
@@ -641,10 +623,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Debra Cotter (FM9ZMCQLW5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JMAC Dev (DMWTN9K3GQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -659,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -683,11 +667,13 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Debra Cotter (FM9ZMCQLW5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JMAC Dev (DMWTN9K3GQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -695,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -717,6 +703,7 @@
 				INFOPLIST_FILE = Opinin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -738,6 +725,7 @@
 				INFOPLIST_FILE = Opinin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -758,6 +746,7 @@
 				);
 				INFOPLIST_FILE = OpininTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JMAC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ApinionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Apinion.app/Apinion";
 			};
@@ -773,6 +762,7 @@
 				);
 				INFOPLIST_FILE = OpininTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JMAC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ApinionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Apinion.app/Apinion";
 			};

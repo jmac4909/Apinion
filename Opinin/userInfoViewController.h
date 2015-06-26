@@ -18,6 +18,7 @@
     UILabel *charaterLabel;
 
     UITextView *customCellTextView;
+    UIButton *addToGroupButton;
     
     UIActionSheet *addActionSheet;
     float latestXTranslation;

@@ -46,14 +46,12 @@
         }
     }];
 
-}
-
--(void)viewWillAppear:(BOOL)animated{
-
-
     
+        mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
 }
+
+ 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -167,10 +165,18 @@
     NSData* data = UIImageJPEGRepresentation(userImage, 1.0f);
     PFFile *imageFile = [PFFile fileWithName:@"objectImage.jpg" data:data];
     [[PFUser currentUser]setObject:imageFile forKey:@"objectImage"];
-    
+    self.doneButton.enabled = false;
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"%@",error.userInfo);
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Something not so great just happened" delegate:self cancelButtonTitle:@"Oh No" otherButtonTitles:nil, nil];
+            [alert show];
+            self.doneButton.enabled = true;
+
+        }else{
+            self.doneButton.enabled = true;
+
         }
         
          

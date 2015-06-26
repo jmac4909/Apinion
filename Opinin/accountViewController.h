@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (strong,nonatomic) UIColor *userThemeColor;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

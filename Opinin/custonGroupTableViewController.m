@@ -86,6 +86,17 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    
+    PFQuery *favoriteUserQuery = [PFUser query];
+    [favoriteUserQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
+    
+    [favoriteUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.userInGroup = objects;
+        [self.tableView reloadData];
+    }];
+    
+
 
     //Red color
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -202,22 +213,13 @@ static CGFloat MKMapOriginHight = 175.f;
     self.sidebarButton.tintColor = textColor;
     self.editGroupButton.tintColor = textColor;
     
-//    if ([self.group objectForKey:@"userIdInGroup"]) {
-//        
-//    
-//    PFQuery *groupUserQuery = [PFUser query];
-//    [groupUserQuery whereKey:@"objectId" containedIn:[self.group objectForKey:@"userIdInGroup"]];
-//    
-//    [groupUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        self.userInGroup = objects;
-//        [self.tableView reloadData];
-//    }];
-//    }
+    
+    
     
     [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
     self.dropDownMenuView.hidden = true;
     
-    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight)];
+    [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight - (MKMapOriginHight/6))];
 
     
     [homeDropButton setFrame:CGRectMake(0, 0, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
@@ -327,8 +329,8 @@ static CGFloat MKMapOriginHight = 175.f;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    if ([[self.group objectForKey:@"userIdInGroup"] count] > 0) {
-        return [[self.group objectForKey:@"userIdInGroup"] count];
+    if ([[[PFUser currentUser] objectForKey:@"userFavotitesID"] count] > 0) {
+        return [[[PFUser currentUser] objectForKey:@"userFavotitesID"] count];
     }else{
     return 0;
     }
@@ -402,7 +404,7 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [UIView animateWithDuration:.3 animations:^{
             
-            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/6)))];
             
             [self.navigationController.navigationBar insertSubview:coverView belowSubview:self.dropDownMenuView];
             
@@ -422,7 +424,7 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [UIView animateWithDuration:.3 animations:^{
             
-            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - MKMapOriginHight , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - MKMapOriginHight , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/6)))];
             [coverView setAlpha:0.0];
             
         } completion:^(BOOL finished) {
@@ -462,6 +464,7 @@ static CGFloat MKMapOriginHight = 175.f;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     
+    [self.dropDownMenuView removeFromSuperview];
     
     self.dropDownMenuView.hidden = true;
     self.tableView.scrollEnabled = true;
@@ -472,7 +475,11 @@ static CGFloat MKMapOriginHight = 175.f;
     [coverView setAlpha:0.4];
     
     [self.view removeGestureRecognizer:screenTap];
-    // Get the new view controller using [segue destinationViewController].
+    
+    
+    
+    
+     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
     if ([segue.identifier isEqualToString:@"showUserPage"]) {
@@ -490,7 +497,7 @@ static CGFloat MKMapOriginHight = 175.f;
         
         accountView.delagate = self;
 
-        
+        accountView.userThemeColor = [self getUserColor];
         
         
     }
