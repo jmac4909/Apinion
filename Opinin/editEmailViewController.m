@@ -23,6 +23,35 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.emailTextFeild.text = [PFUser currentUser].email;
+
+    if ((BOOL)[[PFUser currentUser] objectForKey:@"emailVerified"] == true) {
+        self.emailStatusTextFeild.text = @"Verified";
+        self.emailStatusTextFeild.textColor = [UIColor greenColor];
+    }else{
+        self.emailStatusTextFeild.text = @"Not Verified";
+        self.emailStatusTextFeild.textColor = [UIColor redColor];
+
+    }
+    
+    
+}
+- (IBAction)saveButtonPress:(id)sender{
+    
+    [PFUser currentUser].email = self.emailTextFeild.text;
+    [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.emailTextFeild resignFirstResponder];
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"successfully changed your email" delegate:self cancelButtonTitle:@"Yay" otherButtonTitles:nil, nil];
+        [alert show];
+    }];
+    
+
+    
+    
+}
 
 /*
 #pragma mark - Navigation

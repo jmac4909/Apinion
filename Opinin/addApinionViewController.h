@@ -31,10 +31,10 @@
 - (IBAction)cancelButtonPress:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *seporatorImageView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *postApinionButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
 @property (strong, nonatomic) IBOutlet UITextView *apinionTextView;
-@property (strong, nonatomic) IBOutlet UIButton *postApinion;
 - (IBAction)postApinionButtonPress:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwitch *hideNameSwitch;
 - (IBAction)hideNameValeChanged:(id)sender;

@@ -8,7 +8,6 @@
 
 #import "homeTableViewController.h"
 #import "userInfoViewController.h"
-#import "accountViewController.h"
 #import "custonGroupTableViewController.h"
 
 static CGFloat MKMapOriginHight = 175.f;
@@ -161,7 +160,10 @@ static CGFloat MKMapOriginHight = 175.f;
     
     coverView.backgroundColor = [UIColor blackColor];
     [coverView setAlpha:0.4];
-
+    
+    
+    
+    
 }
 
 
@@ -226,6 +228,9 @@ static CGFloat MKMapOriginHight = 175.f;
         
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
+        
     }
     else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
         UINavigationBar *navBar = [[self navigationController] navigationBar];
@@ -242,7 +247,8 @@ static CGFloat MKMapOriginHight = 175.f;
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
-        
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
         
     }
     else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
@@ -259,6 +265,10 @@ static CGFloat MKMapOriginHight = 175.f;
            self.tableView.separatorColor = [UIColor colorWithRed:48/255.0f green:58/255.0f blue:118/255.0f alpha:1.0f];
         color = [UIColor whiteColor];
         
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
+
+        
         
     }
     else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
@@ -271,6 +281,10 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageTan"]];
         
+    
+
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBirdBlue"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messagesIconGreen"]];
         
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
@@ -291,7 +305,8 @@ static CGFloat MKMapOriginHight = 175.f;
         
         self.tableView.separatorColor = [UIColor colorWithRed:34/255.0f green:56/255.0f blue:9/255.0f alpha:1.0f];
         
-        
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
         
     }
     else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
@@ -309,7 +324,26 @@ static CGFloat MKMapOriginHight = 175.f;
         
         self.tableView.separatorColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
         
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
         
+    }   else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        UINavigationBar *navBar = [[self navigationController] navigationBar];
+        UIImage *backgroundImage = [UIImage imageNamed:@"navBarImageGrey.png"];
+        [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+        
+        [self.dataViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGrey"]];
+        [self.addTopicImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGrey"]];
+        color = [UIColor whiteColor];
+        
+        [self.scrollViewImageView setImage:[UIImage imageNamed:@"dataViewBackgroundImageGrey"]];
+        
+        
+        
+        self.tableView.separatorColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
+        
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
         
     }
 
@@ -328,13 +362,14 @@ static CGFloat MKMapOriginHight = 175.f;
         
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-        
+        [self.twitterBirdButton setImage:[UIImage imageNamed:@"twitterBird"]];
+        [self.messageButton setImage:[UIImage imageNamed:@"messageIcon"]];
         
     }
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIFont fontWithName:@"VastShadow-Regular" size:30],
+      [UIFont fontWithName:@"Copperplate-Bold" size:30],
       NSFontAttributeName,
       color,NSForegroundColorAttributeName, nil]];
     //In "User"/"Topic" view
@@ -444,6 +479,12 @@ static CGFloat MKMapOriginHight = 175.f;
         returnColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
         
     }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        
+        //Grey
+        returnColor = [UIColor blackColor];
+        
+    }
     else{
         
         
@@ -459,7 +500,6 @@ static CGFloat MKMapOriginHight = 175.f;
     [super viewDidAppear:animated];
     
     
-  
     
     
     if ([PFUser currentUser] == Nil) {
@@ -766,6 +806,13 @@ static CGFloat MKMapOriginHight = 175.f;
     }];
 }
 
+- (void)closeCreateTopicView:(UIViewController*)sender{
+    [sender dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -866,6 +913,15 @@ static CGFloat MKMapOriginHight = 175.f;
         
 
     }
+    if ([segue.identifier isEqualToString:@"showAddTopicView"]) {
+        
+        addTopicViewController *addTopicView = (addTopicViewController *)[segue.destinationViewController topViewController];
+        
+        addTopicView.delagate = self;
+
+        
+        
+    }
 }
 #pragma mark
 
@@ -948,11 +1004,34 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (IBAction)pressTwitterButton:(id)sender {
-    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *twitter = [[SLComposeViewController alloc]init];
+        twitter = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [twitter setInitialText:@"Share your Apinion with me using \"Apinion\" on the App Store! @ApinionOfficial"];
+         
+        [self presentViewController:twitter animated:YES completion:^{
+            
+        }];
 
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Looks like Twitter is not avalible on your device. Please check your settings and try again :)" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+    
 }
 
 - (IBAction)pressMessageButton:(id)sender {
+    
+    MFMessageComposeViewController *message = [[MFMessageComposeViewController alloc]init];
+    message.messageComposeDelegate = self;
+    if ([MFMessageComposeViewController canSendText]) {
+        message.body = @"Share your Apinion with me using \"Apinion\" on the App Store";
+        [self presentViewController:message animated:YES completion:^{
+            
+        }];
+        
+    }
 }
 
 - (IBAction)newTopic:(id)sender {
@@ -986,9 +1065,10 @@ static CGFloat MKMapOriginHight = 175.f;
 
 }
 
-- (IBAction)bananaButtonPress:(id)sender {
-
+- (void)messageComposeViewController:(nonnull MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     
-
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 @end

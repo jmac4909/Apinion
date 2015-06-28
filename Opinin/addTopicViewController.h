@@ -8,6 +8,12 @@
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
+@protocol createTopicViewProtocol
+
+- (void)closeCreateTopicView:(UIViewController*)sender;
+
+@end
+
 @interface addTopicViewController : UIViewController<CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>{
     
     
@@ -17,8 +23,10 @@
     PFFile *imageFile;
     
 }
+@property (strong,nonatomic)UIViewController <createTopicViewProtocol> *delagate;
+
 @property (strong, nonatomic) IBOutlet UITextField *topicTitleTextFeild;
-@property (strong, nonatomic) IBOutlet UITextView *topicDetailTextView;
+@property (strong, nonatomic) IBOutlet UITextField *topicDetailTextView;
 @property CLLocationManager *locationManager;
 
 - (IBAction)createTopic:(id)sender;

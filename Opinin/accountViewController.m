@@ -49,6 +49,7 @@
     
         mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
 }
 
  
@@ -132,6 +133,12 @@
 
 - (IBAction)changeToPurpleTheme:(id)sender {
     [[PFUser currentUser]setObject:@"Purple" forKey:@"userTheme"];
+    [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+    }];
+}
+- (IBAction)changeToGreyTheme:(id)sender {
+    [[PFUser currentUser]setObject:@"Grey" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
     }];
@@ -228,6 +235,9 @@
     }
     if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"editSchool" sender:self];
+    }
+    if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"editGrade" sender:self];
     }
     
 }

@@ -11,8 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "accountViewController.h"
 #import <MapKit/MapKit.h>
+#import "addTopicViewController.h"
+#import "Twitter/Twitter.h"
+#import "MessageUI/MessageUI.h"
 
-@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate>{
+
+@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate>{
     
     CGRect f;
     BOOL viewingUsers;
@@ -32,6 +36,8 @@
 @property CLLocationManager *locationManager;
 @property NSMutableArray *userDataArray;
 @property NSMutableArray *topicDataArray;
+@property (strong, nonatomic) IBOutlet UIImageView *twitterBirdButton;
+@property (strong, nonatomic) IBOutlet UIImageView *messageButton;
 
 @property NSMutableArray *tableViewData;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
@@ -57,6 +63,5 @@
 
 - (IBAction)segmentedValueDidChange:(id)sender;
 
-- (IBAction)bananaButtonPress:(id)sender;
 
 @end

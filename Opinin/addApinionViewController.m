@@ -25,7 +25,6 @@
     self.userImageView.layer.borderWidth = 1.0f;
     
     
-    self.userImageView.layer.borderColor = self.userThemeColor.CGColor;
 
     
 }
@@ -46,7 +45,8 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.userImageView.layer.borderColor = self.userThemeColor.CGColor;
+    self.postApinionButton.tintColor = self.userThemeColor;
     [self.seporatorImageView setBackgroundColor:self.userThemeColor];
     
     NSString *firstName = [[[PFUser currentUser] objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];

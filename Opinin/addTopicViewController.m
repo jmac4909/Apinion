@@ -42,6 +42,9 @@
                                 destructiveButtonTitle:nil
                                      otherButtonTitles:@"Take photo", @"Choose Existing", nil];
     
+    mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+
+    
     
    
 }
@@ -141,7 +144,7 @@
 }
 -(IBAction)cancelPress:(id)sender{
     
-    [self.navigationController popToRootViewControllerAnimated:true];
+    [self.delagate closeCreateTopicView:self];
     
     
 }

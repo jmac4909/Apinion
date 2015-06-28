@@ -183,6 +183,18 @@ static CGFloat MKMapOriginHight = 175.f;
         
         
     }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        UINavigationBar *navBar = [[self navigationController] navigationBar];
+        UIImage *backgroundImage = [UIImage imageNamed:@"navBarImageGrey.png"];
+        [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+        
+                 
+        
+        self.tableView.separatorColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
+        
+        
+        
+    }
     
     else{
         UINavigationBar *navBar = [[self navigationController] navigationBar];
@@ -206,7 +218,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
     [self.navigationController.navigationBar setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIFont fontWithName:@"VastShadow-Regular" size:30],
+      [UIFont fontWithName:@"Copperplate-Bold" size:30],
       NSFontAttributeName,
       textColor,NSForegroundColorAttributeName, nil]];
     
@@ -306,6 +318,12 @@ static CGFloat MKMapOriginHight = 175.f;
         returnColor = [UIColor colorWithRed:46/255.0f green:3/255.0f blue:75/255.0f alpha:1.0f];
         
     }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        
+        //Grey
+        returnColor = [UIColor blackColor];
+        
+    }
     else{
         
         
@@ -350,6 +368,7 @@ static CGFloat MKMapOriginHight = 175.f;
     cell.textLabel.text = fullName;
     cell.detailTextLabel.text = [userObject objectForKey:@"School_Name"];
     }
+    cell.detailTextLabel.textColor = self.userThemeColor;
     return cell;
 
 }

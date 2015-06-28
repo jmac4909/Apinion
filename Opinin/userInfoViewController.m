@@ -435,7 +435,7 @@
         float centerX = self.tableViewDetailView.frame.size.width/4.5;
         
         if (latestXTranslation < 0) {
-            NSLog(@" < 0");
+//            NSLog(@" < 0");
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.2];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -443,9 +443,9 @@
             [self.tableViewDetailView setCenter:CGPointMake( -centerX,defaultDetailViewCenterY )];
             [UIView commitAnimations];
             latestXTranslation = 0;
-            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
-            
-      
+//            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
+//            
+//      
             
              [UIView animateWithDuration:0.2 animations:^{
                 
@@ -456,7 +456,7 @@
                  
             }];
         }else{
-            NSLog(@"> 0");
+//            NSLog(@"> 0");
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -464,8 +464,8 @@
         [self.tableViewDetailView setCenter:CGPointMake( defaultDetailViewCenterX,defaultDetailViewCenterY )];
         [UIView commitAnimations];
             latestXTranslation = 0;
-            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
-            
+//            NSLog(@"Frame x:%f Y:%f",self.tableViewDetailView.frame.origin.x,self.tableViewDetailView.frame.origin.y);
+//            
             
              [UIView animateWithDuration:0.2 animations:^{
                 
@@ -603,6 +603,8 @@
     cell.displayNameLabel.text =[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"displayName"];
     [cell.displayNameLabel layoutSubviews];
     
+ 
+
     NSDate *date = [[self.selectedUserPosts objectAtIndex:indexPath.row] createdAt];
     NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
     [dateformate setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"]; // Date formater

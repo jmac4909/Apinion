@@ -10,5 +10,6 @@
 #import <Parse/Parse.h>
 
 @interface editGradeViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UITextField *gradeTextField;
+- (IBAction)saveButtonPress:(id)sender;
 @end
