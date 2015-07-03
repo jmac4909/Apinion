@@ -23,6 +23,7 @@
     
 }
 @property (strong,nonatomic)UIViewController <accountViewProtocol> *delagate;
+@property (strong, nonatomic) IBOutlet UIButton *changeProfileButton;
 
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;
 
@@ -30,6 +31,17 @@
 @property (strong,nonatomic) UIColor *userThemeColor;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) IBOutlet UIImageView *selectionImageView;
+@property (strong, nonatomic) IBOutlet UIButton *greenButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *orangeButton;
+@property (strong, nonatomic) IBOutlet UIButton *whiteButton;
+@property (strong, nonatomic) IBOutlet UIButton *greyButton;
+@property (strong, nonatomic) IBOutlet UIButton *yellowButton;
+@property (strong, nonatomic) IBOutlet UIButton *blueButton;
+@property (strong, nonatomic) IBOutlet UIButton *purpleButton;
+
 
 
 - (IBAction)changeToRedTheme:(id)sender;

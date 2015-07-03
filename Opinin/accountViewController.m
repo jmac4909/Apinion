@@ -50,9 +50,83 @@
         mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+    
+    
+    self.orangeButton.layer.cornerRadius = self.orangeButton.frame.size.height/2.0f;
+    self.orangeButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.orangeButton.layer.borderWidth=1.0f;
+    
+    self.yellowButton.layer.cornerRadius = self.yellowButton.frame.size.height/2.0f;
+    self.yellowButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.yellowButton.layer.borderWidth=1.0f;
+    
+    self.greenButton.layer.cornerRadius = self.greenButton.frame.size.height/2.0f;
+    self.greenButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.greenButton.layer.borderWidth=1.0f;
+    
+    self.blueButton.layer.cornerRadius = self.blueButton.frame.size.height/2.0f;
+    self.blueButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.blueButton.layer.borderWidth=1.0f;
+    
+    self.purpleButton.layer.cornerRadius = self.purpleButton.frame.size.height/2.0f;
+    self.purpleButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.purpleButton.layer.borderWidth=1.0f;
+    
+    self.whiteButton.layer.cornerRadius = self.whiteButton.frame.size.height/2.0f;
+    self.whiteButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.whiteButton.layer.borderWidth=1.0f;
+    
+    self.greyButton.layer.cornerRadius = self.greyButton.frame.size.height/2.0f;
+    self.greyButton.layer.borderColor=[UIColor blackColor].CGColor;
+    self.greyButton.layer.borderWidth=1.0f;
 }
 
- 
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+//    [self.userImageView setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
+//    
+//    [self.changeProfileButton setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
+//    
+
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"red"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.orangeButton.frame.origin.x, self.orangeButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
+        [self.selectionImageView setFrame:CGRectMake(self.yellowButton.frame.origin.x, self.yellowButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.whiteButton.frame.origin.x, self.whiteButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.blueButton.frame.origin.x, self.blueButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.greenButton.frame.origin.x, self.greenButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.purpleButton.frame.origin.x, self.purpleButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        
+        [self.selectionImageView setFrame:CGRectMake(self.greyButton.frame.origin.x, self.greyButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
+        
+    }
+    
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -94,13 +168,18 @@
 
 
 - (IBAction)changeToRedTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.orangeButton.frame.origin.x, self.orangeButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Red" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
+        
+
+
     }];
 }
 
 - (IBAction)changeToYellowTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.yellowButton.frame.origin.x , self.yellowButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Yellow" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -109,6 +188,7 @@
 }
 
 - (IBAction)changeToTanTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.whiteButton.frame.origin.x , self.whiteButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Tan" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -117,6 +197,7 @@
 }
 
 - (IBAction)changeToBlueTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.blueButton.frame.origin.x , self.blueButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Blue" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -125,6 +206,7 @@
 }
 
 - (IBAction)changeToGreenTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.greenButton.frame.origin.x , self.greenButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Green" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -132,12 +214,14 @@
 }
 
 - (IBAction)changeToPurpleTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.purpleButton.frame.origin.x , self.purpleButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Purple" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
     }];
 }
 - (IBAction)changeToGreyTheme:(id)sender {
+    [self.selectionImageView setFrame:CGRectMake(self.greyButton.frame.origin.x , self.greyButton.frame.origin.y , self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     [[PFUser currentUser]setObject:@"Grey" forKey:@"userTheme"];
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
