@@ -18,6 +18,9 @@
 
 @interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate,UISearchBarDelegate,createTopicViewProtocol>{
     
+    
+    CGRect searchScrollViewFrame;
+
     CGRect f;
     BOOL viewingUsers;
     float latestXTranslation;

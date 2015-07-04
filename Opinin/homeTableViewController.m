@@ -182,17 +182,21 @@ static CGFloat MKMapOriginHight = 175.f;
     self.searchTableView.delegate = self;
     
     CGRect searchFrame = [self.navigationController.navigationBar convertRect:self.searchBar.frame toView:self.view];
+    
+    NSLog(@"Height :%f",searchFrame.size.height);
+    NSLog(@"Y :%f",searchFrame.origin.x);
 
-    [self.searchTableView setFrame:CGRectMake(0,(searchFrame.origin.y + searchFrame.size.height*2) - MKMapOriginHight + 4, searchFrame.size.width, self.tableView.frame.size.height - (searchFrame.origin.y + searchFrame.size.height))];
+    [self.searchTableView setFrame:CGRectMake(0,-self.userLocationMap.frame.size.height + 46, searchFrame.size.width, self.tableView.frame.size.height - (searchFrame.origin.y + searchFrame.size.height))];
     
     
-    searchSeporator = [[UIImageView alloc]initWithFrame:CGRectMake(self.searchTableView.frame.origin.x,(searchFrame.origin.y + searchFrame.size.height*2) - MKMapOriginHight, self.searchTableView.frame.size.width, 4)];
+    searchSeporator = [[UIImageView alloc]initWithFrame:CGRectMake(0,-self.userLocationMap.frame.size.height + 44 , self.searchTableView.frame.size.width, 2)];
     UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
 
     [txfSearchField addTarget:self
                   action:@selector(textFieldDidChange:)
         forControlEvents:UIControlEventEditingChanged];
     [self.tableView touchesShouldCancelInContentView:self.searchTableView];
+    searchScrollViewFrame = self.searchTableView.frame;
     
 }
 
@@ -211,6 +215,7 @@ static CGFloat MKMapOriginHight = 175.f;
          [self.searchBar becomeFirstResponder];
         
  
+        
         return;
     }}
 
@@ -489,8 +494,9 @@ static CGFloat MKMapOriginHight = 175.f;
     
     self.dropDownMenuView.userInteractionEnabled = true;
 
+     [self.searchTableView reloadData];
 
-
+ 
 }
 
 
@@ -877,6 +883,8 @@ static CGFloat MKMapOriginHight = 175.f;
             cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"topic_Detail"];
         }
         
+        cell.detailTextLabel.textColor = [self getUserColor];
+
         return cell;
 
     }
@@ -919,7 +927,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
             
         }else if (viewingUsers == false){
-            self.searchTableViewData = [self.topicDataArray objectAtIndex:indexPath.row];
+            self.selectedUserData = [self.searchTableViewData objectAtIndex:indexPath.row];
             [self performSegueWithIdentifier:@"showUserPage" sender:self];
             
         }
@@ -1075,7 +1083,7 @@ static CGFloat MKMapOriginHight = 175.f;
          self.dropDownMenuView.hidden = false;
          [self.view addGestureRecognizer:screenTap];
 
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         
         [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/6)))];
         
@@ -1083,12 +1091,13 @@ static CGFloat MKMapOriginHight = 175.f;
 
         [coverView setAlpha:0.4];
 
+        self.segmentedTopicsUsers.enabled = NO;
+
     } completion:^(BOOL finished) {
   
 
         self.tableView.scrollEnabled = false;
         self.tableView.allowsSelection = NO;
-        self.segmentedTopicsUsers.enabled = NO;
         self.userLocationMap.userInteractionEnabled = NO;
         self.scrollView.scrollEnabled = false;
         [coverView setAlpha:0.4];
@@ -1233,7 +1242,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     if (self.searchBar.hidden == true) {
         
-        
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
         
         [self.view addGestureRecognizer:screenSearchTap];
 
@@ -1274,6 +1283,8 @@ static CGFloat MKMapOriginHight = 175.f;
             [searchSeporator removeFromSuperview];
             
         } completion:^(BOOL finished) {
+            [self.searchTableViewData removeAllObjects];
+            [self.searchTableView reloadData];
             self.searchBar.text = @"";
             [self.searchBar resignFirstResponder];
 
