@@ -132,11 +132,16 @@
             [topic setObject:imageFile forKey:@"objectImage"];
             
         }
+        NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.topicTitleTextFeild.text,self.topicDetailTextView.text];
+        NSString *Object_FullName = [Object_FullNameFirst stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
         [topic setObject:self.topicTitleTextFeild.text forKey:@"Object_FirstName"];
         [topic setObject:self.topicDetailTextView.text forKey:@"topic_Detail"];
         [topic setObject:[self getdeviceLocation] forKey:@"Created_Position"];
+        [topic setObject:Object_FullName forKey:@"Object_FullName"];
+
         [topic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self.navigationController popViewControllerAnimated:true];
+            [self.delagate closeCreateTopicView:self];
         }];
         
         

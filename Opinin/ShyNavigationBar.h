@@ -32,8 +32,7 @@
 - (void)adjustForSequeInto:(BOOL)animated;
 - (void)adjustForSequeInto:(BOOL)animated scrollView:(UIScrollView *)scrollView;
 
--(void)showContentsOfView;
-
+ 
 
 @end
 

@@ -43,6 +43,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *purpleButton;
 
 
+@property (strong, nonatomic) IBOutlet UIButton *changeButton;
 
 - (IBAction)changeToRedTheme:(id)sender;
 - (IBAction)changeToYellowTheme:(id)sender;

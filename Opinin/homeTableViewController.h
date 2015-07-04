@@ -16,22 +16,27 @@
 #import "MessageUI/MessageUI.h"
 
 
-@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate>{
+@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate,UISearchBarDelegate,createTopicViewProtocol>{
     
     CGRect f;
     BOOL viewingUsers;
     float latestXTranslation;
     UIView *coverView;
+    UIView *searchCoverView;
+    UIImageView *searchSeporator;
     UIButton *homeDropButton;
     UIButton *profileDropButton;
     UIButton *favoritesDropButton;
     UITapGestureRecognizer *screenTap;
+    UITapGestureRecognizer *screenSearchTap;
+
 }
 @property (strong, nonatomic) IBOutlet UIButton *TopicButton;
 @property (strong, nonatomic) IBOutlet UIImageView *seporateImageView;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (strong, nonatomic) IBOutlet UITableView *searchTableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedTopicsUsers;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *userDataArray;
@@ -51,8 +56,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *dataViewImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *scrollViewImageView;
 @property (strong, nonatomic) IBOutlet UIView *dropDownMenuView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *searchButton;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
-           
+
+@property NSMutableArray *searchTableViewData;
+
 @property PFObject *alertFound;
 
 @property PFObject *selectedUserData;
@@ -63,5 +72,6 @@
 
 - (IBAction)segmentedValueDidChange:(id)sender;
 
+- (IBAction)pressSearchButton:(id)sender;
 
 @end

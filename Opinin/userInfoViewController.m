@@ -139,7 +139,7 @@
     self.tableView.separatorColor = self.userThemeColor;
     
     removeActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
-    addActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+    addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
     
 
 

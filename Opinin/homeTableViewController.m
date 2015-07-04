@@ -156,18 +156,65 @@ static CGFloat MKMapOriginHight = 175.f;
                                          initWithTarget:self
                                          action:@selector(tapScreen:)];
 
+    screenSearchTap = [[UITapGestureRecognizer alloc]
+                 initWithTarget:self
+                 action:@selector(tapSearchScreen:)];
+    [screenTap setCancelsTouchesInView:NO];
+    [screenSearchTap setCancelsTouchesInView:NO];
+    
+
     coverView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height)];
     
     coverView.backgroundColor = [UIColor blackColor];
     [coverView setAlpha:0.4];
     
+    searchCoverView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height)];
+    
+    searchCoverView.backgroundColor = [UIColor blackColor];
+    [searchCoverView setAlpha:0.4];
+    
+        [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.searchBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+    self.searchBar.hidden = true;
+    self.searchBar.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.userInteractionEnabled = true;
+    self.searchBar.delegate = self;
+    
+    self.searchTableView.delegate = self;
+    
+    CGRect searchFrame = [self.navigationController.navigationBar convertRect:self.searchBar.frame toView:self.view];
+
+    [self.searchTableView setFrame:CGRectMake(0,(searchFrame.origin.y + searchFrame.size.height*2) - MKMapOriginHight + 4, searchFrame.size.width, self.tableView.frame.size.height - (searchFrame.origin.y + searchFrame.size.height))];
     
     
+    searchSeporator = [[UIImageView alloc]initWithFrame:CGRectMake(self.searchTableView.frame.origin.x,(searchFrame.origin.y + searchFrame.size.height*2) - MKMapOriginHight, self.searchTableView.frame.size.width, 4)];
+    UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
+
+    [txfSearchField addTarget:self
+                  action:@selector(textFieldDidChange:)
+        forControlEvents:UIControlEventEditingChanged];
+    [self.tableView touchesShouldCancelInContentView:self.searchTableView];
     
 }
 
+- (void)tapSearchScreen:(id)sender {
+ 
+    UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
+     txfSearchField.clearButtonMode =UITextFieldViewModeNever;
+     CGPoint tapPoint = [sender locationInView:self.view];
+    
+    CGRect searchFrame = [self.navigationController.navigationBar convertRect:self.searchBar.frame toView:self.view];
+ 
+ 
+ 
 
-- (IBAction)tapScreen:(id)sender {
+    if (CGRectContainsPoint(searchFrame, tapPoint)) {
+         [self.searchBar becomeFirstResponder];
+        
+ 
+        return;
+    }}
+
+- (void)tapScreen:(id)sender {
     CGPoint tapPoint = [sender locationInView:self.view];
     
     CGRect homeFrame = [self.dropDownMenuView convertRect:homeDropButton.frame toView:self.view];
@@ -367,6 +414,8 @@ static CGFloat MKMapOriginHight = 175.f;
         
     }
     
+    self.searchBar.tintColor = [self getUserColor];
+    self.searchButton.tintColor = [self getUserColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIFont fontWithName:@"Copperplate-Bold" size:30],
@@ -394,12 +443,15 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     
+    [searchSeporator setBackgroundColor:[self getUserColor]];
     
     self.userLocationMap.tintColor = [self getUserColor];
     [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - (MKMapOriginHight), self.tableView.frame.size.width, MKMapOriginHight - (MKMapOriginHight /6))];
+
     
     self.navigationController.navigationBar.userInteractionEnabled = true;
     [self.navigationController.navigationBar insertSubview:self.dropDownMenuView atIndex:0];
+       [self.navigationController.navigationBar insertSubview:self.searchBar atIndex:0];
     self.dropDownMenuView.hidden = true;
     
     
@@ -436,6 +488,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.dropDownMenuView addSubview:favoritesDropButton];
     
     self.dropDownMenuView.userInteractionEnabled = true;
+
 
 
 }
@@ -731,31 +784,58 @@ static CGFloat MKMapOriginHight = 175.f;
 #pragma mark - Table view data source
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
  
+    if (tableView.tag == 1) {
+        return nil;
+    }
+    if (tableView.tag == 2) {
+        return nil;
+    }
         return nil;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
-    return 80;
+    if (tableView.tag == 1) {
+        return 80;
+    }
+    if (tableView.tag == 2) {
+        return 44;
+    }
+         return 80;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+    if (tableView.tag == 1) {
+        return 1;
+    }
+    if (tableView.tag == 2) {
+        return 1;
+    }
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-
+    if (tableView.tag == 1) {
+        return self.tableViewData.count;
+    }
+    if (tableView.tag == 2) {
+        return self.searchTableViewData.count;
+    }
     return self.tableViewData.count;
     
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    if (tableView.tag == 1) {
+     
+    
     
     cell.backgroundColor = [UIColor whiteColor];
     
@@ -779,9 +859,36 @@ static CGFloat MKMapOriginHight = 175.f;
 
     return cell;
     
+    }
     
+    
+    if (tableView.tag == 2) {
+        if (self.searchBar.text.length > 0) {
+            
+        
+        if (viewingUsers == true) {
+            NSString *fullName = [[[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_LastName"]];
+            cell.textLabel.text = fullName;
+            
+            cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"School_Name"];
+        }else{
+            NSLog(@"Topics");
+            cell.textLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"];
+            cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"topic_Detail"];
+        }
+        
+        return cell;
+
+    }
+    }
+    
+    return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"Select");
+
+    if (tableView.tag == 1) {
+     
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
@@ -796,7 +903,29 @@ static CGFloat MKMapOriginHight = 175.f;
         [self performSegueWithIdentifier:@"showUserPage" sender:self];
 
     }
+    }
     
+    
+    if (tableView.tag == 2) {
+        NSLog(@"Tag = 2");
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        if (viewingUsers == true) {
+            
+            
+            self.selectedUserData = [self.searchTableViewData objectAtIndex:indexPath.row];
+            [self performSegueWithIdentifier:@"showUserPage" sender:self];
+            NSLog(@"Segue");
+
+            
+        }else if (viewingUsers == false){
+            self.searchTableViewData = [self.topicDataArray objectAtIndex:indexPath.row];
+            [self performSegueWithIdentifier:@"showUserPage" sender:self];
+            
+        }
+        
+        
+    }
 }
 
 - (void)closeAccountView:(UIViewController*)sender;
@@ -855,7 +984,8 @@ static CGFloat MKMapOriginHight = 175.f;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     [self.dropDownMenuView removeFromSuperview];
-    
+    [self.searchBar removeFromSuperview];
+
     self.dropDownMenuView.hidden = true;
     self.tableView.scrollEnabled = true;
     self.userLocationMap.userInteractionEnabled = YES;
@@ -868,6 +998,7 @@ static CGFloat MKMapOriginHight = 175.f;
     self.scrollView.scrollEnabled = true;
     
     [self.view removeGestureRecognizer:screenTap];
+ 
 
      // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
@@ -888,18 +1019,7 @@ static CGFloat MKMapOriginHight = 175.f;
         accountViewController *accountView = (accountViewController *)[segue.destinationViewController topViewController];
         
         accountView.delagate = self;
-        self.dropDownMenuView.hidden = true;
-        self.tableView.scrollEnabled = true;
-        self.userLocationMap.userInteractionEnabled = YES;
-        
-        self.tableView.allowsSelection = YES;
-        self.segmentedTopicsUsers.enabled = YES;
-        
-        [coverView removeFromSuperview];
-        [coverView setAlpha:0.4];
-        self.scrollView.scrollEnabled = true;
-        
-        [self.view removeGestureRecognizer:screenTap];
+ 
         accountView.userThemeColor = [self getUserColor];
         
         
@@ -943,6 +1063,10 @@ static CGFloat MKMapOriginHight = 175.f;
 #pragma mark
 
 -(void)dropMenu{
+    
+    if (self.searchBar.hidden == false) {
+        [self pressSearchButton:self];
+    }
      if (self.dropDownMenuView.hidden == true) {
          
 
@@ -957,7 +1081,8 @@ static CGFloat MKMapOriginHight = 175.f;
         
         [self.navigationController.navigationBar insertSubview:coverView belowSubview:self.dropDownMenuView];
 
-        
+        [coverView setAlpha:0.4];
+
     } completion:^(BOOL finished) {
   
 
@@ -966,6 +1091,8 @@ static CGFloat MKMapOriginHight = 175.f;
         self.segmentedTopicsUsers.enabled = NO;
         self.userLocationMap.userInteractionEnabled = NO;
         self.scrollView.scrollEnabled = false;
+        [coverView setAlpha:0.4];
+
 
     }];
     
@@ -1064,7 +1191,121 @@ static CGFloat MKMapOriginHight = 175.f;
     }
 
 }
+#pragma mark - Search Delegate
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [searchCoverView removeFromSuperview];
+    self.tableView.scrollEnabled = false;
+    self.tableView.allowsSelection = NO;
+    [self.view insertSubview:self.searchTableView aboveSubview:searchCoverView];
+    [self.view insertSubview:searchSeporator aboveSubview:self.searchTableView];
+    
+    
+
+}
+
+- (void)textFieldDidChange:(id)sender{
+    
+ 
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"Object_FullName beginswith[c] %@", self.searchBar.text];
+    self.searchTableViewData = [NSMutableArray arrayWithArray:[self.tableViewData filteredArrayUsingPredicate:resultPredicate]];
+    NSPredicate *userNameresultPredicate = [NSPredicate predicateWithFormat:@"username beginswith[c] %@", self.searchBar.text];
+    NSMutableArray *userNameArray = [NSMutableArray arrayWithArray:[self.tableViewData filteredArrayUsingPredicate:userNameresultPredicate]];
+    
+    
+    for (id object in userNameArray) {
+        if (![self.searchTableViewData containsObject:object]) {
+            [self.searchTableViewData addObject:object];
+        }
+    }
+    [self.searchTableView reloadData];
+
+
+
+}
+
+
+   
+- (IBAction)pressSearchButton:(id)sender {
+    if (self.dropDownMenuView.hidden == false) {
+        [self dropMenu];
+    }
+    
+    if (self.searchBar.hidden == true) {
+        
+        
+        
+        [self.view addGestureRecognizer:screenSearchTap];
+
+        self.searchBar.hidden = false;
+        
+        [UIView animateWithDuration:.3 animations:^{
+            
+            [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+            
+ 
+        [self.navigationController.navigationBar insertSubview:searchCoverView belowSubview:self.searchBar];
+            self.segmentedTopicsUsers.enabled = NO;
+
+            [searchCoverView setAlpha:0.4];
+        } completion:^(BOOL finished) {
+            self.tableView.scrollEnabled = false;
+            self.tableView.allowsSelection = NO;
+            self.userLocationMap.userInteractionEnabled = NO;
+            self.scrollView.scrollEnabled = false;
+            [searchCoverView setAlpha:0.4];
+
+            
+        }];
+        
+        
+    }else{
+        
+        
+        
+        [UIView animateWithDuration:.3 animations:^{
+            
+        [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.searchBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+            
+            
+            [searchCoverView setAlpha:0.0];
+
+            [self.searchTableView removeFromSuperview];
+            [searchSeporator removeFromSuperview];
+            
+        } completion:^(BOOL finished) {
+            self.searchBar.text = @"";
+            [self.searchBar resignFirstResponder];
+
+            self.searchBar.hidden = true;
+            self.tableView.scrollEnabled = true;
+            self.userLocationMap.userInteractionEnabled = YES;
+            
+            self.tableView.allowsSelection = YES;
+            self.segmentedTopicsUsers.enabled = YES;
+            
+            [searchCoverView removeFromSuperview];
+            [searchCoverView setAlpha:0.4];
+            self.scrollView.scrollEnabled = true;
+
+            self.scrollView.scrollEnabled = true;
+            
+            [self.view removeGestureRecognizer:screenSearchTap];
+            
+        }];
+        
+        
+    }
+
+    
+    
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    [searchBar resignFirstResponder];
+    
+    
+}
 - (void)messageComposeViewController:(nonnull MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     
     

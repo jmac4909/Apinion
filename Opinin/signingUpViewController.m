@@ -121,7 +121,9 @@
             
             NSLog(@"differnt passwords");
         }else{
-    
+    NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.firstNameField.text,self.lastNameField.text];
+    NSString *Object_FullName = [Object_FullNameFirst stringByReplacingOccurrencesOfString:@" " withString:@""];
+
     PFUser *user = [PFUser user];
     [user setObject:self.firstNameField.text forKey:@"Object_FirstName"];
     [user setObject:self.lastNameField.text forKey:@"Object_LastName"];
@@ -130,6 +132,7 @@
     [user setObject:self.schoolNameField.text forKey:@"School_Name"];
     user.password = self.passwordField.text;
     [user setObject:self.gradeField.text forKey:@"User_Grade"];
+    [user setObject:Object_FullName forKey:@"Object_FullName"];
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {

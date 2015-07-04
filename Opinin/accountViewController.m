@@ -79,6 +79,8 @@
     self.greyButton.layer.cornerRadius = self.greyButton.frame.size.height/2.0f;
     self.greyButton.layer.borderColor=[UIColor blackColor].CGColor;
     self.greyButton.layer.borderWidth=1.0f;
+    
+    [self.changeButton setFrame:CGRectMake(self.userImageView.frame.origin.x + self.userImageView.frame.size.width/2 - self.changeButton.frame.size.width/2, self.userImageView.frame.origin.y + self.userImageView.frame.size.height, self.changeButton.frame.size.width, self.changeButton.frame.size.height)];
 }
 
 
@@ -91,7 +93,7 @@
 //    [self.changeProfileButton setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
 //    
 
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"red"]) {
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.orangeButton.frame.origin.x, self.orangeButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
@@ -331,6 +333,11 @@
     return 4;
 }
 
+- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    
+    
+    return tableView.frame.size.height/4;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
