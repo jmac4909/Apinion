@@ -47,15 +47,19 @@
 */
 
 - (IBAction)saveButtonPress:(id)sender {
-    
+    NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.firstNameTextFeild.text,self.lastNameTextFeild.text];
+    NSString *Object_FullName = [Object_FullNameFirst stringByReplacingOccurrencesOfString:@" " withString:@""];
+
     
     [[PFUser currentUser]setObject:self.firstNameTextFeild.text forKey:@"Object_FirstName"];
     [[PFUser currentUser]setObject:self.lastNameTextFeild.text forKey:@"Object_LastName"];
+    [[PFUser currentUser]setObject:Object_FullName forKey:@"Object_FullName"];
+
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self.firstNameTextFeild resignFirstResponder];
         [self.lastNameTextFeild resignFirstResponder];
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"successfully changed your name" delegate:self cancelButtonTitle:@"Yay" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"Successfully changed your name!" delegate:self cancelButtonTitle:@"Yay" otherButtonTitles:nil, nil];
         [alert show];
     }];
     

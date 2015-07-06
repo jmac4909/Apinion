@@ -59,6 +59,27 @@ static CGFloat MKMapOriginHight = 175.f;
     coverView.backgroundColor = [UIColor blackColor];
     [coverView setAlpha:0.4];
     self.dropDownMenuView.hidden = true;
+    
+    
+    self.favIcon1.layer.cornerRadius = self.favIcon1.frame.size.height/2;
+    self.favIcon1.layer.masksToBounds = true;
+    self.favIcon1.layer.borderWidth = 0.5f;
+    self.favIcon1.layer.borderColor = [UIColor blackColor].CGColor;
+
+    self.favIcon2.layer.cornerRadius = self.favIcon2.frame.size.height/2;
+    self.favIcon2.layer.masksToBounds = true;
+    self.favIcon2.layer.borderWidth = 0.5f;
+    self.favIcon2.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    self.favIcon3.layer.cornerRadius = self.favIcon3.frame.size.height/2;
+    self.favIcon3.layer.masksToBounds = true;
+    self.favIcon3.layer.borderWidth = 0.5f;
+    self.favIcon3.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    self.favIcon4.layer.cornerRadius = self.favIcon4.frame.size.height/2;
+    self.favIcon4.layer.masksToBounds = true;
+    self.favIcon4.layer.borderWidth = 0.5f;
+    self.favIcon4.layer.borderColor = [UIColor blackColor].CGColor;
 
 
 }
@@ -86,16 +107,26 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+ 
+    self.userFavoritesLabel.text = [NSString stringWithFormat:@"%@\rFavorites ",[[PFUser currentUser] objectForKey:@"username"]];
+    self.userFavoritesLabel.textColor = [self getUserColor];
+    self.underlineImageView.backgroundColor = [self getUserColor];
     
     PFQuery *favoriteUserQuery = [PFUser query];
     [favoriteUserQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
-    
     [favoriteUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.userInGroup = objects;
-        [self.tableView reloadData];
+        self.userInGroup = [[NSMutableArray alloc]initWithArray:objects];
+        PFQuery *topicQuery = [PFQuery queryWithClassName:@"Topics"];
+        [topicQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
+        [topicQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [self.userInGroup addObjectsFromArray:objects];
+            [self.tableView reloadData];
+            [self setImageViews];
+        }];
+    
     }];
     
+
 
 
     //Red color
@@ -336,6 +367,88 @@ static CGFloat MKMapOriginHight = 175.f;
     
 }
 
+- (void)setImageViews{
+    if (self.userInGroup.count >= 1) {
+        self.favIcon1.hidden = false;
+
+    //Image 1
+    PFFile *imageFile = [[self.userInGroup objectAtIndex:0] objectForKey:@"objectImage"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+                UIImage *userImage = [UIImage imageWithData:data];
+                self.favIcon1.image = userImage;
+           
+     
+            
+        }
+    }];
+    }else{
+        self.favIcon1.hidden = true;
+    }
+    
+    if (self.userInGroup.count >= 2) {
+        self.favIcon2.hidden = false;
+
+    //Image 2
+    PFFile *image2File = [[self.userInGroup objectAtIndex:1] objectForKey:@"objectImage"];
+    [image2File getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+                UIImage *userImage = [UIImage imageWithData:data];
+                self.favIcon2.image = userImage;
+            
+       
+            
+        }
+    }];
+    }else{
+        self.favIcon2.hidden = true;
+    }
+    
+    
+    if (self.userInGroup.count >= 3) {
+        self.favIcon3.hidden = false;
+
+    //Image 3
+    PFFile *image3File = [[self.userInGroup objectAtIndex:2] objectForKey:@"objectImage"];
+    [image3File getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+                UIImage *userImage = [UIImage imageWithData:data];
+                self.favIcon3.image = userImage;
+         
+      
+            
+        }
+    }];
+    }else{
+        self.favIcon3.hidden = true;
+    }
+    
+    
+    if (self.userInGroup.count >= 4) {
+        self.favIcon4.hidden = false;
+
+    //Image 4
+    PFFile *image4File = [[self.userInGroup objectAtIndex:3] objectForKey:@"objectImage"];
+    [image4File getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+ 
+                UIImage *userImage = [UIImage imageWithData:data];
+                self.favIcon4.image = userImage;
+            
+          
+            
+        }else{
+            self.favIcon4.hidden = true;
+
+        }
+    }];
+    }else{
+        self.favIcon4.hidden = true;
+    }
+    
+    
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -362,11 +475,19 @@ static CGFloat MKMapOriginHight = 175.f;
 
     PFObject *userObject = [self.userInGroup objectAtIndex:indexPath.row];
     if (userObject) {
-        
-        
-    NSString *fullName = [[[userObject objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[userObject objectForKey:@"Object_LastName"]];
-    cell.textLabel.text = fullName;
-    cell.detailTextLabel.text = [userObject objectForKey:@"School_Name"];
+         
+           if ([[userObject parseClassName] isEqualToString:@"_User"]) {
+               NSString *fullName = [[[userObject objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[userObject objectForKey:@"Object_LastName"]];
+               cell.textLabel.text = fullName;
+               cell.detailTextLabel.text = [userObject objectForKey:@"School_Name"];
+
+           }else if ([[userObject parseClassName]isEqualToString:@"Topics"]){
+               cell.textLabel.text = [userObject objectForKey:@"Object_FirstName"];
+               
+                   cell.detailTextLabel.text = [userObject objectForKey:@"topic_Detail"];
+
+           }
+
     }
     cell.detailTextLabel.textColor = self.userThemeColor;
     return cell;

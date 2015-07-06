@@ -64,6 +64,8 @@
 
 
 @property NSMutableArray *searchTableViewData;
+@property NSMutableArray *searchTableViewTopicData;
+
 
 @property PFObject *alertFound;
 

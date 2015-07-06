@@ -183,12 +183,11 @@ static CGFloat MKMapOriginHight = 175.f;
     
     CGRect searchFrame = [self.navigationController.navigationBar convertRect:self.searchBar.frame toView:self.view];
     
-    NSLog(@"Height :%f",searchFrame.size.height);
-    NSLog(@"Y :%f",searchFrame.origin.x);
+ 
+    [self.searchTableView setFrame:CGRectMake(0,-self.userLocationMap.frame.size.height + 46, searchFrame.size.width, self.tableView.frame.size.height + -self.userLocationMap.frame.size.height + 46 + [UIApplication sharedApplication].statusBarFrame.size.height)];
+    
+ 
 
-    [self.searchTableView setFrame:CGRectMake(0,-self.userLocationMap.frame.size.height + 46, searchFrame.size.width, self.tableView.frame.size.height - (searchFrame.origin.y + searchFrame.size.height))];
-    
-    
     searchSeporator = [[UIImageView alloc]initWithFrame:CGRectMake(0,-self.userLocationMap.frame.size.height + 44 , self.searchTableView.frame.size.width, 2)];
     UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
 
@@ -794,7 +793,12 @@ static CGFloat MKMapOriginHight = 175.f;
         return nil;
     }
     if (tableView.tag == 2) {
-        return nil;
+        if (section == 0) {
+            return @"Users";
+            
+        }else if (section == 1){
+            return @"Topics";
+        }
     }
         return nil;
     
@@ -817,7 +821,10 @@ static CGFloat MKMapOriginHight = 175.f;
         return 1;
     }
     if (tableView.tag == 2) {
-        return 1;
+        if (self.searchTableViewData.count > 0 && self.searchTableViewTopicData.count > 0) {
+            return 2;
+        }
+        return 2;
     }
     return 1;
 }
@@ -828,7 +835,12 @@ static CGFloat MKMapOriginHight = 175.f;
         return self.tableViewData.count;
     }
     if (tableView.tag == 2) {
-        return self.searchTableViewData.count;
+        if (section == 0) {
+            return self.searchTableViewData.count;
+
+        }else if (section == 1){
+            return self.searchTableViewTopicData.count;
+        }
     }
     return self.tableViewData.count;
     
@@ -869,32 +881,46 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     if (tableView.tag == 2) {
-        if (self.searchBar.text.length > 0) {
+        if (indexPath.section == 0) {
+            if (self.searchBar.text.length > 0) {
+                
+                
+                     NSString *fullName = [[[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_LastName"]];
+                    cell.textLabel.text = fullName;
+                    
+                    cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"School_Name"];
+                
+                
+                cell.detailTextLabel.textColor = [self getUserColor];
+                
+                return cell;
+                
+            }
+        }else if (indexPath.section == 1){
             
-        
-        if (viewingUsers == true) {
-            NSString *fullName = [[[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_LastName"]];
-            cell.textLabel.text = fullName;
             
-            cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"School_Name"];
-        }else{
-            NSLog(@"Topics");
-            cell.textLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"];
-            cell.detailTextLabel.text = [[self.searchTableViewData objectAtIndex:indexPath.row]objectForKey:@"topic_Detail"];
+            
+            if (self.searchBar.text.length > 0) {
+                
+                
+                
+                    cell.textLabel.text = [[self.searchTableViewTopicData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"];
+                    cell.detailTextLabel.text = [[self.searchTableViewTopicData objectAtIndex:indexPath.row]objectForKey:@"topic_Detail"];
+                
+                
+                cell.detailTextLabel.textColor = [self getUserColor];
+                
+                return cell;
+                
+            }
         }
-        
-        cell.detailTextLabel.textColor = [self getUserColor];
 
-        return cell;
-
-    }
     }
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Select");
-
+ 
     if (tableView.tag == 1) {
      
     
@@ -915,19 +941,17 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     if (tableView.tag == 2) {
-        NSLog(@"Tag = 2");
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        if (viewingUsers == true) {
+        if (indexPath.section == 0) {
             
             
             self.selectedUserData = [self.searchTableViewData objectAtIndex:indexPath.row];
             [self performSegueWithIdentifier:@"showUserPage" sender:self];
-            NSLog(@"Segue");
-
+ 
             
-        }else if (viewingUsers == false){
-            self.selectedUserData = [self.searchTableViewData objectAtIndex:indexPath.row];
+        }else if (indexPath.section == 1){
+            self.selectedUserData = [self.searchTableViewTopicData objectAtIndex:indexPath.row];
             [self performSegueWithIdentifier:@"showUserPage" sender:self];
             
         }
@@ -935,6 +959,36 @@ static CGFloat MKMapOriginHight = 175.f;
         
     }
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (tableView.tag == 1) {
+        return 0.0;
+        
+    }
+    return  20.0;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:14]];
+    [label setTextColor:[UIColor whiteColor]];
+    NSString *string;
+
+    if (section == 0) {
+        string = @"Users";
+    }else if (section == 1){
+        string = @"Topics";
+    }
+    /* Section header is in 0th index... */
+    [label setText:string];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
+}
+
+
 
 - (void)closeAccountView:(UIViewController*)sender;
 {
@@ -1214,19 +1268,50 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (void)textFieldDidChange:(id)sender{
-    
+    NSString *searchText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
  
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"Object_FullName beginswith[c] %@", self.searchBar.text];
-    self.searchTableViewData = [NSMutableArray arrayWithArray:[self.tableViewData filteredArrayUsingPredicate:resultPredicate]];
-    NSPredicate *userNameresultPredicate = [NSPredicate predicateWithFormat:@"username beginswith[c] %@", self.searchBar.text];
-    NSMutableArray *userNameArray = [NSMutableArray arrayWithArray:[self.tableViewData filteredArrayUsingPredicate:userNameresultPredicate]];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"Object_FullName beginswith[c] %@", searchText];
+    self.searchTableViewData = [NSMutableArray arrayWithArray:[self.userDataArray filteredArrayUsingPredicate:resultPredicate]];
     
+    NSPredicate *userNameresultPredicate = [NSPredicate predicateWithFormat:@"username beginswith[c] %@", searchText];
+    NSMutableArray *userNameArray = [NSMutableArray arrayWithArray:[self.userDataArray filteredArrayUsingPredicate:userNameresultPredicate]];
+    
+    NSPredicate *lastNameresultPredicate = [NSPredicate predicateWithFormat:@"Object_LastName beginswith[c] %@", searchText];
+    NSMutableArray *lastNameArray = [NSMutableArray arrayWithArray:[self.userDataArray filteredArrayUsingPredicate:lastNameresultPredicate]];
     
     for (id object in userNameArray) {
         if (![self.searchTableViewData containsObject:object]) {
             [self.searchTableViewData addObject:object];
         }
     }
+    for (id object in lastNameArray) {
+        if (![self.searchTableViewData containsObject:object]) {
+            [self.searchTableViewData addObject:object];
+        }
+    }
+    
+    
+    NSPredicate *resultTopicPredicate = [NSPredicate predicateWithFormat:@"Object_FullName beginswith[c] %@", searchText];
+    self.searchTableViewTopicData = [NSMutableArray arrayWithArray:[self.topicDataArray filteredArrayUsingPredicate:resultTopicPredicate]];
+    
+    NSPredicate *userNameTopicResultPredicate = [NSPredicate predicateWithFormat:@"username beginswith[c] %@", searchText];
+    NSMutableArray *userNameTopicArray = [NSMutableArray arrayWithArray:[self.topicDataArray filteredArrayUsingPredicate:userNameTopicResultPredicate]];
+    
+    NSPredicate *lastNameTopicResultPredicate = [NSPredicate predicateWithFormat:@"Object_LastName beginswith[c] %@", searchText];
+    NSMutableArray *lastNameTopicArray = [NSMutableArray arrayWithArray:[self.topicDataArray filteredArrayUsingPredicate:lastNameTopicResultPredicate]];
+    
+    for (id object in userNameTopicArray) {
+        if (![self.searchTableViewTopicData containsObject:object]) {
+            [self.searchTableViewTopicData addObject:object];
+        }
+    }
+    for (id object in lastNameTopicArray) {
+        if (![self.searchTableViewTopicData containsObject:object]) {
+            [self.searchTableViewTopicData addObject:object];
+        }
+    }
+    
+    
     [self.searchTableView reloadData];
 
 
@@ -1278,12 +1363,18 @@ static CGFloat MKMapOriginHight = 175.f;
             
             
             [searchCoverView setAlpha:0.0];
-
-            [self.searchTableView removeFromSuperview];
-            [searchSeporator removeFromSuperview];
+            [self.searchBar setAlpha:0.0];
+            [self.searchTableView setAlpha:0.0];
+            [searchSeporator setAlpha:0.0];
             
         } completion:^(BOOL finished) {
+            [self.searchTableView removeFromSuperview];
+            [searchSeporator removeFromSuperview];
+            [self.searchBar setAlpha:1.0];
+            [self.searchTableView setAlpha:1.0];
+            [searchSeporator setAlpha:1.0];
             [self.searchTableViewData removeAllObjects];
+            [self.searchTableViewTopicData removeAllObjects];
             [self.searchTableView reloadData];
             self.searchBar.text = @"";
             [self.searchBar resignFirstResponder];

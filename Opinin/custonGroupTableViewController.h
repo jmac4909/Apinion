@@ -22,9 +22,20 @@
 @property (strong,nonatomic) UIColor *userThemeColor;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editGroupButton;
 
+
+@property (strong, nonatomic) IBOutlet UIImageView *favIcon1;
+@property (strong, nonatomic) IBOutlet UIImageView *favIcon2;
+@property (strong, nonatomic) IBOutlet UIImageView *favIcon3;
+@property (strong, nonatomic) IBOutlet UIImageView *favIcon4;
+
+@property (strong, nonatomic) IBOutlet UILabel *userFavoritesLabel;
+
+
+@property (strong, nonatomic) IBOutlet UIImageView *underlineImageView;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (strong,nonatomic)PFObject *group;
-@property (strong,nonatomic)NSArray *userInGroup;
+@property (strong,nonatomic)NSMutableArray *userInGroup;
 @property PFObject *selectedUserData;
 @property (strong, nonatomic) IBOutlet UIView *dropDownMenuView;
 
