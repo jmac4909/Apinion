@@ -263,7 +263,14 @@
     }];
         
  
-
+    if ([[PFUser currentUser]objectForKey:@"hasSeenUserTutorial"] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"If you would like to add your own Apinion to just swipe across the \"Profile Bar\" on the top of the screen" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
+        [alert show];
+        [[PFUser currentUser]setObject:[NSNumber numberWithInt:1] forKey:@"hasSeenUserTutorial"];
+        [[PFUser currentUser]saveInBackground];
+        
+        
+    }
 
 
 

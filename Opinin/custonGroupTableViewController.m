@@ -111,10 +111,15 @@ static CGFloat MKMapOriginHight = 175.f;
     self.userFavoritesLabel.text = [NSString stringWithFormat:@"%@\rFavorites ",[[PFUser currentUser] objectForKey:@"username"]];
     self.userFavoritesLabel.textColor = [self getUserColor];
     self.underlineImageView.backgroundColor = [self getUserColor];
+    if ([[PFUser currentUser] objectForKey:@"userFavotitesID"]) {
+        
     
     PFQuery *favoriteUserQuery = [PFUser query];
     [favoriteUserQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
     [favoriteUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects.count > 0) {
+            
+            NSLog(@"Object count >0");
         self.userInGroup = [[NSMutableArray alloc]initWithArray:objects];
         PFQuery *topicQuery = [PFQuery queryWithClassName:@"Topics"];
         [topicQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
@@ -123,9 +128,12 @@ static CGFloat MKMapOriginHight = 175.f;
             [self.tableView reloadData];
             [self setImageViews];
         }];
-    
+    }
     }];
-    
+}
+
+    UIColor *textColor;
+    textColor = [UIColor whiteColor];
 
 
 
@@ -154,7 +162,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
  
-        
+           textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
         //Red color
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -180,7 +188,7 @@ static CGFloat MKMapOriginHight = 175.f;
         UIImage *backgroundImage = [UIImage imageNamed:@"navBarImageTan.png"];
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
-        
+           textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
@@ -231,21 +239,18 @@ static CGFloat MKMapOriginHight = 175.f;
         UINavigationBar *navBar = [[self navigationController] navigationBar];
         UIImage *backgroundImage = [UIImage imageNamed:@"navBarImageYellow.png"];
         [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
- 
         
         
+        
+           textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        //Red color
         color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         self.tableView.separatorColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
         
         
     }
-    UIColor *textColor;
     
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"] || [[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
-        textColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-    }else{
-        textColor = [UIColor whiteColor];
-    }
+ 
 
     [self.navigationController.navigationBar setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
@@ -368,6 +373,7 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (void)setImageViews{
+    NSLog(@"There are %lu users in the group",(unsigned long)self.userInGroup.count);
     if (self.userInGroup.count >= 1) {
         self.favIcon1.hidden = false;
 

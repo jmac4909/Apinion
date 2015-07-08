@@ -34,8 +34,19 @@
         textView.textColor = [UIColor blackColor];
     }
 }
+-(void)textViewDidChange:(nonnull UITextView *)textView{
+    if (![[textView.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] && ![textView.text isEqualToString:@"Whats your Apinion?"] && textView.text.length >0) {
+        self.postApinionButton.enabled = true;
+        
+    }else{
+        self.postApinionButton.enabled = false;
+
+    }
+}
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+
+
 
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
@@ -71,7 +82,8 @@
     }];
 
     self.navigationItem.leftBarButtonItem.tintColor = self.userThemeColor;
-    
+    self.postApinionButton.enabled = false;
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

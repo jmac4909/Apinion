@@ -621,9 +621,10 @@ static CGFloat MKMapOriginHight = 175.f;
                         self.userDataArray= [NSMutableArray arrayWithArray:objects];
                         [self.userDataArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                         
-                        self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)self.userDataArray.count];
+                        
                         
                         if (viewingUsers == true) {
+                            self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)self.userDataArray.count];
                             self.tableViewData = self.userDataArray;
                             [self.tableView reloadData];
 
@@ -646,6 +647,7 @@ static CGFloat MKMapOriginHight = 175.f;
                             self.topicDataArray= [NSMutableArray arrayWithArray:objects];
                             [self.topicDataArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                             if (viewingUsers == false) {
+                                self.userCountLabel.text = [NSString stringWithFormat:@"%lu topics nearby",(unsigned long)self.topicDataArray.count];
                                 self.tableViewData = self.topicDataArray;
                                 [self.tableView reloadData];
 
@@ -660,7 +662,14 @@ static CGFloat MKMapOriginHight = 175.f;
         }];
         
     
-    
+        if ([[PFUser currentUser]objectForKey:@"hasSeenHomeTutorial"] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"Thanks for instaling Apinion, if you would like to add your own topic to your area just swipe across the \"Users Nearby\" bar" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
+            [alert show];
+            [[PFUser currentUser]setObject:[NSNumber numberWithInt:1] forKey:@"hasSeenHomeTutorial"];
+            [[PFUser currentUser]saveInBackground];
+            
+            
+        }
 
 
 
@@ -707,8 +716,10 @@ static CGFloat MKMapOriginHight = 175.f;
 
 -(void)refreshTableView {
     if (viewingUsers == true) {
+        
         self.segmentedTopicsUsers.enabled = false;
         [[PFUser currentUser] setObject:[self getdeviceLocation] forKey:@"Last_Position"];
+        
         [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 PFQuery *getPeople = [PFUser query];
@@ -718,18 +729,20 @@ static CGFloat MKMapOriginHight = 175.f;
                         
                         NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
                         
-                        self.userDataArray = [NSMutableArray arrayWithObject:objects];
-  
+                        
+                        self.userDataArray= [NSMutableArray arrayWithArray:objects];
                         [self.userDataArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
                         
-                        self.tableViewData= [NSMutableArray arrayWithArray:objects];
+                        
+                        
+                        self.tableViewData= [NSMutableArray arrayWithArray:self.userDataArray];
                         
                       
-                        [self.tableView reloadData];
 
                         [self.refreshControl endRefreshing];
                         self.segmentedTopicsUsers.enabled = true;
                         self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)objects.count];
+                        [self.tableView reloadData];
 
                     }else{
                         NSLog(@"%@",[error userInfo]);
@@ -856,7 +869,9 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     cell.backgroundColor = [UIColor whiteColor];
-    
+        
+         
+        
  
     if (viewingUsers == true) {
         NSString *fullName = [[[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_FirstName"] stringByAppendingString: @" "]stringByAppendingString:[[self.tableViewData objectAtIndex:indexPath.row]objectForKey:@"Object_LastName"]];
@@ -870,6 +885,8 @@ static CGFloat MKMapOriginHight = 175.f;
     }
     
 
+
+    
 
         
     cell.detailTextLabel.textColor = [self getUserColor];
@@ -1328,6 +1345,7 @@ static CGFloat MKMapOriginHight = 175.f;
     if (self.searchBar.hidden == true) {
         
         self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
         
         [self.view addGestureRecognizer:screenSearchTap];
 

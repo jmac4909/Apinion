@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view.
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
     self.userImageView.clipsToBounds = YES;
-    self.userImageView.layer.borderWidth = 3.0f;
+    self.userImageView.layer.borderWidth = 1.0f;
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     self.userImageView.layer.borderColor = color.CGColor;
     
@@ -240,6 +240,8 @@
 
     [self performSegueWithIdentifier:@"logedOut" sender:self];
 }
+
+
 
 - (IBAction)backButtonPress:(id)sender {
 

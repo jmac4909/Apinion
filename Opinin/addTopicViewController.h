@@ -14,7 +14,7 @@
 
 @end
 
-@interface addTopicViewController : UIViewController<CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>{
+@interface addTopicViewController : UIViewController<CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate,UIActionSheetDelegate>{
     
     
     UIImagePickerController *mediaPicker;
@@ -24,11 +24,14 @@
     
 }
 @property (strong,nonatomic)UIViewController <createTopicViewProtocol> *delagate;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *createTopicButton;
 
 @property (strong, nonatomic) IBOutlet UITextField *topicTitleTextFeild;
 @property (strong, nonatomic) IBOutlet UITextField *topicDetailTextView;
 @property CLLocationManager *locationManager;
 
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 - (IBAction)createTopic:(id)sender;
 - (IBAction)cancelPress:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *userImageView;

@@ -930,15 +930,15 @@
                                             <action selector="selectUserImage:" destination="akQ-Fv-3ya" eventType="touchUpInside" id="MMu-zf-Ki2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bzN-FG-Bor">
-                                        <rect key="frame" x="8" y="8" width="53" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title(25):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bzN-FG-Bor">
+                                        <rect key="frame" x="8" y="8" width="116" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details" minimumFontSize="17" id="Hvj-A0-Zjy">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details" minimumFontSize="17" id="Hvj-A0-Zjy">
                                         <rect key="frame" x="8" y="116" width="157" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -947,8 +947,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w4L-uz-jc8">
-                                        <rect key="frame" x="8" y="91" width="53" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details(35):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w4L-uz-jc8">
+                                        <rect key="frame" x="8" y="91" width="116" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -963,7 +963,7 @@
                                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" id="SL2-Tq-6aL">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" id="SL2-Tq-6aL">
                                         <rect key="frame" x="8" y="35" width="157" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -1007,6 +1007,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createTopicButton" destination="SbG-cR-YDp" id="7r7-li-O9t"/>
+                        <outlet property="detailLabel" destination="w4L-uz-jc8" id="Ghm-TS-vWI"/>
+                        <outlet property="titleLabel" destination="bzN-FG-Bor" id="6iF-vp-iHO"/>
                         <outlet property="topicDetailTextView" destination="Hvj-A0-Zjy" id="mmk-uv-kvK"/>
                         <outlet property="topicTitleTextFeild" destination="SL2-Tq-6aL" id="VHm-hk-x73"/>
                         <outlet property="userImageView" destination="0ZZ-aT-Zjp" id="b9J-hS-5FK"/>
@@ -1042,7 +1045,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qjz-SY-8yf">
-                                <rect key="frame" x="167" y="94" width="80" height="21"/>
+                                <rect key="frame" x="166.99999650411513" y="94" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1673,10 +1676,10 @@
         <image name="twitterBird" width="1139" height="926"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wf2-DN-uYy"/>
-        <segue reference="mLG-v4-e75"/>
-        <segue reference="Twi-YB-XhC"/>
-        <segue reference="0Js-Br-EZ1"/>
-        <segue reference="C0d-sw-Ay9"/>
+        <segue reference="tBX-H3-WDv"/>
+        <segue reference="Gn5-sg-HYQ"/>
+        <segue reference="Ads-uG-kjg"/>
+        <segue reference="EFk-h0-mdZ"/>
+        <segue reference="seo-sf-aMq"/>
     </inferredMetricsTieBreakers>
 </document>

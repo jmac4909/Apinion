@@ -31,7 +31,7 @@
     
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
     self.userImageView.clipsToBounds = YES;
-    self.userImageView.layer.borderWidth = 3.0f;
+    self.userImageView.layer.borderWidth = 1.0f;
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     self.userImageView.layer.borderColor = color.CGColor;
     
@@ -45,8 +45,19 @@
     mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
 
     
+    self.topicTitleTextFeild.delegate = self;
+    self.topicDetailTextView.delegate = self;
     
-   
+    [self.topicTitleTextFeild addTarget:self
+                  action:@selector(textFieldDidChange:)
+        forControlEvents:UIControlEventEditingChanged];
+
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.createTopicButton.enabled = false;
+
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -99,6 +110,46 @@
 }
 
 
+- (void)textFieldDidChange:(id)sender{
+    UITextField *field = (UITextField*)sender;
+    
+    if (![[field.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] && field.text.length >0) {
+        self.createTopicButton.enabled = true;
+    }else{
+        self.createTopicButton.enabled = false;
+
+    }
+
+
+
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    if (textField.tag == 1) {
+        if (newLength <= 25) {
+            self.titleLabel.text = [NSString stringWithFormat:@"Title(%lu):  ",25 -(unsigned long)newLength];
+        }
+
+         return newLength <= 25;
+
+    }else if (textField.tag == 2){
+        if (newLength <=35) {
+            self.detailLabel.text = [NSString stringWithFormat:@"Detail(%lu):  ",35 - (unsigned long)newLength];
+        }
+
+        return newLength <= 35;
+
+    }
+    return false;
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         mediaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -125,7 +176,7 @@
 
 - (IBAction)createTopic:(id)sender {
     
-    if (self.topicDetailTextView.text.length < 35 && self.topicTitleTextFeild.text.length > 0 && self.topicTitleTextFeild.text.length < 25) {
+    if (self.topicDetailTextView.text.length <= 35 && self.topicTitleTextFeild.text.length > 0 && self.topicTitleTextFeild.text.length <= 25) {
 
         PFObject *topic = [PFObject objectWithClassName:@"Topics"];
         if (imageFile) {
