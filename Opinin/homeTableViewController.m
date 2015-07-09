@@ -1125,17 +1125,14 @@ static CGFloat MKMapOriginHight = 175.f;
 #pragma mark
 
 -(void)homeButtonPress{
-    NSLog(@"Home");
     [self performSegueWithIdentifier:@"showHome1" sender:self];
 }
 -(void)profileButtonPress{
-    NSLog(@"Popular");
     [self performSegueWithIdentifier:@"showSettings1" sender:self];
 
     
 }
 -(void)favoriteButtonPress{
-    NSLog(@"Favorite");
     [self performSegueWithIdentifier:@"showFavorite" sender:self];
     
 }

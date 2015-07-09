@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F0C33781B4E0D21001ECD1A /* ApinionProductionProfile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = ApinionProductionProfile.mobileprovision; sourceTree = "<group>"; };
 		3F62BCBF1B3FA0C70092C79A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		3F62BCC11B3FA5660092C79A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3F722BA01AC85FCB00F6B614 /* addTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTopicViewController.h; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		3F7272D51A6234470006E9FA /* signInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signInViewController.m; path = ../signInViewController.m; sourceTree = "<group>"; };
 		3F7F8C871A94202600AC6555 /* custonGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custonGroupTableViewController.h; sourceTree = "<group>"; };
 		3F7F8C881A94202600AC6555 /* custonGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = custonGroupTableViewController.m; sourceTree = "<group>"; };
-		3F99EEFE1A736F7F00B57FF1 /* comJMACApinion.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = comJMACApinion.mobileprovision; sourceTree = "<group>"; };
 		3F9A1E111AAB8F10006E49ED /* ShyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShyNavigationBar.h; sourceTree = "<group>"; };
 		3F9A1E121AAB8F10006E49ED /* ShyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShyNavigationBar.m; sourceTree = "<group>"; };
 		3FA14E5F1A619A1900CE9FA5 /* signingUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signingUpViewController.h; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 		3FB8EF1E1A60AC0600B875DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3F99EEFE1A736F7F00B57FF1 /* comJMACApinion.mobileprovision */,
+				3F0C33781B4E0D21001ECD1A /* ApinionProductionProfile.mobileprovision */,
 				3FB8EF1F1A60AC0600B875DF /* Info.plist */,
 				3FB8EF201A60AC0600B875DF /* main.m */,
 			);
@@ -563,7 +563,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JMAC Dev (DMWTN9K3GQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
@@ -607,7 +607,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JMAC Dev (DMWTN9K3GQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -633,9 +633,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Opinin/parse-library-1.6.1",
@@ -645,7 +645,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2a80b39f-d0a0-41f9-bb17-8561d5688892";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -655,9 +655,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Opinin/parse-library-1.6.1",
@@ -667,7 +667,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "89780378-0a61-428b-810b-18f9cd9bd1c6";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -33,7 +33,25 @@
     
     
  
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.clipsToBounds = YES;
+    self.profileImage.layer.borderWidth = 1.0f;
+    UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+    self.profileImage.layer.borderColor = color.CGColor;
     
+    
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                              delegate:self
+                                     cancelButtonTitle:@"Cancel"
+                                destructiveButtonTitle:nil
+                                     otherButtonTitles:@"Take photo", @"Choose Existing", nil];
+    
+    
+    
+    mediaPicker = [[UIImagePickerController alloc] init];
+    [mediaPicker setDelegate:self];
+    mediaPicker.allowsEditing = YES;
+
 }
 
 
@@ -42,13 +60,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    userImage =(UIImage*)[info objectForKey:@"UIImagePickerControllerEditedImage"];
+    self.profileImage.image = userImage;
+    // Convert to JPEG with 100% quality
+    
+    NSData* data = UIImageJPEGRepresentation(userImage, 1.0f);
+    imageFile = [PFFile fileWithName:@"objectImage.jpg" data:data];
+    
+        
+
+    
+}
 
 - (BOOL)validateEmail:(NSString *)emailStr {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:emailStr];
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 /*
 #pragma mark - Navigation
 
@@ -116,10 +153,9 @@
     if (self.firstNameField.text.length > 0 && self.lastNameField.text.length > 0 && self.emailField.text.length > 0 && self.usernameField.text.length > 0 && self.schoolNameField.text.length > 0 && self.passwordField.text.length > 0 && self.passwordConfirmField.text.length > 0 && self.gradeField.text.length > 0) {
         
         if (![self.passwordField.text isEqualToString:self.passwordConfirmField.text]) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"your passwords don't match" delegate:self cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Your passwords don't match" delegate:self cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
             [alert show];
             
-            NSLog(@"differnt passwords");
         }else{
     NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.firstNameField.text,self.lastNameField.text];
     NSString *Object_FullName = [Object_FullNameFirst stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -133,6 +169,8 @@
     user.password = self.passwordField.text;
     [user setObject:self.gradeField.text forKey:@"User_Grade"];
     [user setObject:Object_FullName forKey:@"Object_FullName"];
+    [user setObject:imageFile forKey:@"objectImage"];
+
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
@@ -156,6 +194,35 @@
     }else{
         self.emailField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
     }
+
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];
+    } else if (buttonIndex == 1) {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];}
+}
+
+- (IBAction)profileImagePress:(id)sender {
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        [actionSheet showInView:self.view];
+    } else {
+        mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:mediaPicker animated:YES completion:^{
+            
+        }];
+    }
+
+
 
 }
 @end

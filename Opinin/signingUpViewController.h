@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface signingUpViewController : UIViewController<UITextFieldDelegate, UIScrollViewDelegate>
+@interface signingUpViewController : UIViewController<UITextFieldDelegate, UIScrollViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>{
+    
+    UIImagePickerController *mediaPicker;
+    UIImage* userImage;
+    UIActionSheet *actionSheet;
+    PFFile *imageFile;
+}
 //Scroll view
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -23,7 +29,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordConfirmField;
 @property (strong, nonatomic) IBOutlet UITextField *gradeField;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 
+- (IBAction)profileImagePress:(id)sender;
 
 
 

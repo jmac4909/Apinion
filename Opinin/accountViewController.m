@@ -98,34 +98,36 @@
         [self.selectionImageView setFrame:CGRectMake(self.orangeButton.frame.origin.x, self.orangeButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
         [self.selectionImageView setFrame:CGRectMake(self.yellowButton.frame.origin.x, self.yellowButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.whiteButton.frame.origin.x, self.whiteButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.blueButton.frame.origin.x, self.blueButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
+   else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.greenButton.frame.origin.x, self.greenButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.purpleButton.frame.origin.x, self.purpleButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
     }
-    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
         
         [self.selectionImageView setFrame:CGRectMake(self.greyButton.frame.origin.x, self.greyButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
         
+    }else{
+         [self.selectionImageView setFrame:CGRectMake(self.yellowButton.frame.origin.x, self.yellowButton.frame.origin.y, self.selectionImageView.frame.size.width, self.selectionImageView.frame.size.height)];
     }
     
 }

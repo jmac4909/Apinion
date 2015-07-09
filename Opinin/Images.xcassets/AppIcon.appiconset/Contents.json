@@ -3,53 +3,55 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon29x29.png",
+      "filename" : "centeredApinionIcon29x29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon58x58.png",
+      "filename" : "centeredApinionIcon58x58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon87x87.png",
+      "filename" : "centeredApinionIcon87x87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon80x80.png",
+      "filename" : "centeredApinionIcon80x80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon120x120.png",
+      "filename" : "centeredApinionIcon120x120-1.png",
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "centeredApinionIcon57x57.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "centeredApinionIcon114x114.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "monkeyIconHopeLast.png",
+      "filename" : "centeredApinionIcon120x120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "monkeyIcon180x180.png",
+      "filename" : "centeredApinionIcon180x180.png",
       "scale" : "3x"
     }
   ],

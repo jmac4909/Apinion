@@ -119,8 +119,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [favoriteUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count > 0) {
             
-            NSLog(@"Object count >0");
-        self.userInGroup = [[NSMutableArray alloc]initWithArray:objects];
+         self.userInGroup = [[NSMutableArray alloc]initWithArray:objects];
         PFQuery *topicQuery = [PFQuery queryWithClassName:@"Topics"];
         [topicQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
         [topicQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -373,7 +372,6 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (void)setImageViews{
-    NSLog(@"There are %lu users in the group",(unsigned long)self.userInGroup.count);
     if (self.userInGroup.count >= 1) {
         self.favIcon1.hidden = false;
 
@@ -591,15 +589,12 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 #pragma mark
 -(void)homeButtonPress{
-    NSLog(@"Home");
     [self performSegueWithIdentifier:@"showHome2" sender:self];
 }
 -(void)profileButtonPress{
-    NSLog(@"Popular");
     [self performSegueWithIdentifier:@"showSettings2" sender:self];
 }
 -(void)favoriteButtonPress{
-    NSLog(@"Favorite");
     [self performSegueWithIdentifier:@"showFavorite2" sender:self];
     
 }
