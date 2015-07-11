@@ -82,10 +82,14 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:emailStr];
 }
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    return NO;
+    return YES;
 }
+
+
 /*
 #pragma mark - Navigation
 
@@ -197,6 +201,7 @@
 
 }
 
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         mediaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -224,5 +229,33 @@
 
 
 
+}
+
+- (void)closeDocumentView:(UIViewController *)sender{
+    [sender dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+- (void)prepareForSegue:(nonnull UIStoryboardSegue *)segue sender:(nullable id)sender{
+    
+    
+    if ([segue.identifier isEqualToString:@"showDoc"]) {
+             DocumentViewController *docView = (DocumentViewController *)[segue.destinationViewController topViewController];
+            
+            docView.delagate = self;
+        docView.docType = self.docType;
+
+        NSLog(@"%@",self.docType);
+    }
+    
+}
+- (IBAction)termsAndConditionsPress:(id)sender {
+    self.docType = @"Term_Conditions";
+    [self performSegueWithIdentifier:@"showDoc" sender:self];
+}
+
+- (IBAction)privacyButtonPush:(id)sender {
+    self.docType = @"PrivacyPolicy";
+    [self performSegueWithIdentifier:@"showDoc" sender:self];
 }
 @end

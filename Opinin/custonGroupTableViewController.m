@@ -258,8 +258,7 @@ static CGFloat MKMapOriginHight = 175.f;
       textColor,NSForegroundColorAttributeName, nil]];
     
     self.sidebarButton.tintColor = textColor;
-    self.editGroupButton.tintColor = textColor;
-    
+     
     
     
     

@@ -20,8 +20,7 @@
 
 }
 @property (strong,nonatomic) UIColor *userThemeColor;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *editGroupButton;
-
+ 
 
 @property (strong, nonatomic) IBOutlet UIImageView *favIcon1;
 @property (strong, nonatomic) IBOutlet UIImageView *favIcon2;
