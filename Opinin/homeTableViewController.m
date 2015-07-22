@@ -494,6 +494,7 @@ static CGFloat MKMapOriginHight = 175.f;
     self.dropDownMenuView.userInteractionEnabled = true;
 
      [self.searchTableView reloadData];
+    [searchCoverView setAlpha:0.4];
 
  
 }

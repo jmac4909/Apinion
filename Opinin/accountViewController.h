@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-
+#import "TTTAttributedLabel.h"
+#import "DocumentViewController.h"
 @protocol accountViewProtocol
 
 - (void)closeAccountView:(UIViewController*)sender;
 
 @end
 
-@interface accountViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface accountViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource,documentViewProtocol>{
     
     UIImagePickerController *mediaPicker;
     UIImage* userImage;
@@ -41,7 +42,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *yellowButton;
 @property (strong, nonatomic) IBOutlet UIButton *blueButton;
 @property (strong, nonatomic) IBOutlet UIButton *purpleButton;
-
+@property (strong, nonatomic)  NSString *docType;
+@property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *changeButton;
 

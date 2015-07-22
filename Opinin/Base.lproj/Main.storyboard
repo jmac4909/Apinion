@@ -53,14 +53,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 JMAC. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZZx-bX-TES">
-                                <rect key="frame" x="0.0" y="547" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k6m-If-8Qb">
                                 <rect key="frame" x="53" y="251" width="140" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -115,6 +107,21 @@
                                     <segue destination="urY-Dt-KDV" kind="modal" animates="NO" modalTransitionStyle="crossDissolve" id="6lg-eS-Fui"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="Zqq-1o-chW" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="0.0" y="532" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment content="By signing in, you agree to our Terms Of Use and Privacy Policy">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,8 +129,10 @@
                     <navigationItem key="navigationItem" id="Jlh-We-Cjr"/>
                     <connections>
                         <outlet property="passwordField" destination="2H0-tG-Z6n" id="K6z-3L-5z0"/>
+                        <outlet property="termsPrivacyLabel" destination="Zqq-1o-chW" id="br0-Xr-SUC"/>
                         <outlet property="usernameField" destination="oWU-sO-L4i" id="ec8-Pb-Uxe"/>
                         <segue destination="REp-pi-9mN" kind="modal" identifier="completedLogIn" id="1R4-Rg-U4R"/>
+                        <segue destination="phJ-WV-bYC" kind="modal" identifier="showDoc" id="qRn-kt-Y7c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6q-XP-Mj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,7 +147,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView hidden="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="Aw1-fm-GAv">
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="Aw1-fm-GAv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -315,48 +324,21 @@
                                 </subviews>
                                 <animations/>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nul-VV-PmU">
-                                <rect key="frame" x="0.0" y="536" width="320" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="hkg-zI-1AD" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="0.0" y="536" width="320" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WpJ-Md-CBQ">
-                                <rect key="frame" x="159" y="536" width="161" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Terms and conditions">
-                                    <color key="titleColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="termsAndConditionsPress:" destination="urY-Dt-KDV" eventType="touchUpInside" id="ZLS-af-3C6"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4gK-KA-8BD">
-                                <rect key="frame" x="159" y="537" width="1" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nl8-7d-8Yb">
-                                <rect key="frame" x="0.0" y="536" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qLd-wO-W96">
-                                <rect key="frame" x="0.0" y="538" width="153" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Privacy Policy">
-                                    <color key="titleColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="privacyButtonPush:" destination="urY-Dt-KDV" eventType="touchUpInside" id="4fO-LZ-4qT"/>
-                                </connections>
-                            </button>
+                                <attributedString key="attributedText">
+                                    <fragment content="By signing up, you agree to our Terms Of Use and Privacy Policy">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -373,6 +355,7 @@
                         <outlet property="profileImage" destination="Lpa-QP-Ve8" id="K5T-Ct-4mE"/>
                         <outlet property="schoolNameField" destination="9cs-PL-2sY" id="Q92-mj-5WR"/>
                         <outlet property="scrollView" destination="3B1-jJ-Dph" id="exN-Tu-FH7"/>
+                        <outlet property="termsPrivacyLabel" destination="hkg-zI-1AD" id="t4c-Fq-nZP"/>
                         <outlet property="usernameField" destination="JKi-VG-7we" id="VGe-pe-y1z"/>
                         <segue destination="REp-pi-9mN" kind="modal" identifier="completedSignUp" id="zDh-M8-cIM"/>
                         <segue destination="phJ-WV-bYC" kind="modal" identifier="showDoc" id="3rc-O9-SE3"/>
@@ -550,6 +533,35 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="AmT-WN-PAy" userLabel="RedUnderline">
                                 <rect key="frame" x="0.0" y="307" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 JMAC. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iPR-wC-iTj">
+                                <rect key="frame" x="0.0" y="547" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="6RC-kq-HZQ" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="0.0" y="483" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment content="By signing in, you agree to our Terms Of Use and Privacy Policy">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zVO-tg-zno">
+                                <rect key="frame" x="40" y="518" width="240" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1033,13 +1045,13 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0ZZ-aT-Zjp">
                                         <rect key="frame" x="195" y="25" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zTT-UH-rWW">
                                         <rect key="frame" x="195" y="25" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <connections>
                                             <action selector="selectUserImage:" destination="akQ-Fv-3ya" eventType="touchUpInside" id="MMu-zf-Ki2"/>
@@ -1160,7 +1172,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qjz-SY-8yf">
-                                <rect key="frame" x="166.99999847710131" y="94" width="80" height="21"/>
+                                <rect key="frame" x="166.99999650411513" y="94" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1282,7 +1294,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="HSH-bf-B3j" detailTextLabel="MeB-Ja-WJ2" rowHeight="90" style="IBUITableViewCellStyleValue1" id="rDz-N8-Gf1" customClass="userInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDz-N8-Gf1" id="Vnm-qv-NWQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
@@ -1331,6 +1343,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="07I-65-fhg" id="uqV-zq-HOi"/>
+                        <outlet property="reportButton" destination="OAv-xG-UUA" id="rVg-M0-qW5"/>
                         <outlet property="selectedUserNameLabel" destination="wl6-h0-c4b" id="4Mr-l9-rhF"/>
                         <outlet property="selectedUserSchoolLabel" destination="rTf-wp-miE" id="Shx-hG-W91"/>
                         <outlet property="tableView" destination="bBq-MJ-UtO" id="ES4-wg-ebo"/>
@@ -1340,6 +1353,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lmh-j0-6Nx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OAv-xG-UUA">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="!">
+                        <color key="titleColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="reportButtonPress:" destination="y9f-wq-s8P" eventType="touchUpInside" id="2Dy-X7-bhV"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="4516" y="439"/>
         </scene>
@@ -1807,10 +1832,11 @@
         <image name="twitterBird" width="1139" height="926"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="seo-sf-aMq"/>
-        <segue reference="zDh-M8-cIM"/>
-        <segue reference="frE-2S-VLb"/>
-        <segue reference="tBX-H3-WDv"/>
+        <segue reference="qRn-kt-Y7c"/>
+        <segue reference="C0d-sw-Ay9"/>
         <segue reference="EFk-h0-mdZ"/>
+        <segue reference="1R4-Rg-U4R"/>
+        <segue reference="tBX-H3-WDv"/>
+        <segue reference="seo-sf-aMq"/>
     </inferredMetricsTieBreakers>
 </document>

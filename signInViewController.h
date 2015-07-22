@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "TTTAttributedLabel.h"
+#import "DocumentViewController.h"
 
-@interface signInViewController : UIViewController
+@interface signInViewController : UIViewController<TTTAttributedLabelDelegate,documentViewProtocol>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
+@property (strong, nonatomic)  NSString *docType;
+
 - (IBAction)signInPress:(id)sender;
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F3D5F1F1B50A06600680B1F /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D5F1E1B50A06600680B1F /* DocumentViewController.m */; };
+		3F545C5C1B5B5D32003EC026 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F545C5B1B5B5D32003EC026 /* TTTAttributedLabel.m */; };
 		3F62BCC01B3FA0C70092C79A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F62BCBF1B3FA0C70092C79A /* Twitter.framework */; };
 		3F62BCC21B3FA5660092C79A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F62BCC11B3FA5660092C79A /* MessageUI.framework */; };
 		3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722BA11AC85FCB00F6B614 /* addTopicViewController.m */; };
@@ -62,6 +63,8 @@
 		3F0C33781B4E0D21001ECD1A /* ApinionProductionProfile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = ApinionProductionProfile.mobileprovision; sourceTree = "<group>"; };
 		3F3D5F1D1B50A06600680B1F /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
 		3F3D5F1E1B50A06600680B1F /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
+		3F545C5A1B5B5D32003EC026 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		3F545C5B1B5B5D32003EC026 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		3F62BCBF1B3FA0C70092C79A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		3F62BCC11B3FA5660092C79A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3F722BA01AC85FCB00F6B614 /* addTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTopicViewController.h; sourceTree = "<group>"; };
@@ -203,6 +206,15 @@
 			name = "Document View Controller";
 			sourceTree = "<group>";
 		};
+		3F545C5D1B5B5D36003EC026 /* TTTextLabel */ = {
+			isa = PBXGroup;
+			children = (
+				3F545C5A1B5B5D32003EC026 /* TTTAttributedLabel.h */,
+				3F545C5B1B5B5D32003EC026 /* TTTAttributedLabel.m */,
+			);
+			name = TTTextLabel;
+			sourceTree = "<group>";
+		};
 		3F722BA31AC85FD000F6B614 /* Add Topic */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +285,7 @@
 		3FB8EF1D1A60AC0600B875DF /* Opinin */ = {
 			isa = PBXGroup;
 			children = (
+				3F545C5D1B5B5D36003EC026 /* TTTextLabel */,
 				3F9A1E101AAB8E81006E49ED /* Shy Nav Bar */,
 				3FB68C9B1A88799D00DCB2CD /* Custom Table View Cell */,
 				3F00F1991A68836900C598CF /* Delegates */,
@@ -527,6 +540,7 @@
 				3F7272D61A6234470006E9FA /* signInViewController.m in Sources */,
 				3F722BA21AC85FCB00F6B614 /* addTopicViewController.m in Sources */,
 				3FB8EF211A60AC0600B875DF /* main.m in Sources */,
+				3F545C5C1B5B5D32003EC026 /* TTTAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,9 +661,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Opinin/parse-library-1.6.1",
@@ -659,7 +673,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
-				PROVISIONING_PROFILE = "2a80b39f-d0a0-41f9-bb17-8561d5688892";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -669,9 +683,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JMAC Dev (L596K7RQQD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Opinin/parse-library-1.6.1",
@@ -681,7 +695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.JMACDev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Apinion;
-				PROVISIONING_PROFILE = "89780378-0a61-428b-810b-18f9cd9bd1c6";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

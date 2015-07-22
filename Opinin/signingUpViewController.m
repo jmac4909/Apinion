@@ -52,6 +52,15 @@
     [mediaPicker setDelegate:self];
     mediaPicker.allowsEditing = YES;
 
+    self.termsPrivacyLabel.delegate = self;
+    
+    
+    //after setting the label text:
+    [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"terms"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Terms Of Use"]];
+    
+    [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"privacy"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Privacy Policy"]];
+    
+
 }
 
 
@@ -88,7 +97,18 @@
     [textField resignFirstResponder];
     return YES;
 }
-
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    // for handling the URL but we just call our action
+    
+    if ([[url absoluteString]isEqualToString:@"terms"]) {
+        self.docType = @"Term_Conditions";
+    }
+    if ([[url absoluteString]isEqualToString:@"privacy"]) {
+        self.docType = @"PrivacyPolicy";
+    }
+    [self performSegueWithIdentifier:@"showDoc" sender:self];
+    
+}
 
 /*
 #pragma mark - Navigation
@@ -249,13 +269,5 @@
     }
     
 }
-- (IBAction)termsAndConditionsPress:(id)sender {
-    self.docType = @"Term_Conditions";
-    [self performSegueWithIdentifier:@"showDoc" sender:self];
-}
 
-- (IBAction)privacyButtonPush:(id)sender {
-    self.docType = @"PrivacyPolicy";
-    [self performSegueWithIdentifier:@"showDoc" sender:self];
-}
 @end

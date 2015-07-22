@@ -59,7 +59,10 @@
     self.userPhotoImageView.layer.borderColor = self.userThemeColor.CGColor;
     
  
+    self.reportButton.layer.borderWidth = 1.0f;
+    self.reportButton.layer.borderColor = self.userThemeColor.CGColor;
     
+
     UIPanGestureRecognizer* swipeLeftGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeftFrom:)];
     [self.tableViewDetailView addGestureRecognizer:swipeLeftGestureRecognizer];
     
@@ -124,6 +127,7 @@
                                         otherButtonTitles:@"Remove", nil];
     addActionSheet.delegate = self;
     removeActionSheet.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,7 +193,6 @@
          self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"topic_Detail"];
     }
    
-    self.selectedUserBananaLabel.text = [self.selectedUserData objectForKey:@""];
     
 
 }
@@ -378,6 +381,8 @@
     
     [selectedCellIArray removeObject:selectedCellIndexPath];
 }
+
+
 
 
 
@@ -607,6 +612,8 @@
     [cell.contentView addSubview:cellTextView];
 //    [cellTextView layoutIfNeeded]; //added
     
+    [cell.displayNameLabel setFont:[UIFont systemFontOfSize:12]];
+    
     cell.displayNameLabel.text =[[self.selectedUserPosts objectAtIndex:indexPath.row]objectForKey:@"displayName"];
     [cell.displayNameLabel layoutSubviews];
     
@@ -627,7 +634,17 @@
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
 
 
-    
+    if ([selectedCellIArray containsObject:indexPath]) {
+        
+        [cell addSubview:self.reportButton];
+
+
+    [self.reportButton setFrame:CGRectMake(cell.frame.size.width - cell.displayNameLabel.frame.size.width - 45, cell.frame.size.height - 30, 30, 30)];
+        
+        
+ 
+        
+    }
         
     
     
@@ -681,9 +698,9 @@
         
 
         if (  [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width , CGFLOAT_MAX)].height < 90) {
-            return 90;
+            return 90 + 34;
         }else{
-            return   [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width, CGFLOAT_MAX)].height + customCellTextView.font.pointSize;
+            return   [customCellTextView sizeThatFits:CGSizeMake(customCellTextView.frame.size.width, CGFLOAT_MAX)].height + customCellTextView.font.pointSize + 34;
         }
         
     }else{
@@ -698,6 +715,51 @@
 }
 #pragma mark - Post options
 
+- (IBAction)reportButtonPress:(id)sender {
+    
+    PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
+    if (![[[PFUser currentUser]objectForKey:@"HaveReported"]containsObject:post.objectId]) {
+        
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Report Post" message:@"Are you sure you want to report this post?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Report", nil];
+        alert.tag = 9;
+    [alert show];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Reported" message:@"You have already reported this post. Thank you for making Apinion a better place!" delegate:self cancelButtonTitle:@":)" otherButtonTitles:nil, nil];
+         [alert show];
+
+    }
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+
+{
+    
+    if (alertView.tag == 9) {
+        
+        
+        if (buttonIndex == 0)
+            
+        {
+            //Cancel
+            
+            
+        }else
+        {
+           
+            PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
+            NSNumber *reports = [post objectForKey:@"Reports"];
+            NSNumber *newReport = [NSNumber numberWithInt:reports.intValue + 1];
+            [post setObject:newReport forKey:@"Reports"];
+            [[PFUser currentUser]addObject:post.objectId forKey:@"HaveReported"];
+            [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [post saveInBackground];
+                
+            }];
+        
+        }
+    }
+    
+}
 - (void)refreshPosts {
     
     PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];

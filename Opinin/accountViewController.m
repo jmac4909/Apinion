@@ -81,6 +81,13 @@
     self.greyButton.layer.borderWidth=1.0f;
     
     [self.changeButton setFrame:CGRectMake(self.userImageView.frame.origin.x + self.userImageView.frame.size.width/2 - self.changeButton.frame.size.width/2, self.userImageView.frame.origin.y + self.userImageView.frame.size.height, self.changeButton.frame.size.width, self.changeButton.frame.size.height)];
+    
+    //after setting the label text:
+    [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"terms"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Terms Of Use"]];
+    
+    [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"privacy"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Privacy Policy"]];
+    
+
 }
 
 
@@ -168,7 +175,18 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    // for handling the URL but we just call our action
+    
+    if ([[url absoluteString]isEqualToString:@"terms"]) {
+        self.docType = @"Term_Conditions";
+    }
+    if ([[url absoluteString]isEqualToString:@"privacy"]) {
+        self.docType = @"PrivacyPolicy";
+    }
+    [self performSegueWithIdentifier:@"showDoc" sender:self];
+    
+}
 
 
 - (IBAction)changeToRedTheme:(id)sender {
@@ -233,17 +251,38 @@
 }
 
 - (IBAction)logOutPress:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Logout?" message:@"Are you sure you would like to logout?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Logout", nil];
+    alert.tag = 6;
+    [alert show];
     
-    NSArray *subcribtionArray = @[ ];
-    [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
-    [[PFInstallation currentInstallation] setObject:subcribtionArray forKey:@"channels"];
-    [[PFInstallation currentInstallation] saveEventually];
-    [PFUser logOut];
-
-    [self performSegueWithIdentifier:@"logedOut" sender:self];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 
+{
+    
+    if (alertView.tag == 6) {
+        
+    
+        if (buttonIndex == 0)
+            
+        {
+            //Cancel
+
+            
+        }else
+        {
+            NSArray *subcribtionArray = @[ ];
+            [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+            [[PFInstallation currentInstallation] setObject:subcribtionArray forKey:@"channels"];
+            [[PFInstallation currentInstallation] saveEventually];
+            [PFUser logOut];
+            
+            [self performSegueWithIdentifier:@"logedOut" sender:self];
+        }
+    }
+    
+}
 
 - (IBAction)backButtonPress:(id)sender {
 
@@ -355,6 +394,8 @@
         cell.textLabel.text = userFullName;
         
     }
+    [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
+
     if (indexPath.row == 1) {
         cell.textLabel.text = [PFUser currentUser].email;
     }
@@ -371,8 +412,25 @@
     return cell;
     
 }
+- (void)closeDocumentView:(UIViewController *)sender{
+    [sender dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
-
+- (void)prepareForSegue:(nonnull UIStoryboardSegue *)segue sender:(nullable id)sender{
+    
+    
+    if ([segue.identifier isEqualToString:@"showDoc"]) {
+        DocumentViewController *docView = (DocumentViewController *)[segue.destinationViewController topViewController];
+        
+        docView.delagate = self;
+        docView.docType = self.docType;
+        
+        NSLog(@"%@",self.docType);
+    }
+    
+}
 
 
 

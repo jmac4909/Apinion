@@ -51,9 +51,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserSchoolLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *selectedUserBananaLabel;
+ 
 
+@property (strong, nonatomic) IBOutlet UIButton *reportButton;
 
+- (IBAction)reportButtonPress:(id)sender;
 
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)addUserToGroup:(id)sender;

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "DocumentViewController.h"
-@interface signingUpViewController : UIViewController<UITextFieldDelegate, UIScrollViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,documentViewProtocol>{
+#import "TTTAttributedLabel.h"
+@interface signingUpViewController : UIViewController<UITextFieldDelegate, UIScrollViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,documentViewProtocol,TTTAttributedLabelDelegate>{
     
     UIImagePickerController *mediaPicker;
     UIImage* userImage;
@@ -19,8 +20,7 @@
 //Scroll view
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-- (IBAction)privacyButtonPush:(id)sender;
-
+ 
 //TextFeild imput
 @property (strong, nonatomic) IBOutlet UITextField *firstNameField;
 @property (strong, nonatomic) IBOutlet UITextField *lastNameField;
@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *gradeField;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic)  NSString *docType;
+@property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
 
 - (IBAction)profileImagePress:(id)sender;
 
@@ -39,6 +40,5 @@
 
 //Buttons
 - (IBAction)signUpPress:(id)sender;
-- (IBAction)termsAndConditionsPress:(id)sender;
 
 @end

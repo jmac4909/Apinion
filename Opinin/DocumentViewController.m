@@ -29,8 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.webView.hidden = true;
-
+ 
 
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -48,8 +47,7 @@
                 
                 [self.webView loadData:data MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
                 
-                self.webView.hidden = false;
-                
+                 
             }else{
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Something went wrong" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                 [alert show];
