@@ -33,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic)  NSString *docType;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 
 - (IBAction)profileImagePress:(id)sender;
 

@@ -30,6 +30,8 @@
     float userCellWidth;
 
 }
+@property PFObject *selectedUserMetaData;
+
 @property PFObject *selectedUserData;
 @property PFObject *alertFound;
 @property (strong,nonatomic) UIColor *userThemeColor;

@@ -139,6 +139,8 @@
     
 }
 - (IBAction)signUpPress:(id)sender {
+    self.signUpButton.enabled = false;
+    self.cancelButton.enabled = false;
     if (!self.firstNameField.text.length > 0) {
         self.firstNameField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
     }else { self.firstNameField.backgroundColor = [UIColor whiteColor];}
@@ -193,12 +195,17 @@
     user.password = self.passwordField.text;
     [user setObject:self.gradeField.text forKey:@"User_Grade"];
     [user setObject:Object_FullName forKey:@"Object_FullName"];
-    [user setObject:imageFile forKey:@"objectImage"];
+            if (imageFile) {
+                [user setObject:imageFile forKey:@"objectImage"];
+
+            }
 
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [self createMetaData];
+            self.signUpButton.enabled = true;
+            self.cancelButton.enabled = true;
             [self performSegueWithIdentifier:@"completedSignUp" sender:self];
 
 
@@ -206,8 +213,10 @@
             
 
         }else{
+            self.signUpButton.enabled = true;
+            self.cancelButton.enabled = true;
             NSLog(@"%@",[error userInfo]);
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oh no" message:[NSString stringWithFormat:@"Something fishy just happened"] delegate:self cancelButtonTitle:@"Whoops" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oh no" message:[NSString stringWithFormat:@"Something fishy just happened...%@",[error userInfo]] delegate:self cancelButtonTitle:@"Whoops" otherButtonTitles:nil, nil];
             
             [alert show];
             }

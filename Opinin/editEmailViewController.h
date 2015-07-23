@@ -11,7 +11,6 @@
 
 @interface editEmailViewController : UIViewController
 @property (strong,nonatomic) IBOutlet UITextField *emailTextFeild;
-@property (strong,nonatomic) IBOutlet UITextField *emailStatusTextFeild;
 - (IBAction)saveButtonPress:(id)sender;
 
 

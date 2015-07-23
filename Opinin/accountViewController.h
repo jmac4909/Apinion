@@ -16,7 +16,7 @@
 
 @end
 
-@interface accountViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource,documentViewProtocol>{
+@interface accountViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource,documentViewProtocol,TTTAttributedLabelDelegate>{
     
     UIImagePickerController *mediaPicker;
     UIImage* userImage;

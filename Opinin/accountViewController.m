@@ -86,7 +86,7 @@
     [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"terms"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Terms Of Use"]];
     
     [self.termsPrivacyLabel addLinkToURL:[NSURL URLWithString:@"privacy"] withRange:[self.termsPrivacyLabel.text rangeOfString:@"Privacy Policy"]];
-    
+    self.termsPrivacyLabel.delegate = self;
 
 }
 
@@ -184,6 +184,7 @@
     if ([[url absoluteString]isEqualToString:@"privacy"]) {
         self.docType = @"PrivacyPolicy";
     }
+    NSLog(@"did select");
     [self performSegueWithIdentifier:@"showDoc" sender:self];
     
 }

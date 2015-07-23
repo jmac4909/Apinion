@@ -107,6 +107,20 @@
     defaultDetailViewCenterY = 0 + self.tableViewDetailView.frame.size.height/2;
 
     
+    UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    
+    reportButton.tintColor = self.userThemeColor;
+    reportButton.layer.cornerRadius = 14;
+    
+    reportButton.layer.borderWidth = 1.0f;
+    reportButton.layer.borderColor = self.userThemeColor.CGColor;
+    [reportButton setFrame:CGRectMake(self.tableViewDetailView.frame.size.width/2 + (addToGroupButton.frame.origin.x - addApinionButton.frame.origin.x)  , self.tableViewDetailView.frame.size.height/2 - 14 , 28, 28)];
+    [reportButton setTitle:@"!" forState:UIControlStateNormal];
+    [self.tableView insertSubview:reportButton belowSubview:self.tableViewDetailView];
+    
+    [reportButton addTarget:self action:@selector(reportObject) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     customCellTextView = [[UITextView alloc]init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -257,16 +271,18 @@
     PFQuery *getSelectedUser = [PFQuery queryWithClassName:@"userMetaData"];
     [getSelectedUser whereKey:@"userId" containsString:self.selectedUserData.objectId];
     [getSelectedUser getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSNumber *userView = [object objectForKey:@"userViews"];
+        self.selectedUserMetaData = object;
+        NSNumber *userView = [self.selectedUserMetaData objectForKey:@"userViews"];
         int viewCount = [userView intValue] + 1;
         userView = [[NSNumber alloc]initWithInt:viewCount];
-        [object setObject:userView forKey:@"userViews"];
-        [object saveInBackground];
+        [self.selectedUserMetaData setObject:userView forKey:@"userViews"];
+        [self.selectedUserMetaData saveInBackground];
         
     }];
         
- 
-    if ([[PFUser currentUser]objectForKey:@"hasSeenUserTutorial"] == 0) {
+    NSNumber *number = [[PFUser currentUser]objectForKey:@"hasSeenUserTutorial"];
+
+    if (number.intValue!=1) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"If you would like to add your own Apinion to just swipe across the \"Profile Bar\" on the top of the screen" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
         [alert show];
         [[PFUser currentUser]setObject:[NSNumber numberWithInt:1] forKey:@"hasSeenUserTutorial"];
@@ -403,7 +419,27 @@
 - (void)addApinion {
     [self performSegueWithIdentifier:@"showAddApinion" sender:self];
 }
+-(void)reportObject{
+    PFObject *object;
+    if ([[self.selectedUserData parseClassName]isEqualToString:@"_User"]) {
+         object = self.selectedUserMetaData;
+    }else{
+        object = self.selectedUserData;
+    }
+   
+    if (![[[PFUser currentUser]objectForKey:@"HaveReported"]containsObject:object.objectId]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Report" message:@"Are you sure you want to report this User/Topic?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Report", nil];
+        alert.tag = 89;
+        [alert show];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Reported" message:@"You have already reported this. Thank you for making Apinion a better place!" delegate:self cancelButtonTitle:@":)" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
 
+    
+}
 
 #pragma mark - Touches events
 
@@ -753,12 +789,45 @@
             [[PFUser currentUser]addObject:post.objectId forKey:@"HaveReported"];
             [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [post saveInBackground];
+                UIAlertView *alert2 = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Reported post...Thank you for making Apinion a better place" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert2 show];
                 
             }];
         
         }
     }
+
     
+    if (alertView.tag == 89) {
+        
+        
+        if (buttonIndex == 0)
+            
+        {
+            //Cancel
+             
+        }else
+        {
+            PFObject *object;
+            if ([[self.selectedUserData parseClassName]isEqualToString:@"_User"]) {
+                object = self.selectedUserMetaData;
+            }else{
+                object = self.selectedUserData;
+            }
+             NSNumber *reports = [object objectForKey:@"Reports"];
+            NSNumber *newReport = [NSNumber numberWithInt:reports.intValue + 1];
+            [object setObject:newReport forKey:@"Reports"];
+            [[PFUser currentUser]addObject:object.objectId forKey:@"HaveReported"];
+            [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [object saveInBackground];
+                UIAlertView *alert2 = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Reported User/Topic...Thank you for making Apinion a better place" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert2 show];
+                
+            }];
+            
+        }
+    }
+
 }
 - (void)refreshPosts {
     

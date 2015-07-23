@@ -495,6 +495,8 @@ static CGFloat MKMapOriginHight = 175.f;
 
      [self.searchTableView reloadData];
     [searchCoverView setAlpha:0.4];
+    [coverView setAlpha:0.4];
+
 
  
 }
@@ -663,7 +665,9 @@ static CGFloat MKMapOriginHight = 175.f;
         }];
         
     
-        if ([[PFUser currentUser]objectForKey:@"hasSeenHomeTutorial"] == 0) {
+         NSNumber *number = [[PFUser currentUser]objectForKey:@"hasSeenHomeTutorial"];
+        
+        if (number.intValue != 1) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"Thanks for instaling Apinion, if you would like to add your own topic to your area just swipe across the \"Users Nearby\" bar" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
             [alert show];
             [[PFUser currentUser]setObject:[NSNumber numberWithInt:1] forKey:@"hasSeenHomeTutorial"];

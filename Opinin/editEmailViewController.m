@@ -27,15 +27,7 @@
     [super viewWillAppear:animated];
     self.emailTextFeild.text = [PFUser currentUser].email;
 
-    if ((BOOL)[[PFUser currentUser] objectForKey:@"emailVerified"] == true) {
-        self.emailStatusTextFeild.text = @"Verified";
-        self.emailStatusTextFeild.textColor = [UIColor greenColor];
-    }else{
-        self.emailStatusTextFeild.text = @"Not Verified";
-        self.emailStatusTextFeild.textColor = [UIColor redColor];
-
-    }
-    
+         
     
 }
 - (BOOL)validateEmail:(NSString *)emailStr {

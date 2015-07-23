@@ -45,9 +45,12 @@
 */
 
 - (IBAction)signInPress:(id)sender {
-    
+    self.signInButton.enabled = false;
+    self.signUpButton.enabled = false;
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
         if (!error) {
+            self.signInButton.enabled = true;
+            self.signUpButton.enabled = true;
          NSString *userIdString = [@"A" stringByAppendingString:[PFUser currentUser].objectId];
             NSArray *subcribtionArray = @[userIdString];
             [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
@@ -56,6 +59,8 @@
             [self performSegueWithIdentifier:@"completedLogIn" sender:self];
            
         }else{
+            self.signInButton.enabled = true;
+            self.signUpButton.enabled = true;
             NSLog(@"%@",[error userInfo]);
             
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Invalid login credentials " delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];

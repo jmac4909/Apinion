@@ -17,6 +17,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
 @property (strong, nonatomic)  NSString *docType;
+@property (strong, nonatomic) IBOutlet UIButton *signInButton;
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 
 - (IBAction)signInPress:(id)sender;
 

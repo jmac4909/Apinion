@@ -30,6 +30,7 @@
     UIButton *homeDropButton;
     UIButton *profileDropButton;
     UIButton *favoritesDropButton;
+ 
     UITapGestureRecognizer *screenTap;
     UITapGestureRecognizer *screenSearchTap;
 
