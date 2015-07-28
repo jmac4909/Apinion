@@ -29,32 +29,24 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
- 
+    if ([self.docType isEqualToString:@"Term_Conditions"]) {
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://apiniondocs.weebly.com"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 9];
+        [self.webView loadRequest: request];
+    }else if ([self.docType isEqualToString:@"PrivacyPolicy"]){
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://apiniondocs.weebly.com/privacy-policy.html"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 9];
+        [self.webView loadRequest: request];
+        
+    }
+
 
 }
 - (void)viewDidAppear:(BOOL)animated{
+    
     [super viewDidAppear:animated];
+
     
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Documentation"];
-    [query whereKey:@"type" equalTo:self.docType];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%lu",(unsigned long)objects.count);
-        PFFile *docFile = [[objects objectAtIndex:0]objectForKey:@"objectFile"];
-        
-        [docFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                
-                [self.webView loadData:data MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
-                
-                 
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Something went wrong" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }];
-        
-    }];
+
+ 
 
 
 }

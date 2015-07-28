@@ -752,18 +752,23 @@
 #pragma mark - Post options
 
 - (IBAction)reportButtonPress:(id)sender {
-    
-    PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
-    if (![[[PFUser currentUser]objectForKey:@"HaveReported"]containsObject:post.objectId]) {
-        
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Report Post" message:@"Are you sure you want to report this post?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Report", nil];
-        alert.tag = 9;
-    [alert show];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Reported" message:@"You have already reported this post. Thank you for making Apinion a better place!" delegate:self cancelButtonTitle:@":)" otherButtonTitles:nil, nil];
-         [alert show];
 
-    }
+        PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
+        if (![[[PFUser currentUser]objectForKey:@"HaveReported"]containsObject:post.objectId]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Report Post" message:@"Are you sure you want to report this post?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Report", nil];
+            alert.tag = 9;
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Reported" message:@"You have already reported this post. Thank you for making Apinion a better place!" delegate:self cancelButtonTitle:@":)" otherButtonTitles:nil, nil];
+            [alert show];
+            
+        }
+    
+        
+
+
+    
 
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -827,6 +832,7 @@
             
         }
     }
+
 
 }
 - (void)refreshPosts {

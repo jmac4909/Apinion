@@ -57,6 +57,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.createTopicButton.enabled = false;
+    if (self.topicTitleTextFeild.text.length > 0) {
+        self.createTopicButton.enabled = true;
+
+    }
 
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -65,6 +69,7 @@
     mediaPicker = [[UIImagePickerController alloc] init];
     [mediaPicker setDelegate:self];
     mediaPicker.allowsEditing = YES;
+    mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     
 
 }
