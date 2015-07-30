@@ -197,6 +197,9 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.tableView touchesShouldCancelInContentView:self.searchTableView];
     searchScrollViewFrame = self.searchTableView.frame;
     
+    
+    
+    
 }
 
 - (void)tapSearchScreen:(id)sender {
@@ -460,18 +463,19 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     [homeDropButton setFrame:CGRectMake(0, 0, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
-    [homeDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [homeDropButton setBackgroundColor:[UIColor whiteColor]];
     [homeDropButton setTitle:@"  Home" forState:UIControlStateNormal];
     [self.dropDownMenuView addSubview:homeDropButton];
     
     [homeDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [homeDropButton setImage:[UIImage imageNamed:@"homeIcon"] forState:UIControlStateNormal];
 
+  
     
     
     [profileDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
-    [profileDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [profileDropButton setBackgroundColor:[UIColor whiteColor]];
     [profileDropButton setTitle:@"    Profile" forState:UIControlStateNormal];
     [profileDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
@@ -480,10 +484,11 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.dropDownMenuView addSubview:profileDropButton];
     
     
+    
     [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
     
-    [favoritesDropButton setBackgroundColor:[UIColor whiteColor]];
+    [favoritesDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
     [favoritesDropButton setTitle:@"  Favorites" forState:UIControlStateNormal];
     [favoritesDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
@@ -491,14 +496,17 @@ static CGFloat MKMapOriginHight = 175.f;
     
     [self.dropDownMenuView addSubview:favoritesDropButton];
     
+    
+    
     self.dropDownMenuView.userInteractionEnabled = true;
 
-     [self.searchTableView reloadData];
+    [self.searchTableView reloadData];
     [searchCoverView setAlpha:0.4];
     [coverView setAlpha:0.4];
 
 
  
+
 }
 
 
@@ -1208,6 +1216,8 @@ static CGFloat MKMapOriginHight = 175.f;
     }
 }
 - (IBAction)pressDropDownButton:(id)sender {
+    [searchCoverView removeFromSuperview];
+
     [self dropMenu];
 
 }
@@ -1340,6 +1350,8 @@ static CGFloat MKMapOriginHight = 175.f;
 
    
 - (IBAction)pressSearchButton:(id)sender {
+    [coverView removeFromSuperview];
+
     if (self.dropDownMenuView.hidden == false) {
         [self dropMenu];
     }

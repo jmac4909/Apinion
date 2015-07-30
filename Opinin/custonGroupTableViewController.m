@@ -65,21 +65,28 @@ static CGFloat MKMapOriginHight = 175.f;
     self.favIcon1.layer.masksToBounds = true;
     self.favIcon1.layer.borderWidth = 0.5f;
     self.favIcon1.layer.borderColor = [UIColor blackColor].CGColor;
+    self.favIcon1.hidden = true;
 
     self.favIcon2.layer.cornerRadius = self.favIcon2.frame.size.height/2;
     self.favIcon2.layer.masksToBounds = true;
     self.favIcon2.layer.borderWidth = 0.5f;
     self.favIcon2.layer.borderColor = [UIColor blackColor].CGColor;
+    self.favIcon2.hidden = true;
+
     
     self.favIcon3.layer.cornerRadius = self.favIcon3.frame.size.height/2;
     self.favIcon3.layer.masksToBounds = true;
     self.favIcon3.layer.borderWidth = 0.5f;
     self.favIcon3.layer.borderColor = [UIColor blackColor].CGColor;
+    self.favIcon3.hidden = true;
+
     
     self.favIcon4.layer.cornerRadius = self.favIcon4.frame.size.height/2;
     self.favIcon4.layer.masksToBounds = true;
     self.favIcon4.layer.borderWidth = 0.5f;
     self.favIcon4.layer.borderColor = [UIColor blackColor].CGColor;
+    self.favIcon4.hidden = true;
+
 
 
 }
@@ -117,9 +124,9 @@ static CGFloat MKMapOriginHight = 175.f;
     PFQuery *favoriteUserQuery = [PFUser query];
     [favoriteUserQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
     [favoriteUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects.count > 0) {
-            
+        
          self.userInGroup = [[NSMutableArray alloc]initWithArray:objects];
+        
         PFQuery *topicQuery = [PFQuery queryWithClassName:@"Topics"];
         [topicQuery whereKey:@"objectId" containedIn:[[PFUser currentUser] objectForKey:@"userFavotitesID"]];
         [topicQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -127,7 +134,7 @@ static CGFloat MKMapOriginHight = 175.f;
             [self.tableView reloadData];
             [self setImageViews];
         }];
-    }
+    
     }];
 }
 
@@ -269,7 +276,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
     [homeDropButton setFrame:CGRectMake(0, 0, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
-    [homeDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [homeDropButton setBackgroundColor:[UIColor whiteColor]];
     [homeDropButton setTitle:@"  Home" forState:UIControlStateNormal];
     [self.dropDownMenuView addSubview:homeDropButton];
     [homeDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -279,7 +286,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     [profileDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height*2, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
-    [profileDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
+    [profileDropButton setBackgroundColor:[UIColor whiteColor]];
     [profileDropButton setTitle:@"    Profile" forState:UIControlStateNormal];
     [profileDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
@@ -291,7 +298,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [favoritesDropButton setFrame:CGRectMake(0, homeDropButton.frame.size.height, self.tableView.frame.size.width, (self.dropDownMenuView.frame.size.height/3))];
     
     
-    [favoritesDropButton setBackgroundColor:[UIColor whiteColor]];
+    [favoritesDropButton setBackgroundColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f]];
     [favoritesDropButton setTitle:@"  Favorites" forState:UIControlStateNormal];
     [favoritesDropButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
@@ -371,6 +378,7 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 - (void)setImageViews{
+    NSLog(@"%lu",(unsigned long)self.userInGroup.count);
     if (self.userInGroup.count >= 1) {
         self.favIcon1.hidden = false;
 
@@ -381,8 +389,10 @@ static CGFloat MKMapOriginHight = 175.f;
                 UIImage *userImage = [UIImage imageWithData:data];
                 self.favIcon1.image = userImage;
            
-     
+            NSLog(@"%@",userImage);
             
+        }else{
+            NSLog(@"%@",error.userInfo);
         }
     }];
     }else{
