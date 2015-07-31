@@ -186,14 +186,46 @@
     
     //Get user Image
     PFFile *imageFile = [self.selectedUserData objectForKey:@"objectImage"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            UIImage *userImage = [UIImage imageWithData:data];
-            self.userPhotoImageView.image = userImage;
-            
+    if (imageFile) {
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                if (imageFile) {
+                    NSLog(@" image");
+                    
+                    UIImage *userImage = [UIImage imageWithData:data];
+                    
+                    self.userPhotoImageView.image = userImage;
+                }
+                
+            }
+        }];
+
+    }else{
+
+        UILabel *noImageLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.userPhotoImageView.frame.origin.x, self.userPhotoImageView.frame.origin.y, self.userPhotoImageView.frame.size.width, self.userPhotoImageView.frame.size.height)];
+        noImageLabel.textColor = self.userThemeColor;
+//        [noImageLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
+
+
+        [noImageLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
+        noImageLabel.textAlignment = NSTextAlignmentCenter;
+        int rand = arc4random() % 101;
+
+        if (rand < 33) {
+            noImageLabel.text = @"¯\\_(ツ)_/¯";
+        }else if (rand > 33 && rand < 66){
+            noImageLabel.text = @"◉_◉";
+
+        }else{
+            noImageLabel.text = @"~(˘▾˘~)";
+
         }
-    }];
-    NSString *selectedUserName = [[self.selectedUserData objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
+
+        [self.tableViewDetailView addSubview:noImageLabel];
+        [self.tableViewDetailView bringSubviewToFront:noImageLabel];
+    
+    }
+       NSString *selectedUserName = [[self.selectedUserData objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
     if ([self.selectedUserData objectForKey:@"Object_LastName"]!=nil) {
             self.selectedUserNameLabel.text = [selectedUserName stringByAppendingString:[self.selectedUserData objectForKey:@"Object_LastName"]];
     }else{

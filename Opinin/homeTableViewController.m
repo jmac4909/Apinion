@@ -689,6 +689,10 @@ static CGFloat MKMapOriginHight = 175.f;
     }
 
 }
+
+- (void)viewWillLayoutSubviews{
+    [self.segmentedTopicsUsers setFrame:CGRectMake(self.segmentedTopicsUsers.frame.origin.x, 0, self.segmentedTopicsUsers.frame.size.width, self.dataView.frame.size.height)];
+}
 #pragma mark - Scroll View Delagates
 
 
@@ -847,10 +851,13 @@ static CGFloat MKMapOriginHight = 175.f;
         return 1;
     }
     if (tableView.tag == 2) {
-        if (self.searchTableViewData.count > 0 && self.searchTableViewTopicData.count > 0) {
+        if (self.searchBar.text.length == 0) {
+            return 0;
+        }else{
             return 2;
         }
-        return 2;
+        
+        
     }
     return 1;
 }
@@ -999,23 +1006,55 @@ static CGFloat MKMapOriginHight = 175.f;
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+//    /* Create custom view to display section header... */
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, 18)];
+//    [label setFont:[UIFont boldSystemFontOfSize:14]];
+//    [label setTextColor:[UIColor whiteColor]];
+//    NSString *string;
+//
+//    if (section == 0) {
+//        string = @"Users";
+//    }else if (section == 1){
+//        string = @"Topics";
+//    }
+//    /* Section header is in 0th index... */
+//    [label setText:string];
+//    [view addSubview:label];
+//    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+//    return view;
+    
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, 18)];
     [label setFont:[UIFont boldSystemFontOfSize:14]];
-    [label setTextColor:[UIColor whiteColor]];
+    //Top image view
+    UIImageView *topImageView= [[ UIImageView alloc]initWithFrame:CGRectMake(0,0, label.frame.size.width, 1)];
+    [topImageView setBackgroundColor:[self getUserColor]];
+    //underline Image view
+    UIImageView *underlineImageView= [[ UIImageView alloc]initWithFrame:CGRectMake(0, view.frame.size.height, label.frame.size.width, 1)];
+    [underlineImageView setBackgroundColor:[self getUserColor]];
+    
     NSString *string;
-
-    if (section == 0) {
-        string = @"Users";
-    }else if (section == 1){
-        string = @"Topics";
-    }
+        if (section == 0) {
+            string = @"Users";
+        }else if (section == 1){
+            string = @"Topics";
+        }
     /* Section header is in 0th index... */
     [label setText:string];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    [view addSubview:topImageView];
+
+    [view addSubview:underlineImageView];
+
+    [view setBackgroundColor:[UIColor whiteColor]]; //your background color...
     return view;
+
+    
+    
+    
 }
 
 
