@@ -52,8 +52,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *selectedUserSchoolLabel;
+@property (strong, nonatomic) UILabel *noImageLabel;
 
- 
 
 @property (strong, nonatomic) IBOutlet UIButton *reportButton;
 

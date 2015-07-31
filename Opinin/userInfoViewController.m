@@ -202,27 +202,30 @@
 
     }else{
 
-        UILabel *noImageLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.userPhotoImageView.frame.origin.x, self.userPhotoImageView.frame.origin.y, self.userPhotoImageView.frame.size.width, self.userPhotoImageView.frame.size.height)];
-        noImageLabel.textColor = self.userThemeColor;
+        if (!self.noImageLabel) {
+            
+        
+        self.noImageLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.userPhotoImageView.frame.origin.x, self.userPhotoImageView.frame.origin.y, self.userPhotoImageView.frame.size.width, self.userPhotoImageView.frame.size.height)];
+        self.noImageLabel.textColor = self.userThemeColor;
 //        [noImageLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
 
-
-        [noImageLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
-        noImageLabel.textAlignment = NSTextAlignmentCenter;
+    }
+        [self.noImageLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
+        self.noImageLabel.textAlignment = NSTextAlignmentCenter;
         int rand = arc4random() % 101;
 
         if (rand < 33) {
-            noImageLabel.text = @"¯\\_(ツ)_/¯";
+            self.noImageLabel.text = @"¯\\_(ツ)_/¯";
         }else if (rand > 33 && rand < 66){
-            noImageLabel.text = @"◉_◉";
+            self.noImageLabel.text = @"◉_◉";
 
         }else{
-            noImageLabel.text = @"~(˘▾˘~)";
+            self.noImageLabel.text = @"~(˘▾˘~)";
 
         }
 
-        [self.tableViewDetailView addSubview:noImageLabel];
-        [self.tableViewDetailView bringSubviewToFront:noImageLabel];
+        [self.tableViewDetailView addSubview:self.noImageLabel];
+        [self.tableViewDetailView bringSubviewToFront:self.noImageLabel];
     
     }
        NSString *selectedUserName = [[self.selectedUserData objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];

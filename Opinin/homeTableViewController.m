@@ -433,8 +433,8 @@ static CGFloat MKMapOriginHight = 175.f;
     self.latitudeLabel.textColor = color;
     self.longitudeLabel.textColor = color;
     self.sidebarButton.tintColor = color;
-    self.segmentedTopicsUsers.tintColor = color;
-    //In Add Topic view
+    self.segmentedTopicsUsers.tintColor = [self getSegmentedColor];
+     //In Add Topic view
     [self.TopicButton setTitleColor:color forState:UIControlStateNormal];
     self.seporateImageView.backgroundColor = color;
     
@@ -565,6 +565,62 @@ static CGFloat MKMapOriginHight = 175.f;
     return returnColor;
 
 }
+- (UIColor *)getSegmentedColor{
+    UIColor *returnColor = [UIColor colorWithRed:103/255.0f green:5/255.0f blue:3/255.0f alpha:1.0f];
+    
+    if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
+        
+        returnColor = [UIColor colorWithRed:121/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Yellow"]) {
+        
+        
+        //Red
+        returnColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Blue"]) {
+        //Blue
+        returnColor = [UIColor colorWithRed:39/255.0f green:55/255.0f blue:120/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Tan"]) {
+        
+        //Red
+        returnColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Green"]) {
+        
+        //Green
+        returnColor = [UIColor colorWithRed:0/255.0f green:53/255.0f blue:0/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Purple"]) {
+        
+        //Green
+        returnColor = [UIColor colorWithRed:50/255.0f green:0/255.0f blue:75/255.0f alpha:1.0f];
+        
+    }
+    else if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Grey"]) {
+        
+        //Grey
+        returnColor = [UIColor blackColor];
+        
+    }
+    else{
+        
+        
+        //Red
+        returnColor  = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
+        
+        
+    }
+    return returnColor;
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -692,6 +748,12 @@ static CGFloat MKMapOriginHight = 175.f;
 
 - (void)viewWillLayoutSubviews{
     [self.segmentedTopicsUsers setFrame:CGRectMake(self.segmentedTopicsUsers.frame.origin.x, 0, self.segmentedTopicsUsers.frame.size.width, self.dataView.frame.size.height)];
+    
+    [self.segmentedTopicsUsers setTitleTextAttributes:@{
+                                           NSForegroundColorAttributeName:[UIColor whiteColor]}
+                                forState:UIControlStateSelected];
+    
+
 }
 #pragma mark - Scroll View Delagates
 
