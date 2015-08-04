@@ -51,7 +51,8 @@
     mediaPicker = [[UIImagePickerController alloc] init];
     [mediaPicker setDelegate:self];
     mediaPicker.allowsEditing = YES;
-
+    
+       mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
     self.termsPrivacyLabel.delegate = self;
     
     
@@ -204,8 +205,8 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [self createMetaData];
-            self.signUpButton.enabled = true;
-            self.cancelButton.enabled = true;
+            self.signUpButton.enabled = false;
+            self.cancelButton.enabled = false;
             [self performSegueWithIdentifier:@"completedSignUp" sender:self];
 
 
@@ -213,6 +214,7 @@
             
 
         }else{
+            NSLog(@"%@",error);
             self.signUpButton.enabled = true;
             self.cancelButton.enabled = true;
             NSLog(@"%@",[error userInfo]);
@@ -226,6 +228,8 @@
         }
     }else{
         self.emailField.backgroundColor = [UIColor colorWithRed:0.980392 green:0.713726 blue:0.65098 alpha:1];
+        self.signUpButton.enabled = true;
+        self.cancelButton.enabled = true;
     }
 
 }

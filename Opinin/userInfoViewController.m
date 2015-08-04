@@ -300,6 +300,10 @@
 
         
         [self.tableView reloadData];
+        if (self.selectedUserPosts.count <= 0) {
+            NSLog(@"NO APINIONS");
+
+        }
     }];
 
     // add one view to user
@@ -318,7 +322,7 @@
     NSNumber *number = [[PFUser currentUser]objectForKey:@"hasSeenUserTutorial"];
 
     if (number.intValue!=1) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"If you would like to add your own Apinion to just swipe across the \"Profile Bar\" on the top of the screen" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"If you would like to add your own Apinion just swipe across the \"Profile Bar\" on the top of the screen and press the compose button" delegate:self cancelButtonTitle:@"Will Do" otherButtonTitles:nil, nil];
         [alert show];
         [[PFUser currentUser]setObject:[NSNumber numberWithInt:1] forKey:@"hasSeenUserTutorial"];
         [[PFUser currentUser]saveInBackground];

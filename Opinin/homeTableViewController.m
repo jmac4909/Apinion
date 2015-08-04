@@ -505,6 +505,13 @@ static CGFloat MKMapOriginHight = 175.f;
     [coverView setAlpha:0.4];
 
 
+    if (self.searchBar.hidden == false) {
+        self.tableView.scrollEnabled = false;
+        self.tableView.allowsSelection = NO;
+        self.userLocationMap.userInteractionEnabled = NO;
+        self.scrollView.scrollEnabled = false;
+
+    }
  
 
 }
@@ -752,6 +759,7 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.segmentedTopicsUsers setTitleTextAttributes:@{
                                            NSForegroundColorAttributeName:[UIColor whiteColor]}
                                 forState:UIControlStateSelected];
+    
     
 
 }
@@ -1252,10 +1260,92 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 #pragma mark
 
+-(void)dropSearch{
+    if (self.dropDownMenuView.hidden == false) {
+        [self hideDrop];
+    }
+    
+    if (self.searchBar.hidden == true) {
+        
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
+        
+        [self.view addGestureRecognizer:screenSearchTap];
+        
+        self.searchBar.hidden = false;
+        
+        [UIView animateWithDuration:.3 animations:^{
+            
+            [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+            
+            
+            [self.navigationController.navigationBar insertSubview:searchCoverView belowSubview:self.searchBar];
+            self.segmentedTopicsUsers.enabled = NO;
+            
+            [searchCoverView setAlpha:0.4];
+        } completion:^(BOOL finished) {
+            self.tableView.scrollEnabled = false;
+            self.tableView.allowsSelection = NO;
+            self.userLocationMap.userInteractionEnabled = NO;
+            self.scrollView.scrollEnabled = false;
+            [searchCoverView setAlpha:0.4];
+            
+            
+        }];
+        
+        
+    }else{
+        
+        
+        
+        [UIView animateWithDuration:.3 animations:^{
+            
+            [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.searchBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+            
+            
+            [searchCoverView setAlpha:0.0];
+            [self.searchBar setAlpha:0.0];
+            [self.searchTableView setAlpha:0.0];
+            [searchSeporator setAlpha:0.0];
+            
+        } completion:^(BOOL finished) {
+            [self.searchTableView removeFromSuperview];
+            [searchSeporator removeFromSuperview];
+            [self.searchBar setAlpha:1.0];
+            [self.searchTableView setAlpha:1.0];
+            [searchSeporator setAlpha:1.0];
+            [self.searchTableViewData removeAllObjects];
+            [self.searchTableViewTopicData removeAllObjects];
+            [self.searchTableView reloadData];
+            self.searchBar.text = @"";
+            [self.searchBar resignFirstResponder];
+            
+            self.searchBar.hidden = true;
+            self.tableView.scrollEnabled = true;
+            self.userLocationMap.userInteractionEnabled = YES;
+            
+            self.tableView.allowsSelection = YES;
+            self.segmentedTopicsUsers.enabled = YES;
+            
+            [searchCoverView removeFromSuperview];
+            [searchCoverView setAlpha:0.4];
+            self.scrollView.scrollEnabled = true;
+            
+            self.scrollView.scrollEnabled = true;
+            
+            [self.view removeGestureRecognizer:screenSearchTap];
+            
+        }];
+        
+        
+    }
+
+    
+}
 -(void)dropMenu{
     
     if (self.searchBar.hidden == false) {
-        [self pressSearchButton:self];
+        [self hideSearch];
     }
      if (self.dropDownMenuView.hidden == true) {
          
@@ -1453,85 +1543,7 @@ static CGFloat MKMapOriginHight = 175.f;
 - (IBAction)pressSearchButton:(id)sender {
     [coverView removeFromSuperview];
 
-    if (self.dropDownMenuView.hidden == false) {
-        [self dropMenu];
-    }
-    
-    if (self.searchBar.hidden == true) {
-        
-        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
-        [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
-        
-        [self.view addGestureRecognizer:screenSearchTap];
-
-        self.searchBar.hidden = false;
-        
-        [UIView animateWithDuration:.3 animations:^{
-            
-            [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
-            
- 
-        [self.navigationController.navigationBar insertSubview:searchCoverView belowSubview:self.searchBar];
-            self.segmentedTopicsUsers.enabled = NO;
-
-            [searchCoverView setAlpha:0.4];
-        } completion:^(BOOL finished) {
-            self.tableView.scrollEnabled = false;
-            self.tableView.allowsSelection = NO;
-            self.userLocationMap.userInteractionEnabled = NO;
-            self.scrollView.scrollEnabled = false;
-            [searchCoverView setAlpha:0.4];
-
-            
-        }];
-        
-        
-    }else{
-        
-        
-        
-        [UIView animateWithDuration:.3 animations:^{
-            
-        [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.searchBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
-            
-            
-            [searchCoverView setAlpha:0.0];
-            [self.searchBar setAlpha:0.0];
-            [self.searchTableView setAlpha:0.0];
-            [searchSeporator setAlpha:0.0];
-            
-        } completion:^(BOOL finished) {
-            [self.searchTableView removeFromSuperview];
-            [searchSeporator removeFromSuperview];
-            [self.searchBar setAlpha:1.0];
-            [self.searchTableView setAlpha:1.0];
-            [searchSeporator setAlpha:1.0];
-            [self.searchTableViewData removeAllObjects];
-            [self.searchTableViewTopicData removeAllObjects];
-            [self.searchTableView reloadData];
-            self.searchBar.text = @"";
-            [self.searchBar resignFirstResponder];
-
-            self.searchBar.hidden = true;
-            self.tableView.scrollEnabled = true;
-            self.userLocationMap.userInteractionEnabled = YES;
-            
-            self.tableView.allowsSelection = YES;
-            self.segmentedTopicsUsers.enabled = YES;
-            
-            [searchCoverView removeFromSuperview];
-            [searchCoverView setAlpha:0.4];
-            self.scrollView.scrollEnabled = true;
-
-            self.scrollView.scrollEnabled = true;
-            
-            [self.view removeGestureRecognizer:screenSearchTap];
-            
-        }];
-        
-        
-    }
-
+    [self dropSearch];
     
     
 }
@@ -1545,6 +1557,62 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void)hideSearch{
+    
+    [UIView animateWithDuration:.3 animations:^{
+        
+        [self.searchBar setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.searchBar.frame.size.height, self.tableView.frame.size.width,self.searchBar.frame.size.height)];
+        
+        
+        [searchCoverView setAlpha:0.0];
+        [self.searchBar setAlpha:0.0];
+        [self.searchTableView setAlpha:0.0];
+        [searchSeporator setAlpha:0.0];
+        
+    } completion:^(BOOL finished) {
+        [self.searchTableView removeFromSuperview];
+        [searchSeporator removeFromSuperview];
+        [self.searchBar setAlpha:1.0];
+        [self.searchTableView setAlpha:1.0];
+        [searchSeporator setAlpha:1.0];
+        [self.searchTableViewData removeAllObjects];
+        [self.searchTableViewTopicData removeAllObjects];
+        [self.searchTableView reloadData];
+        self.searchBar.text = @"";
+        [self.searchBar resignFirstResponder];
+        
+        self.searchBar.hidden = true;
+        
+        
+        [searchCoverView removeFromSuperview];
+        [searchCoverView setAlpha:0.4];
+        
+        [self.view removeGestureRecognizer:screenSearchTap];
+
+        
+    }];
+
+    
+}
+-(void)hideDrop{
+    
+    [UIView animateWithDuration:.3 animations:^{
+        
+        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+        [coverView setAlpha:0.0];
+        
+    } completion:^(BOOL finished) {
+        self.dropDownMenuView.hidden = true;
+        [coverView removeFromSuperview];
+        [coverView setAlpha:0.4];
+        [self.view removeGestureRecognizer:screenTap];
+
+    }];
+    
+    
+
     
 }
 @end
