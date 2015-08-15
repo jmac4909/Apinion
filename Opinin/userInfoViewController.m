@@ -12,7 +12,7 @@
 
 @end
 
-@implementation userInfoViewController
+@implementation userInfoViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +61,8 @@
  
     self.reportButton.layer.borderWidth = 1.0f;
     self.reportButton.layer.borderColor = self.userThemeColor.CGColor;
+    self.reportButton.layer.cornerRadius = self.reportButton.frame.size.width/2;
+    
     
 
     UIPanGestureRecognizer* swipeLeftGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeftFrom:)];
@@ -142,7 +144,16 @@
     addActionSheet.delegate = self;
     removeActionSheet.delegate = self;
     
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
+
+ 
+    
+
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -151,6 +162,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+ 
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
@@ -165,37 +177,25 @@
     if ([[[PFUser currentUser]objectForKey:@"userFavotitesID"]containsObject:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]]) {
         
           [addToGroupButton setImage:[UIImage imageNamed:@"removeFromGroup"] forState:UIControlStateNormal];
-        
-        
-        
     }else{
         
         [addToGroupButton setImage:[UIImage imageNamed:@"addToGroup"] forState:UIControlStateNormal];
         
-        }
+    }
  
-    
-    
- 
-            
-            
-    
-            
- 
-    
-    
     //Get user Image
     PFFile *imageFile = [self.selectedUserData objectForKey:@"objectImage"];
     if (imageFile) {
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 if (imageFile) {
-                    NSLog(@" image");
-                    
+                     
                     UIImage *userImage = [UIImage imageWithData:data];
                     
                     self.userPhotoImageView.image = userImage;
-                }
+ 
+                
+                 }
                 
             }
         }];
@@ -207,8 +207,6 @@
         
         self.noImageLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.userPhotoImageView.frame.origin.x, self.userPhotoImageView.frame.origin.y, self.userPhotoImageView.frame.size.width, self.userPhotoImageView.frame.size.height)];
         self.noImageLabel.textColor = self.userThemeColor;
-//        [noImageLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
-
     }
         [self.noImageLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
         self.noImageLabel.textAlignment = NSTextAlignmentCenter;
@@ -226,8 +224,8 @@
 
         [self.tableViewDetailView addSubview:self.noImageLabel];
         [self.tableViewDetailView bringSubviewToFront:self.noImageLabel];
-    
     }
+    
        NSString *selectedUserName = [[self.selectedUserData objectForKey:@"Object_FirstName"]stringByAppendingString:@" "];
     if ([self.selectedUserData objectForKey:@"Object_LastName"]!=nil) {
             self.selectedUserNameLabel.text = [selectedUserName stringByAppendingString:[self.selectedUserData objectForKey:@"Object_LastName"]];
@@ -242,7 +240,7 @@
          self.selectedUserSchoolLabel.text = [self.selectedUserData objectForKey:@"topic_Detail"];
     }
    
-    
+    isData = true;
 
 }
 - (void)appDidBecomeActive:(NSNotification *)notification {
@@ -267,28 +265,7 @@
     
 
 
-    
-    //gets any alerts
-    PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
-    [alertQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (int x = 0; x <= objects.count; x ++) {
-            
-            self.alertFound = [objects objectAtIndex:x];
-            
-            if (![[self.alertFound objectForKey:@"userIdHaveSeen"] containsObject:[PFUser currentUser].objectId]) {
-                
-                [self showAlert:self.alertFound];
-                
-                [self.alertFound addObject:[PFUser currentUser].objectId forKey:@"userIdHaveSeen"];
-                [self.alertFound saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    
-                }];
-            }
-            
-        }
-        
-    }
-     ];
+ 
 
 //    self.aponionTextField.placeholder = [NSString stringWithFormat:@"Wanna share your Apinion on %@?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
     
@@ -296,14 +273,32 @@
     [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.selectedUserPosts = objects;
-
-        
-        [self.tableView reloadData];
-        if (self.selectedUserPosts.count <= 0) {
-            NSLog(@"NO APINIONS");
-
+        if (!error) {
+            
+            
+            self.selectedUserPosts = objects;
+            
+            if (self.selectedUserPosts.count <= 0) {
+                isData = false;
+                self.tableView.tableFooterView = [UIView new];
+                
+                
+            }else{
+                isData = true;
+                self.tableView.tableFooterView = nil;
+                
+            }
+            if (self.selectedUserPosts.count == 1) {
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinion",(unsigned long)self.selectedUserPosts.count];
+            }else{
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinions",(unsigned long)self.selectedUserPosts.count];
+            }
+            [self.tableView reloadData];
+            
+        }else{
+            NSLog(@"%@",error);
         }
+        
     }];
 
     // add one view to user
@@ -317,8 +312,11 @@
         [self.selectedUserMetaData setObject:userView forKey:@"userViews"];
         [self.selectedUserMetaData saveInBackground];
         
-    }];
         
+    }];
+
+        
+
     NSNumber *number = [[PFUser currentUser]objectForKey:@"hasSeenUserTutorial"];
 
     if (number.intValue!=1) {
@@ -448,16 +446,13 @@
 
 }
 
-- (void)showAlert: (PFObject *)alertObject {
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[self.alertFound objectForKey:@"alertTitle"] message:[self.alertFound objectForKey:@"infoText"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alert show];
-    
-}
 
 - (void)addApinion {
     [self performSegueWithIdentifier:@"showAddApinion" sender:self];
 }
+
+
+ 
 -(void)reportObject{
     PFObject *object;
     if ([[self.selectedUserData parseClassName]isEqualToString:@"_User"]) {
@@ -714,7 +709,13 @@
         [cell addSubview:self.reportButton];
 
 
-    [self.reportButton setFrame:CGRectMake(cell.frame.size.width - cell.displayNameLabel.frame.size.width - 45, cell.frame.size.height - 30, 30, 30)];
+        if (cell.displayNameLabel.text.length > 0) {
+            [self.reportButton setFrame:CGRectMake(cell.frame.size.width - cell.displayNameLabel.frame.size.width - 45, cell.frame.size.height - 30, 30, 30)];
+        }else{
+            
+                [self.reportButton setFrame:CGRectMake(cell.frame.size.width- 45, cell.frame.size.height - 45, 30, 30)];
+        }
+
         
         
  
@@ -876,26 +877,7 @@
 }
 - (void)refreshPosts {
     
-    PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
-    [alertQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (int x = 0; x <= objects.count; x ++) {
-            
-            self.alertFound = [objects objectAtIndex:x];
-            
-            if (![[self.alertFound objectForKey:@"userIdHaveSeen"] containsObject:[PFUser currentUser].objectId]) {
-                
-                [self showAlert:self.alertFound];
-                
-                [self.alertFound addObject:[PFUser currentUser].objectId forKey:@"userIdHaveSeen"];
-                [self.alertFound saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    
-                }];
-            }
-            
-        }
-        
-    }
-     ];
+ 
     
 
     
@@ -1001,4 +983,89 @@
     }
 
 }
+
+#pragma mark - Empty View
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIImage imageNamed:@"fancyMonkey"];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"No Apinions on this topic";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = [NSString stringWithFormat:@"Be a trend setter and share your Apinion with the WORLD!!! \n(well not really the \"world\"...just with the few people around you)"];
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor grayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    NSDictionary *attributes;
+
+    if (state == UIControlStateHighlighted) {
+
+        
+        
+    attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0],
+                                     NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    }else if (state == UIControlStateSelected){
+        
+    }else{
+        
+        attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0],
+                       NSForegroundColorAttributeName: self.userThemeColor};
+    }
+
+    return [[NSAttributedString alloc] initWithString:@"Share My Apinion!" attributes:attributes];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+
+    if (isData == true) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    return YES;
+}
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
+{
+    // Do something
+}
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
+{
+ 
+    [self performSegueWithIdentifier:@"showAddApinion" sender:self];
+
+    
+    // Do something
+}
+
 @end

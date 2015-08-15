@@ -38,5 +38,5 @@
 - (IBAction)postApinionButtonPress:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwitch *hideNameSwitch;
 - (IBAction)hideNameValeChanged:(id)sender;
-
+ 
 @end

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "TTTAttributedLabel.h"
 #import "DocumentViewController.h"
+
 @protocol accountViewProtocol
 
 - (void)closeAccountView:(UIViewController*)sender;

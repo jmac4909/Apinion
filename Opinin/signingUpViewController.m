@@ -182,6 +182,8 @@
         if (![self.passwordField.text isEqualToString:self.passwordConfirmField.text]) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Your passwords don't match" delegate:self cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
             [alert show];
+            self.signUpButton.enabled = true;
+            self.cancelButton.enabled = true;
             
         }else{
     NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.firstNameField.text,self.lastNameField.text];

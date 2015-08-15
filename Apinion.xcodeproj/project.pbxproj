@@ -22,6 +22,7 @@
 		3FB8EF2D1A60AC0600B875DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8EF2B1A60AC0600B875DF /* Main.storyboard */; };
 		3FB8EF2F1A60AC0600B875DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8EF2E1A60AC0600B875DF /* Images.xcassets */; };
 		3FB8EF3E1A60AC0600B875DF /* OpininTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8EF3D1A60AC0600B875DF /* OpininTests.m */; };
+		3FBAFEA91B7049F000066064 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBAFEA81B7049F000066064 /* UIScrollView+EmptyDataSet.m */; };
 		3FC630C21A636EFF0024370D /* accountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC630C11A636EFF0024370D /* accountViewController.m */; };
 		3FC632471ADAF72A00C435C7 /* addApinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC632461ADAF72A00C435C7 /* addApinionViewController.m */; };
 		3FC706C71A8FEEAA003B96CE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC706C51A8FEE99003B96CE /* MapKit.framework */; };
@@ -89,6 +90,8 @@
 		3FB8EF371A60AC0600B875DF /* ApinionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApinionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB8EF3C1A60AC0600B875DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB8EF3D1A60AC0600B875DF /* OpininTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpininTests.m; sourceTree = "<group>"; };
+		3FBAFEA71B7049F000066064 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		3FBAFEA81B7049F000066064 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		3FC630C01A636EFF0024370D /* accountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountViewController.h; sourceTree = "<group>"; };
 		3FC630C11A636EFF0024370D /* accountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountViewController.m; sourceTree = "<group>"; };
 		3FC632451ADAF72A00C435C7 /* addApinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addApinionViewController.h; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 		3FB8EF1D1A60AC0600B875DF /* Opinin */ = {
 			isa = PBXGroup;
 			children = (
+				3FBAFEAA1B7049F900066064 /* Empty View */,
 				3F545C5D1B5B5D36003EC026 /* TTTextLabel */,
 				3F9A1E101AAB8E81006E49ED /* Shy Nav Bar */,
 				3FB68C9B1A88799D00DCB2CD /* Custom Table View Cell */,
@@ -333,6 +337,15 @@
 				3FB8EF3C1A60AC0600B875DF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FBAFEAA1B7049F900066064 /* Empty View */ = {
+			isa = PBXGroup;
+			children = (
+				3FBAFEA71B7049F000066064 /* UIScrollView+EmptyDataSet.h */,
+				3FBAFEA81B7049F000066064 /* UIScrollView+EmptyDataSet.m */,
+			);
+			name = "Empty View";
 			sourceTree = "<group>";
 		};
 		3FC632481ADAF72E00C435C7 /* Add Apinion view controller */ = {
@@ -529,6 +542,7 @@
 				3FCAF6431A64C94B001CA21D /* userInfoViewController.m in Sources */,
 				3FEC3E1B1A88401C00F4D83A /* editNameViewController.m in Sources */,
 				3FB68C9E1A8879CE00DCB2CD /* userInfoTableViewCell.m in Sources */,
+				3FBAFEA91B7049F000066064 /* UIScrollView+EmptyDataSet.m in Sources */,
 				3FC630C21A636EFF0024370D /* accountViewController.m in Sources */,
 				3F9A1E131AAB8F10006E49ED /* ShyNavigationBar.m in Sources */,
 				3F7F8C891A94202600AC6555 /* custonGroupTableViewController.m in Sources */,

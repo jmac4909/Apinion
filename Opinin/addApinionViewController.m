@@ -24,7 +24,7 @@
     self.userImageView.clipsToBounds = YES;
     self.userImageView.layer.borderWidth = 1.0f;
     
-    
+     
 
     
 }
@@ -56,6 +56,8 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+
     self.userImageView.layer.borderColor = self.userThemeColor.CGColor;
     self.postApinionButton.tintColor = self.userThemeColor;
     [self.seporatorImageView setBackgroundColor:self.userThemeColor];
@@ -84,6 +86,13 @@
     self.navigationItem.leftBarButtonItem.tintColor = self.userThemeColor;
     self.postApinionButton.enabled = false;
 
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([PFUser currentUser] == Nil) {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+        
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -123,8 +132,8 @@
 
     }
     
-
  
+    
         [apinion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
     
@@ -140,6 +149,8 @@
     
                     [push sendPushInBackground];
 
+                [self.delagate closeAddApinion:self];
+
     
                 }else{
                     NSLog(@"%@",error.userInfo);
@@ -148,7 +159,6 @@
             
     
 
-    [self.delagate closeAddApinion:self];
 
     
 }
@@ -163,4 +173,6 @@
 
     }
 }
+ 
+
 @end

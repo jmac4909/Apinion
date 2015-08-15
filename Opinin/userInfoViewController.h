@@ -11,7 +11,10 @@
 #import "userInfoTableViewCell.h"
 #import "ShyNavigationBar.h"
 #import "addApinionViewController.h"
-@interface userInfoViewController : UIViewController<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,addApinionProtocol>{
+#import "UIScrollView+EmptyDataSet.h"
+ 
+@interface userInfoViewController : UIViewController<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,addApinionProtocol,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
+    
     NSMutableArray *selectedCellIArray;
     NSIndexPath *selectedCellIndexPath;
     NSString *newPostVotesNum;
@@ -28,19 +31,21 @@
     float defaultDetailViewCenterY;
 
     float userCellWidth;
+    BOOL isData;
+    
 
 }
 @property PFObject *selectedUserMetaData;
 
 @property PFObject *selectedUserData;
-@property PFObject *alertFound;
-@property (strong,nonatomic) UIColor *userThemeColor;
+ @property (strong,nonatomic) UIColor *userThemeColor;
 @property (strong,nonatomic) UIColor *userSecondaryThemeColor;
 
 @property(strong,nonatomic) userInfoTableViewCell *customUserInfoCell;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *apinionCountLabel;
 
 @property (strong,nonatomic)UIImageView *underlineImageVIew;
 @property(strong,nonatomic)UIToolbar *toolbar;
@@ -61,5 +66,7 @@
 
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)addUserToGroup:(id)sender;
+
+
 
 @end

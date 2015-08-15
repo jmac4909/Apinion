@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getdeviceLocation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getdeviceLocation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "459925056.623722"
+            timestampString = "460411321.589257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-mapView:didUpdateUserLocation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,28 +74,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "459925056.623722"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "-mapView:didUpdateUserLocation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "459925056.623722"
+            timestampString = "460411321.589257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "250"
             endingLineNumber = "250"
-            landmarkName = "-mapView:didUpdateUserLocation:"
+            landmarkName = "@implementation homeTableViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "460411321.589257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "-tapScreen:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "459925056.623722"
+            timestampString = "460411321.589257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "-mapView:didUpdateUserLocation:"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "-tapScreen:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -257,38 +257,6 @@
             endingLineNumber = "81"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.958949"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "243">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.959131"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "70">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -305,6 +273,38 @@
             endingLineNumber = "82"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[homeTableViewController viewDidLoad]"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.422575"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "2468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.422727"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -353,6 +353,38 @@
             endingLineNumber = "86"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.424562"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.424717"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -433,6 +465,38 @@
             endingLineNumber = "94"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.427302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.427452"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "480">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -481,6 +545,53 @@
             endingLineNumber = "97"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.429273"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "564">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.429451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.429615"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -497,6 +608,53 @@
             endingLineNumber = "96"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[homeTableViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.43042"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "564">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.430635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.430776"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -783,7 +941,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getdeviceLocation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -794,55 +952,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "656"
-            endingLineNumber = "656"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "658"
-            endingLineNumber = "658"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "659"
@@ -858,7 +968,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "660"
@@ -874,7 +984,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "661"
@@ -890,7 +1000,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "662"
@@ -906,13 +1016,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "663"
             endingLineNumber = "663"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.44287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "663"
+                  endingLineNumber = "663"
+                  offsetFromSymbolStart = "784">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke_2"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.443022"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "663"
+                  endingLineNumber = "663"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -922,7 +1064,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "664"
@@ -938,7 +1080,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "665"
@@ -954,7 +1096,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "666"
@@ -970,7 +1112,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "667"
@@ -986,7 +1128,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "668"
@@ -1002,13 +1144,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "669"
             endingLineNumber = "669"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.446171"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "670"
+                  endingLineNumber = "670"
+                  offsetFromSymbolStart = "888">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_400"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.446367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_401"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.446514"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1018,7 +1207,70 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.447254"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "670"
+                  endingLineNumber = "670"
+                  offsetFromSymbolStart = "888">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_400"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.447412"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_401"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.447556"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "671"
@@ -1034,23 +1286,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "670"
-            endingLineNumber = "670"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "672"
@@ -1066,39 +1302,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "673"
-            endingLineNumber = "673"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "674"
-            endingLineNumber = "674"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "675"
@@ -1114,11 +1318,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "676"
-            endingLineNumber = "676"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1130,11 +1334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
+            startingLineNumber = "680"
+            endingLineNumber = "680"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1146,59 +1350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[homeTableViewController viewDidAppear:]"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.989375"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "678"
-                  endingLineNumber = "678"
-                  offsetFromSymbolStart = "1082">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke412"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.989527"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "678"
-                  endingLineNumber = "678"
-                  offsetFromSymbolStart = "67">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "679"
-            endingLineNumber = "679"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1210,13 +1366,188 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "682"
+            endingLineNumber = "682"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "683"
             endingLineNumber = "683"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "684"
+            endingLineNumber = "684"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "685"
+            endingLineNumber = "685"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "686"
+            endingLineNumber = "686"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "687"
+            endingLineNumber = "687"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "691"
+            endingLineNumber = "691"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke426"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.456473"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "696"
+                  endingLineNumber = "696"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_429"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.456627"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_430"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.456774"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461279312.552201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "697"
+            endingLineNumber = "697"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1226,27 +1557,27 @@
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.990482"
+                  timestampString = "461280176.457612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "683"
-                  endingLineNumber = "683"
-                  offsetFromSymbolStart = "1191">
+                  startingLineNumber = "698"
+                  endingLineNumber = "698"
+                  offsetFromSymbolStart = "1528">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke421"
+                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke435"
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.990644"
+                  timestampString = "461280176.457777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "683"
-                  endingLineNumber = "683"
-                  offsetFromSymbolStart = "53">
+                  startingLineNumber = "698"
+                  endingLineNumber = "698"
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1258,364 +1589,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "688"
-            endingLineNumber = "688"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "689"
-            endingLineNumber = "689"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke421"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.99186"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "689"
-                  endingLineNumber = "689"
-                  offsetFromSymbolStart = "279">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[homeTableViewController viewDidAppear:]_block_invoke_2422"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274259.992021"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "689"
-                  endingLineNumber = "689"
-                  offsetFromSymbolStart = "70">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "701"
-            endingLineNumber = "701"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "703"
-            endingLineNumber = "703"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "708"
-            endingLineNumber = "708"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "712"
-            endingLineNumber = "712"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "737"
-            endingLineNumber = "737"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "741"
-            endingLineNumber = "741"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "748"
-            endingLineNumber = "748"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "751"
-            endingLineNumber = "751"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "752"
-            endingLineNumber = "752"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "772"
-            endingLineNumber = "772"
-            landmarkName = "-scrollViewDidScroll:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "776"
-            endingLineNumber = "776"
-            landmarkName = "-scrollViewDidScroll:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "770"
             endingLineNumber = "770"
-            landmarkName = "-scrollViewDidScroll:"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1626,12 +1605,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "778"
-            endingLineNumber = "778"
-            landmarkName = "-scrollViewDidScroll:"
+            startingLineNumber = "774"
+            endingLineNumber = "774"
+            landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1642,11 +1621,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "777"
-            endingLineNumber = "777"
+            startingLineNumber = "768"
+            endingLineNumber = "768"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
+            landmarkName = "-viewWillLayoutSubviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "775"
+            endingLineNumber = "775"
+            landmarkName = "-viewWillLayoutSubviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "805"
+            endingLineNumber = "805"
             landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1658,12 +1685,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
+            landmarkName = "-scrollViewDidScroll:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "807"
             endingLineNumber = "807"
-            landmarkName = "-refreshTableView"
+            landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1674,61 +1717,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
-            landmarkName = "-refreshTableView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "809"
             endingLineNumber = "809"
-            landmarkName = "-refreshTableView"
+            landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[homeTableViewController refreshTableView]"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274260.005131"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "810"
-                  endingLineNumber = "810"
-                  offsetFromSymbolStart = "277">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[homeTableViewController refreshTableView]_block_invoke"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274260.005301"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "810"
-                  endingLineNumber = "810"
-                  offsetFromSymbolStart = "50">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1738,11 +1733,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "811"
-            endingLineNumber = "811"
+            startingLineNumber = "881"
+            endingLineNumber = "881"
             landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
@@ -1754,61 +1749,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "883"
-            endingLineNumber = "883"
-            landmarkName = "-showAlert:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "851"
-            endingLineNumber = "851"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
             landmarkName = "-refreshTableView"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[homeTableViewController refreshTableView]"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274260.006771"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "851"
-                  endingLineNumber = "851"
-                  offsetFromSymbolStart = "738">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[homeTableViewController refreshTableView]_block_invoke473"
-                  moduleName = "Apinion"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
-                  timestampString = "460274260.006924"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "851"
-                  endingLineNumber = "851"
-                  offsetFromSymbolStart = "70">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1818,12 +1765,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "884"
-            endingLineNumber = "884"
-            landmarkName = "-showAlert:"
+            startingLineNumber = "882"
+            endingLineNumber = "882"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1834,13 +1781,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
+            landmarkName = "-refreshTableView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "888"
+            endingLineNumber = "888"
+            landmarkName = "-refreshTableView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "889"
             endingLineNumber = "889"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[homeTableViewController refreshTableView]_block_invoke496"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.466744"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "902"
+                  endingLineNumber = "902"
+                  offsetFromSymbolStart = "948">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_497"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.466896"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_498"
+                  moduleName = "Apinion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/homeTableViewController.m"
+                  timestampString = "461280176.467038"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1850,12 +1876,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "890"
             endingLineNumber = "890"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1866,12 +1892,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "891"
             endingLineNumber = "891"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1882,12 +1908,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "892"
             endingLineNumber = "892"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1898,28 +1924,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "893"
-            endingLineNumber = "893"
-            landmarkName = "-tableView:titleForHeaderInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "894"
             endingLineNumber = "894"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkName = "-refreshTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1930,12 +1940,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "896"
-            endingLineNumber = "896"
-            landmarkName = "-tableView:titleForHeaderInSection:"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
+            landmarkName = "-showAlert:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1946,12 +1956,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "906"
+            endingLineNumber = "906"
+            landmarkName = "-showAlert:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "907"
             endingLineNumber = "907"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1962,12 +1988,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "908"
             endingLineNumber = "908"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1978,12 +2004,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "909"
             endingLineNumber = "909"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1994,12 +2020,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "910"
             endingLineNumber = "910"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2010,12 +2036,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "911"
             endingLineNumber = "911"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2026,12 +2052,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "912"
-            endingLineNumber = "912"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            startingLineNumber = "917"
+            endingLineNumber = "917"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2042,12 +2068,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "913"
-            endingLineNumber = "913"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            startingLineNumber = "917"
+            endingLineNumber = "917"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2058,12 +2084,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "920"
+            endingLineNumber = "920"
+            landmarkName = "-tableView:titleForHeaderInSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "919"
             endingLineNumber = "919"
-            landmarkName = "-numberOfSectionsInTableView:"
+            landmarkName = "-tableView:titleForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2074,12 +2116,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "919"
-            endingLineNumber = "919"
-            landmarkName = "-numberOfSectionsInTableView:"
+            startingLineNumber = "984"
+            endingLineNumber = "984"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2090,12 +2132,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "922"
-            endingLineNumber = "922"
-            landmarkName = "-numberOfSectionsInTableView:"
+            startingLineNumber = "984"
+            endingLineNumber = "984"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2106,12 +2148,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "921"
-            endingLineNumber = "921"
-            landmarkName = "-numberOfSectionsInTableView:"
+            startingLineNumber = "984"
+            endingLineNumber = "984"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2122,7 +2164,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "985"
+            endingLineNumber = "985"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinin/homeTableViewController.m"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "987"
@@ -2138,11 +2196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "987"
-            endingLineNumber = "987"
+            startingLineNumber = "986"
+            endingLineNumber = "986"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2154,55 +2212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "987"
-            endingLineNumber = "987"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "988"
-            endingLineNumber = "988"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "990"
-            endingLineNumber = "990"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "989"
@@ -2218,11 +2228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "992"
-            endingLineNumber = "992"
+            startingLineNumber = "1028"
+            endingLineNumber = "1028"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2234,12 +2244,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1031"
-            endingLineNumber = "1031"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "1030"
+            endingLineNumber = "1030"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2250,12 +2260,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1033"
             endingLineNumber = "1033"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2266,12 +2276,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1036"
-            endingLineNumber = "1036"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2282,12 +2292,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1037"
-            endingLineNumber = "1037"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2298,12 +2308,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1038"
             endingLineNumber = "1038"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2314,28 +2324,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
+            timestampString = "461283976.620857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1041"
-            endingLineNumber = "1041"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinin/homeTableViewController.m"
-            timestampString = "460271182.193227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1355"
-            endingLineNumber = "1355"
-            landmarkName = "-dropMenu"
+            startingLineNumber = "1352"
+            endingLineNumber = "1352"
+            landmarkName = "-dropSearch"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2442,12 +2436,12 @@
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/custonGroupTableViewController.m"
-                  timestampString = "460274260.024411"
+                  timestampString = "461280176.486274"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
                   endingLineNumber = "126"
-                  offsetFromSymbolStart = "932">
+                  offsetFromSymbolStart = "872">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2457,12 +2451,12 @@
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/custonGroupTableViewController.m"
-                  timestampString = "460274260.024574"
+                  timestampString = "461280176.486451"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
                   endingLineNumber = "126"
-                  offsetFromSymbolStart = "70">
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2634,12 +2628,12 @@
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/custonGroupTableViewController.m"
-                  timestampString = "460274260.030411"
+                  timestampString = "461280176.492379"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
                   endingLineNumber = "132"
-                  offsetFromSymbolStart = "415">
+                  offsetFromSymbolStart = "440">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2649,12 +2643,12 @@
                   moduleName = "Apinion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jeremy/Documents/Development/Xcode/Apinion/Opinin/custonGroupTableViewController.m"
-                  timestampString = "460274260.030579"
+                  timestampString = "461280176.492556"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
                   endingLineNumber = "132"
-                  offsetFromSymbolStart = "67">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>

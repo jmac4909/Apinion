@@ -94,6 +94,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[PFUser currentUser] fetch];
     
 //    [self.userImageView setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
 //    

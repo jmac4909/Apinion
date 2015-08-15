@@ -801,7 +801,7 @@
                         </scrollView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="xPD-or-YFh" detailTextLabel="2nH-KG-fhu" style="IBUITableViewCellStyleSubtitle" id="zOJ-Kh-faV">
-                                <rect key="frame" x="0.0" y="126" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOJ-Kh-faV" id="4oX-tW-MtF">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
@@ -1253,7 +1253,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="iTH-aB-5gW">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1292,6 +1291,14 @@
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G9n-yr-fQm">
+                                            <rect key="frame" x="8" y="67" width="222" height="13"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1348,6 +1355,7 @@
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="apinionCountLabel" destination="G9n-yr-fQm" id="Mdw-sL-Xgv"/>
                         <outlet property="backButton" destination="07I-65-fhg" id="uqV-zq-HOi"/>
                         <outlet property="reportButton" destination="OAv-xG-UUA" id="rVg-M0-qW5"/>
                         <outlet property="selectedUserNameLabel" destination="wl6-h0-c4b" id="4Mr-l9-rhF"/>

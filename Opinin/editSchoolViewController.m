@@ -57,7 +57,7 @@
     [[PFUser currentUser]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self.schoolTextField resignFirstResponder];
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"successfully changed your school" delegate:self cancelButtonTitle:@"Yay" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"successfully changed your school / occupation" delegate:self cancelButtonTitle:@"Yay" otherButtonTitles:nil, nil];
         [alert show];
     }];
     

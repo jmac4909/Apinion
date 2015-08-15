@@ -19,7 +19,12 @@ static CGFloat MKMapOriginHight = 175.f;
 
 @implementation homeTableViewController
 - (PFGeoPoint *)getdeviceLocation {
-    return [PFGeoPoint geoPointWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude];
+    if ([self actualName] && ![self isUserBanned]) {
+        return [PFGeoPoint geoPointWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude];
+    }else{
+        return [PFGeoPoint geoPointWithLatitude:0 longitude:0];
+    }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -199,7 +204,6 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
     
-    
 }
 
 - (void)tapSearchScreen:(id)sender {
@@ -260,6 +264,8 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[PFUser currentUser] fetch];
+    
     [super viewWillAppear:animated];
       //Red color
     UIColor * color = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
@@ -424,8 +430,8 @@ static CGFloat MKMapOriginHight = 175.f;
     self.searchBar.tintColor = [self getUserColor];
     self.searchButton.tintColor = [self getUserColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIFont fontWithName:@"Copperplate-Bold" size:30],
+    [NSDictionary dictionaryWithObjectsAndKeys:
+    [UIFont fontWithName:@"Copperplate-Bold" size:30],
       NSFontAttributeName,
       color,NSForegroundColorAttributeName, nil]];
     //In "User"/"Topic" view
@@ -512,6 +518,7 @@ static CGFloat MKMapOriginHight = 175.f;
         self.scrollView.scrollEnabled = false;
 
     }
+ 
  
 
 }
@@ -631,14 +638,15 @@ static CGFloat MKMapOriginHight = 175.f;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
-    
-    
+
     if ([PFUser currentUser] == Nil) {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
         
     }else{
-        
+ 
+        if ([self isUserBanned]) {
+            [self getdeviceLocation];
+        }
     [self.navigationController.shyNavigationBar setToFullHeight:true];
     //gets any alerts
     PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
@@ -668,8 +676,15 @@ static CGFloat MKMapOriginHight = 175.f;
         //set current application version
         [[PFUser currentUser]setObject:[[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"] forKey:@"currentAppVersion"];
         
+ 
+        if ([self isJailbroken] == true) {
+            [[PFUser currentUser] setObject:@"true" forKey:@"Jailbroken"];
 
-        //Gets nearby users
+        }else{
+            [[PFUser currentUser] setObject:@"false" forKey:@"Jailbroken"];
+
+        }
+        
         [[PFUser currentUser] setObject:[self getdeviceLocation] forKey:@"Last_Position"];
     
         PFQuery *findMetadata = [PFQuery queryWithClassName:@"userMetaData"];
@@ -750,6 +765,9 @@ static CGFloat MKMapOriginHight = 175.f;
 
 
     }
+
+    
+    
 
 }
 
@@ -960,7 +978,6 @@ static CGFloat MKMapOriginHight = 175.f;
     
     cell.backgroundColor = [UIColor whiteColor];
         
-         
         
  
     if (viewingUsers == true) {
@@ -1483,8 +1500,6 @@ static CGFloat MKMapOriginHight = 175.f;
     [self.view insertSubview:self.searchTableView aboveSubview:searchCoverView];
     [self.view insertSubview:searchSeporator aboveSubview:self.searchTableView];
     
-    
-
 }
 
 - (void)textFieldDidChange:(id)sender{
@@ -1547,18 +1562,20 @@ static CGFloat MKMapOriginHight = 175.f;
     
     
 }
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     [searchBar resignFirstResponder];
     
     
 }
+
 - (void)messageComposeViewController:(nonnull MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
-    
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
 -(void)hideSearch{
     
     [UIView animateWithDuration:.3 animations:^{
@@ -1596,6 +1613,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
 }
+
 -(void)hideDrop{
     
     [UIView animateWithDuration:.3 animations:^{
@@ -1615,4 +1633,67 @@ static CGFloat MKMapOriginHight = 175.f;
 
     
 }
+#pragma mark - Checks
+
+- (BOOL)isUserBanned{
+    if ([[[PFUser currentUser]objectForKey:@"Banned"]isEqualToString:@"True"]) {
+        return true;
+    }
+    return false;
+}
+
+
+-(BOOL)actualName{
+    
+    NSString *firstName = [[[PFUser currentUser]objectForKey:@"Object_FirstName"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *lastName = [[[PFUser currentUser]objectForKey:@"Object_LastName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (firstName.length < 2 || lastName.length < 2) {
+        return false;
+    }
+    
+    
+    return true;
+}
+
+-(BOOL)isJailbroken
+{
+#if !(TARGET_IPHONE_SIMULATOR)
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"] ||
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/MobileSubstrate.dylib"] ||
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/bin/bash"] ||
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/sbin/sshd"] ||
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/etc/apt"] ||
+        [[NSFileManager defaultManager] fileExistsAtPath:@"/private/var/lib/apt/"] ||
+        [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]])  {
+        return YES;
+    }
+    
+    FILE *f = NULL ;
+    if ((f = fopen("/bin/bash", "r")) ||
+        (f = fopen("/Applications/Cydia.app", "r")) ||
+        (f = fopen("/Library/MobileSubstrate/MobileSubstrate.dylib", "r")) ||
+        (f = fopen("/usr/sbin/sshd", "r")) ||
+        (f = fopen("/etc/apt", "r")))  {
+        fclose(f);
+        return YES;
+    }
+    fclose(f);
+    
+    NSError *error;
+    NSString *stringToBeWritten = @"This is a test.";
+    [stringToBeWritten writeToFile:@"/private/jailbreak.txt" atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:@"/private/jailbreak.txt" error:nil];
+    if(error == nil)
+    {
+        return YES;
+    }
+    
+#endif
+    
+    return NO;
+}
+
+
 @end

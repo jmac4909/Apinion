@@ -6,6 +6,15 @@
 //  Copyright (c) 2015 Jeremy Mackey. All rights reserved.
 //
 
+
+
+
+
+//***UPDATES***
+//Adds refresh button in user page
+//Checks for jailbreak
+//Checks for valid name
+
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
@@ -30,7 +39,7 @@
     UIButton *homeDropButton;
     UIButton *profileDropButton;
     UIButton *favoritesDropButton;
- 
+     
     UITapGestureRecognizer *screenTap;
     UITapGestureRecognizer *screenSearchTap;
 
