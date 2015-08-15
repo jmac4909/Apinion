@@ -648,8 +648,8 @@ static CGFloat MKMapOriginHight = 175.f;
     }else{
     [[PFUser currentUser] fetch];
 
- 
-    [self.navigationController.shyNavigationBar setToFullHeight:true];
+        self.userCountLabel.adjustsFontSizeToFitWidth = YES;
+        [self.navigationController.shyNavigationBar setToFullHeight:true];
     //gets any alerts
     PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
     [alertQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -701,7 +701,6 @@ static CGFloat MKMapOriginHight = 175.f;
             if (!error) {
                 
                 if (![self isUserBanned]) {
-                    NSLog(@"User Not banned");
                 
                 PFQuery *getPeople = [PFUser query];
                 [getPeople whereKey:@"Last_Position" nearGeoPoint:[self getdeviceLocation] withinMiles:10.0];

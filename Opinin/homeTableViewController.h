@@ -16,6 +16,8 @@
 //Checks for valid name
 //Allows for Ban
 //Adds Filter
+//Removed squish nav bar
+
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>

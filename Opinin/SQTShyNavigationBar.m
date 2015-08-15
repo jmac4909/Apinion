@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Charles Powell. All rights reserved.
 //
 
-#import "ShyNavigationBar.h"
+#import "SQTShyNavigationBar.h"
 
 const CGFloat kSQTDefaultAnimationDuration = 0.2f;
 
@@ -70,16 +70,6 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
 
 #pragma mark - External
 
-//-(void)showContentsOfView{
-//    
-//    if (self.frame.size.height == self.shyHeight) {
-//     }else{
-//     }
-//
-//    
-//
-//    
-//}
 - (void)setToFullHeight:(BOOL)animated {
     CGRect frame = self.frame;
     
@@ -96,24 +86,13 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
     
     // Set frame
     [self moveToFrame:frame animated:animated];
-    for (UIView *view in self.subviews)
-    {
-        
-        view.alpha = 1.0;
-        
-        
-    }
-
 }
 
 - (void)setToShyHeight:(BOOL)animated {
-
     CGRect frame = self.frame;
     
     if (self.shouldSnap) {
-        
-     [self snapToLocationForFrame:self.frame offset:[self offsetOfScrollView:self.scrollView]+self.fullHeight];
-        
+        [self snapToLocationForFrame:frame offset:[self offsetOfScrollView:self.scrollView]];
     } else {
         [self adjustLocationForOffset:[self offsetOfScrollView:self.scrollView]
                                 frame:frame
@@ -209,15 +188,15 @@ const CGFloat kSQTDefaultAnimationDuration = 0.2f;
         return;
     }
     
-
+    
     if ([self offsetOfScrollView:self.scrollView] > 0) {
         [self snapToLocationForFrame:self.frame offset:[self offsetOfScrollView:self.scrollView]+self.fullHeight];
     }else{
         [self snapToLocationForFrame:self.frame offset:[self offsetOfScrollView:self.scrollView]];
     }
     
-        
     
+
 }
 
 - (void)snapToLocationForFrame:(CGRect)frame offset:(CGFloat)offset {

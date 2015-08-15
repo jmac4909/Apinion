@@ -148,18 +148,11 @@
                 NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.selectedUserData.objectId,@"objectId",count,@"currentCount", nil];
                 [PFCloud callFunction:@"addApinionCount" withParameters:params];
                 
-                
+                NSDictionary *pushParams = [NSDictionary dictionaryWithObjectsAndKeys:[@"A" stringByAppendingString:self.selectedUserData.objectId],@"channel", nil];
 
-                PFPush *push = [[PFPush alloc] init];
-                [push setChannel:[@"A" stringByAppendingString:self.selectedUserData.objectId]];
-                [push setMessage:@"New Apinion about you!"];
-                
-                [push sendPushInBackground];
-                
+                [PFCloud callFunction:@"sendPush" withParameters:pushParams];
+
                 [self.delagate closeAddApinion:self];
-                
-
-
                 
 
     

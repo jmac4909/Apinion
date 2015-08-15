@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "userInfoTableViewCell.h"
-#import "ShyNavigationBar.h"
+#import "SQTShyNavigationBar.h"
 #import "addApinionViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
  
