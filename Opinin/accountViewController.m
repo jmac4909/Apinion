@@ -94,12 +94,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[PFUser currentUser] fetch];
     
-//    [self.userImageView setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
-//    
-//    [self.changeProfileButton setFrame:CGRectMake(self.tableView.frame.size.width + ((self.view.frame.size.width - self.tableView.frame.size.width)/2) - 50, (self.tableView.frame.origin.y + self.tableView.frame.size.height)/2, 100, 100)];
-//    
+
+    if ([self isUserBanned]) {
+        self.logoutButton.enabled = false;
+    }
 
     if ([[[PFUser currentUser]objectForKey:@"userTheme"]isEqualToString:@"Red"]) {
         
@@ -141,7 +140,8 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    [[PFUser currentUser] fetch];
+
     [self.tableView reloadData];
     
     //Get user Image
@@ -160,6 +160,11 @@
         }
     }];
 
+    if ([self isUserBanned]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Locked" message:@"Your account has been locked. If you belive this is a mistake please contact us with your account details via email, apinionofficial@gmail.com" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -317,8 +322,7 @@
 
         }
         
-         
-    }];
+     }];
 
 }
 
@@ -433,7 +437,12 @@
     }
     
 }
-
+- (BOOL)isUserBanned{
+    if ([[[PFUser currentUser]objectForKey:@"Banned"]isEqualToString:@"True"]) {
+        return true;
+    }
+    return false;
+}
 
 
 

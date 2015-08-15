@@ -14,7 +14,8 @@
 //Adds refresh button in user page
 //Checks for jailbreak
 //Checks for valid name
-
+//Allows for Ban
+//Adds Filter
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
@@ -23,9 +24,9 @@
 #import "addTopicViewController.h"
 #import "Twitter/Twitter.h"
 #import "MessageUI/MessageUI.h"
+ 
 
-
-@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate,UISearchBarDelegate,createTopicViewProtocol>{
+@interface homeTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,accountViewProtocol,MKMapViewDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate,UISearchBarDelegate,createTopicViewProtocol,UIActionSheetDelegate>{
     
     
     CGRect searchScrollViewFrame;
@@ -42,7 +43,8 @@
      
     UITapGestureRecognizer *screenTap;
     UITapGestureRecognizer *screenSearchTap;
-
+    NSString *filterType;
+    BOOL filterAssending;
 }
 @property (strong, nonatomic) IBOutlet UIButton *TopicButton;
 @property (strong, nonatomic) IBOutlet UIImageView *seporateImageView;
@@ -57,6 +59,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *twitterBirdButton;
 @property (strong, nonatomic) IBOutlet UIImageView *messageButton;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property NSMutableArray *tableViewData;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (strong,nonatomic) IBOutlet MKMapView *userLocationMap;
@@ -85,6 +88,7 @@
 - (IBAction)pressMessageButton:(id)sender;
 
 - (IBAction)newTopic:(id)sender;
+- (IBAction)filterButtonPress:(id)sender;
 
 - (IBAction)segmentedValueDidChange:(id)sender;
 

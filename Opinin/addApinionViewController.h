@@ -19,7 +19,7 @@
 
 @interface addApinionViewController : UIViewController<UITextViewDelegate>{
     UIImage *userImage;
-    
+ 
 }
 
 

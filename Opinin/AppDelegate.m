@@ -59,7 +59,8 @@
 
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarImage.png"] forBarMetrics:UIBarMetricsDefault];
 //
-// 
+//
+ 
 
     // ...
     return YES;

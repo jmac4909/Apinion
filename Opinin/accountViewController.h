@@ -47,6 +47,7 @@
 @property (strong, nonatomic) IBOutlet TTTAttributedLabel *termsPrivacyLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *changeButton;
+@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 
 - (IBAction)changeToRedTheme:(id)sender;
 - (IBAction)changeToYellowTheme:(id)sender;

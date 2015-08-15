@@ -19,7 +19,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
 @implementation homeTableViewController
 - (PFGeoPoint *)getdeviceLocation {
-    if ([self actualName] && ![self isUserBanned]) {
+    if ([self actualName]) {
         return [PFGeoPoint geoPointWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude];
     }else{
         return [PFGeoPoint geoPointWithLatitude:0 longitude:0];
@@ -203,6 +203,8 @@ static CGFloat MKMapOriginHight = 175.f;
     searchScrollViewFrame = self.searchTableView.frame;
     
     
+    filterType = @"Object_FirstName";
+    filterAssending = true;
     
 }
 
@@ -264,7 +266,6 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [[PFUser currentUser] fetch];
     
     [super viewWillAppear:animated];
       //Red color
@@ -429,6 +430,8 @@ static CGFloat MKMapOriginHight = 175.f;
     
     self.searchBar.tintColor = [self getUserColor];
     self.searchButton.tintColor = [self getUserColor];
+    self.filterButton.tintColor = [self getUserColor];
+    
     [self.navigationController.navigationBar setTitleTextAttributes:
     [NSDictionary dictionaryWithObjectsAndKeys:
     [UIFont fontWithName:@"Copperplate-Bold" size:30],
@@ -643,10 +646,9 @@ static CGFloat MKMapOriginHight = 175.f;
         [self performSegueWithIdentifier:@"showLogin" sender:self];
         
     }else{
+    [[PFUser currentUser] fetch];
+
  
-        if ([self isUserBanned]) {
-            [self getdeviceLocation];
-        }
     [self.navigationController.shyNavigationBar setToFullHeight:true];
     //gets any alerts
     PFQuery *alertQuery = [PFQuery queryWithClassName:@"Alerts"];
@@ -698,13 +700,15 @@ static CGFloat MKMapOriginHight = 175.f;
         [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 
+                if (![self isUserBanned]) {
+                    NSLog(@"User Not banned");
                 
                 PFQuery *getPeople = [PFUser query];
                 [getPeople whereKey:@"Last_Position" nearGeoPoint:[self getdeviceLocation] withinMiles:10.0];
                 [getPeople findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
                         
-                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
+                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:filterType ascending:filterAssending];
                         
                         
                         self.userDataArray= [NSMutableArray arrayWithArray:objects];
@@ -747,6 +751,14 @@ static CGFloat MKMapOriginHight = 175.f;
                     }];
 
             
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Locked" message:@"Your account has been locked. If you belive this is a mistake please contact us with your account details via email, apinionofficial@gmail.com" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alert show];
+                    [self.userDataArray removeAllObjects];
+                    [self.topicDataArray removeAllObjects];
+                    [self.tableViewData removeAllObjects];
+                    [self.tableView reloadData];
+                }
         }
         }];
         
@@ -764,7 +776,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
 
 
-    }
+        }
 
     
     
@@ -820,6 +832,9 @@ static CGFloat MKMapOriginHight = 175.f;
 }
 
 -(void)refreshTableView {
+    if (![self isUserBanned]) {
+        
+    
     if (viewingUsers == true) {
         
         self.segmentedTopicsUsers.enabled = false;
@@ -891,6 +906,12 @@ static CGFloat MKMapOriginHight = 175.f;
 
         
         
+    }
+    }else{
+        [self.userDataArray removeAllObjects];
+        [self.topicDataArray removeAllObjects];
+        [self.tableViewData removeAllObjects];
+        [self.tableView reloadData];
     }
 
     
@@ -1374,7 +1395,7 @@ static CGFloat MKMapOriginHight = 175.f;
 
     [UIView animateWithDuration:.3 animations:^{
         
-        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/6)))];
+        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height , self.tableView.frame.size.width, self.dropDownMenuView.frame.size.height)];
         
         [self.navigationController.navigationBar insertSubview:coverView belowSubview:self.dropDownMenuView];
 
@@ -1401,7 +1422,7 @@ static CGFloat MKMapOriginHight = 175.f;
  
         [UIView animateWithDuration:.3 animations:^{
             
-            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+            [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height - 20, self.tableView.frame.size.width, self.dropDownMenuView.frame.size.height)];
             [coverView setAlpha:0.0];
             
         } completion:^(BOOL finished) {
@@ -1467,24 +1488,72 @@ static CGFloat MKMapOriginHight = 175.f;
     
 }
 
+- (IBAction)filterButtonPress:(id)sender {
+    if (self.searchBar.hidden == false) {
+        [self hideSearch];
+    }
+    if (self.dropDownMenuView.hidden == false) {
+        [self hideDrop];
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"How wouls you like to filter users and topics nearby" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z",@"Recently talked about",@"Most Apinions", nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        filterType = @"Object_FirstName";
+        filterAssending = true;
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
+        [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [self.tableView reloadData];
+        
+    } else if (buttonIndex == 1)
+    {
+        filterType = @"latestApinion";
+        filterAssending = false;
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"latestApinion" ascending:NO];
+        [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [self.tableView reloadData];
+        
+    }else if (buttonIndex == 2){
+        NSLog(@"2");
+
+        filterType = @"ApinionCount";
+        filterAssending = false;
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"ApinionCount" ascending:NO];
+        [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [self.tableView reloadData];
+    }else if (buttonIndex == 3){
+        //Cancel
+    }
+}
 - (IBAction)segmentedValueDidChange:(id)sender {
     NSInteger selectedSegment = self.segmentedTopicsUsers.selectedSegmentIndex;
 
     
     if (selectedSegment == 0) {
         viewingUsers = true;
+        if (![self isUserBanned]) {
+            
+        
         self.tableViewData = self.userDataArray;
         [self.tableView reloadData];
-        
         self.userCountLabel.text = [NSString stringWithFormat:@"%lu users nearby",(unsigned long)self.userDataArray.count];
+
+        }
+    
         //View Users
-            }
-    else if (selectedSegment == 1){
+        }else if (selectedSegment == 1){
         viewingUsers = false;
+            if (![self isUserBanned]) {
+                
+            
         self.tableViewData = self.topicDataArray;
         
         [self.tableView reloadData];
        self.userCountLabel.text = [NSString stringWithFormat:@"%lu topics nearby",(unsigned long)self.topicDataArray.count];
+            }
         
         
         
@@ -1618,7 +1687,7 @@ static CGFloat MKMapOriginHight = 175.f;
     
     [UIView animateWithDuration:.3 animations:^{
         
-        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height , self.tableView.frame.size.width, (MKMapOriginHight - (MKMapOriginHight/3)))];
+        [self.dropDownMenuView setFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - self.userLocationMap.frame.size.height - 20 , self.tableView.frame.size.width, self.dropDownMenuView.frame.size.height)];
         [coverView setAlpha:0.0];
         
     } completion:^(BOOL finished) {

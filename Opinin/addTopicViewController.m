@@ -70,7 +70,9 @@
     [mediaPicker setDelegate:self];
     mediaPicker.allowsEditing = YES;
     mediaPicker.navigationBar.tintColor = [UIColor colorWithRed:143/255.0f green:0/255.0f blue:43/255.0f alpha:1.0f];
-    
+    if ([self isUserBanned]) {
+        self.createTopicButton.enabled = false;
+    }
 
 }
 - (void)didReceiveMemoryWarning {
@@ -208,5 +210,11 @@
     [self.delagate closeCreateTopicView:self];
     
     
+}
+- (BOOL)isUserBanned{
+    if ([[[PFUser currentUser]objectForKey:@"Banned"]isEqualToString:@"True"]) {
+        return true;
+    }
+    return false;
 }
 @end

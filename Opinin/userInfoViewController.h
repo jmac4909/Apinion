@@ -32,8 +32,8 @@
 
     float userCellWidth;
     BOOL isData;
-    
-
+    UIActivityIndicatorView *activityIndicator;
+    UIBarButtonItem *activitiyItem;
 }
 @property PFObject *selectedUserMetaData;
 
@@ -49,6 +49,7 @@
 
 @property (strong,nonatomic)UIImageView *underlineImageVIew;
 @property(strong,nonatomic)UIToolbar *toolbar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 
 @property (strong, nonatomic) IBOutlet UIView *tableViewDetailView;
 @property NSArray *selectedUserPosts;
@@ -67,6 +68,7 @@
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)addUserToGroup:(id)sender;
 
+- (IBAction)refreshButtonPush:(id)sender;
 
 
 @end

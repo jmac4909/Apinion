@@ -149,6 +149,9 @@
     
 
  
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator.hidesWhenStopped = YES;
+    activitiyItem =[[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     
 
 }
@@ -162,12 +165,14 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
- 
+    [self.navigationController.shyNavigationBar setToFullHeight:true];
+
     self.backButton.tintColor = self.userThemeColor;
     self.selectedUserNameLabel.textColor = self.userThemeColor;
     self.selectedUserSchoolLabel.textColor = self.userSecondaryThemeColor;
     self.tableView.separatorColor = self.userThemeColor;
-    
+    self.refreshButton.tintColor = self.userThemeColor;
+    activityIndicator.color = self.userThemeColor;
     removeActionSheet.title = [NSString stringWithFormat:@"Remove \"%@\" from your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
     addActionSheet.title = [NSString stringWithFormat:@"Add \"%@\" to your favorites?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
     
@@ -241,10 +246,11 @@
     }
    
     isData = true;
+    
+
 
 }
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    [self.navigationController.shyNavigationBar setToShyHeight:YES];
  
  
 }
@@ -259,22 +265,47 @@
  
     [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
     
-
-
-
-    
-
-
+    PFQuery *OfflinePostQuery = [PFQuery queryWithClassName:@"Apinions"];
+    [OfflinePostQuery fromLocalDatastore];
+    [OfflinePostQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
+    [OfflinePostQuery orderByDescending:@"createdAt"];
+    [OfflinePostQuery whereKey:@"Hidden" notEqualTo:@"True"];
+    [OfflinePostQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
  
+            
+//            [PFObject unpinAllObjectsWithName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
 
-//    self.aponionTextField.placeholder = [NSString stringWithFormat:@"Wanna share your Apinion on %@?",[self.selectedUserData objectForKey:@"Object_FirstName"]];
+            self.selectedUserPosts = objects;
+            
+                if (self.selectedUserPosts.count == 1) {
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinion",(unsigned long)self.selectedUserPosts.count];
+            }else{
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinions",(unsigned long)self.selectedUserPosts.count];
+            }
+            [self.tableView reloadData];
+            
+        }else{
+            NSLog(@"%@",error);
+        }
+        
+    }];
+
+
+
+
     
+    self.navigationItem.rightBarButtonItem = activitiyItem;
+    [activityIndicator startAnimating];
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Apinions"];
     [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
     [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"Hidden" notEqualTo:@"True"];
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             
+//            [PFObject pinAll:objects withName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
+
             
             self.selectedUserPosts = objects;
             
@@ -294,12 +325,16 @@
                 self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinions",(unsigned long)self.selectedUserPosts.count];
             }
             [self.tableView reloadData];
+            [activityIndicator stopAnimating];
+            self.navigationItem.rightBarButtonItem = self.refreshButton;
             
         }else{
             NSLog(@"%@",error);
         }
         
     }];
+
+    
 
     // add one view to user
     PFQuery *getSelectedUser = [PFQuery queryWithClassName:@"userMetaData"];
@@ -875,23 +910,6 @@
 
 
 }
-- (void)refreshPosts {
-    
- 
-    
-
-    
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Apinions"];
-    [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.selectedUserPosts = objects;
-        [self.tableView reloadData];
-    
-    }];
-    
-
-}
 
 
 #pragma mark - Adding selected user to group
@@ -919,6 +937,47 @@
 
     
     
+}
+
+- (IBAction)refreshButtonPush:(id)sender {
+    self.navigationItem.rightBarButtonItem = activitiyItem;
+    [activityIndicator startAnimating];
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Apinions"];
+    [postQuery whereKey:@"selectedUserID" containsString:self.selectedUserData.objectId];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery whereKey:@"Hidden" notEqualTo:@"True"];
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [PFObject pinAllInBackground:objects];
+            
+            
+            self.selectedUserPosts = objects;
+            
+            if (self.selectedUserPosts.count <= 0) {
+                isData = false;
+                self.tableView.tableFooterView = [UIView new];
+                
+                
+            }else{
+                isData = true;
+                self.tableView.tableFooterView = nil;
+                
+            }
+            if (self.selectedUserPosts.count == 1) {
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinion",(unsigned long)self.selectedUserPosts.count];
+            }else{
+                self.apinionCountLabel.text = [NSString stringWithFormat:@"%lu Apinions",(unsigned long)self.selectedUserPosts.count];
+            }
+            [self.tableView reloadData];
+            [activityIndicator stopAnimating];
+            self.navigationItem.rightBarButtonItem = self.refreshButton;
+
+        }else{
+            NSLog(@"%@",error);
+        }
+        
+    }];
+
 }
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet {

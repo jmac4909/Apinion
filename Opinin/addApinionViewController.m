@@ -24,7 +24,7 @@
     self.userImageView.clipsToBounds = YES;
     self.userImageView.layer.borderWidth = 1.0f;
     
-     
+    
 
     
 }
@@ -57,7 +57,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-
     self.userImageView.layer.borderColor = self.userThemeColor.CGColor;
     self.postApinionButton.tintColor = self.userThemeColor;
     [self.seporatorImageView setBackgroundColor:self.userThemeColor];
@@ -89,6 +88,8 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [[PFUser currentUser] fetch];
+
     if ([PFUser currentUser] == Nil) {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
         
@@ -122,46 +123,65 @@
         [apinion setObject:self.selectedUserData.objectId forKey:@"selectedUserID"];
         [apinion setObject:[PFUser currentUser].objectId forKey:@"posterID"];
         [apinion setObject:@0 forKey:@"postVotes"];
+        [apinion setObject:[PFUser currentUser] forKey:@"userPosterObject"];
         self.apinionTextView.text = @"";
     
-    if (self.hideNameSwitch.on) {
-        [apinion setObject:@"" forKey:@"displayName"];
-    }else{
-        NSString *displayname = [NSString stringWithFormat:@"- %@ %@",[[PFUser currentUser]objectForKey:@"Object_FirstName"],[[PFUser currentUser]objectForKey:@"Object_LastName"]];
-        [apinion setObject:displayname forKey:@"displayName"];
-
-    }
+        if (self.hideNameSwitch.on) {
+            [apinion setObject:@"" forKey:@"displayName"];
+        }else{
+            NSString *displayname = [NSString stringWithFormat:@"- %@ %@",[[PFUser currentUser]objectForKey:@"Object_FirstName"],[[PFUser currentUser]objectForKey:@"Object_LastName"]];
+            [apinion setObject:displayname forKey:@"displayName"];
+        }
     
- 
+        if ([self isUserBanned]) {
+            [apinion setObject:@"True" forKey:@"Hidden"];
+        }
     
-        [apinion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+         [apinion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
-    
-    
-    
-    
-    
-    
-               
-                    PFPush *push = [[PFPush alloc] init];
-                    [push setChannel:[@"A" stringByAppendingString:self.selectedUserData.objectId]];
-                    [push setMessage:@"New Apinion about you!"];
-    
-                    [push sendPushInBackground];
 
+                [self.selectedUserData fetch];
+                NSNumber *count = [self.selectedUserData objectForKey:@"ApinionCount"];
+                int countInt = [count intValue] + 1;
+                count = [[NSNumber alloc]initWithInt:countInt];
+                
+                NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.selectedUserData.objectId,@"objectId",count,@"currentCount", nil];
+                [PFCloud callFunction:@"addApinionCount" withParameters:params];
+                
+                
+
+                PFPush *push = [[PFPush alloc] init];
+                [push setChannel:[@"A" stringByAppendingString:self.selectedUserData.objectId]];
+                [push setMessage:@"New Apinion about you!"];
+                
+                [push sendPushInBackground];
+                
                 [self.delagate closeAddApinion:self];
+                
+
+
+                
 
     
-                }else{
+            }else{
                     NSLog(@"%@",error.userInfo);
-                }
+            }
             }];
-            
+    
+
     
 
 
     
 }
+
+- (BOOL)isUserBanned{
+    if ([[[PFUser currentUser]objectForKey:@"Banned"]isEqualToString:@"True"]) {
+        return true;
+    }
+    return false;
+}
+
 - (IBAction)hideNameValeChanged:(id)sender {
     if (self.hideNameSwitch.on) {
         self.coverVie.alpha = 0.6;
