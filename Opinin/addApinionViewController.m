@@ -145,12 +145,27 @@
                 int countInt = [count intValue] + 1;
                 count = [[NSNumber alloc]initWithInt:countInt];
                 
-                NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.selectedUserData.objectId,@"objectId",count,@"currentCount", nil];
-                [PFCloud callFunction:@"addApinionCount" withParameters:params];
-                
-                NSDictionary *pushParams = [NSDictionary dictionaryWithObjectsAndKeys:[@"A" stringByAppendingString:self.selectedUserData.objectId],@"channel", nil];
-
-                [PFCloud callFunction:@"sendPush" withParameters:pushParams];
+                if ([self.selectedUserData.parseClassName isEqualToString:@"_User"]) {
+                    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.selectedUserData.objectId,@"objectId",count,@"currentCount", nil];
+                    [PFCloud callFunction:@"addApinionCount" withParameters:params];
+                    
+                    NSDictionary *pushParams = [NSDictionary dictionaryWithObjectsAndKeys:[@"A" stringByAppendingString:self.selectedUserData.objectId],@"channel", nil];
+                    
+                    [PFCloud callFunction:@"sendPush" withParameters:pushParams];
+                }else{
+                    NSLog(@"Not user");
+                    NSDate *currentDate = [[NSDate alloc] init];
+                                        
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                    NSString *localDateString = [dateFormatter stringFromDate:currentDate];
+                    NSDate *date = [dateFormatter dateFromString:localDateString];
+                    [self.selectedUserData setObject:count forKey:@"ApinionCount"];
+                    [self.selectedUserData setObject:date forKey:@"latestApinion"];
+                    [self.selectedUserData saveInBackground];
+                    
+                }
+     
 
                 [self.delagate closeAddApinion:self];
                 

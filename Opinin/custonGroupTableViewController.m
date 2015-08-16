@@ -660,12 +660,5 @@ static CGFloat MKMapOriginHight = 175.f;
     }];
 }
 
-- (IBAction)editGroupPress:(id)sender {
-    
-    
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Almost" message:@"This page will be editable later" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-    [alert show];
-    
-}
+ 
 @end

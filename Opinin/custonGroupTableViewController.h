@@ -38,5 +38,4 @@
 @property PFObject *selectedUserData;
 @property (strong, nonatomic) IBOutlet UIView *dropDownMenuView;
 
-- (IBAction)editGroupPress:(id)sender;
 @end

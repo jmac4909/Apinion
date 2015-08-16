@@ -52,7 +52,8 @@
                   action:@selector(textFieldDidChange:)
         forControlEvents:UIControlEventEditingChanged];
 
-    
+ 
+
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -120,7 +121,7 @@
 - (void)textFieldDidChange:(id)sender{
     UITextField *field = (UITextField*)sender;
     
-    if (![[field.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] && field.text.length >0) {
+    if (![[field.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] && self.topicTitleTextFeild.text.length >0) {
         self.createTopicButton.enabled = true;
     }else{
         self.createTopicButton.enabled = false;
@@ -183,7 +184,7 @@
 
 - (IBAction)createTopic:(id)sender {
     
-    if (self.topicDetailTextView.text.length <= 35 && self.topicTitleTextFeild.text.length > 0 && self.topicTitleTextFeild.text.length <= 25) {
+    if (self.topicDetailTextView.text.length <= 35 && self.topicDetailTextView.text.length > 0 &&self.topicTitleTextFeild.text.length > 0 && self.topicTitleTextFeild.text.length <= 25) {
 
         PFObject *topic = [PFObject objectWithClassName:@"Topics"];
         if (imageFile) {
@@ -192,7 +193,7 @@
         }
         NSString *Object_FullNameFirst = [NSString stringWithFormat:@"%@%@",self.topicTitleTextFeild.text,self.topicDetailTextView.text];
         NSString *Object_FullName = [Object_FullNameFirst stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
+        [topic setObject:[PFUser currentUser].objectId forKey:@"creatorId"];
         [topic setObject:self.topicTitleTextFeild.text forKey:@"Object_FirstName"];
         [topic setObject:self.topicDetailTextView.text forKey:@"topic_Detail"];
         [topic setObject:[self getdeviceLocation] forKey:@"Created_Position"];

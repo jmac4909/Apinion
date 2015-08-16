@@ -206,6 +206,8 @@ static CGFloat MKMapOriginHight = 175.f;
     filterType = @"Object_FirstName";
     filterAssending = true;
     
+
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.searchButton,self.filterButton, nil];
 }
 
 - (void)tapSearchScreen:(id)sender {
@@ -846,7 +848,7 @@ static CGFloat MKMapOriginHight = 175.f;
                 [getPeople findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error) {
                         
-                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
+                        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:filterType ascending:filterAssending];
                         
                         
                         self.userDataArray= [NSMutableArray arrayWithArray:objects];
@@ -883,7 +885,7 @@ static CGFloat MKMapOriginHight = 175.f;
         [getTopic findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 
-                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"Object_FirstName" ascending:YES];
+                NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:filterType ascending:filterAssending];
                 
                 
                 self.topicDataArray= [NSMutableArray arrayWithArray:objects];
@@ -1067,12 +1069,13 @@ static CGFloat MKMapOriginHight = 175.f;
  
     if (tableView.tag == 1) {
      
-    
+ 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (viewingUsers == true) {
         
-    
+    self.tableView.allowsSelection = NO;
+
     self.selectedUserData = [self.tableViewData objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"showUserPage" sender:self];
         
@@ -1220,7 +1223,8 @@ static CGFloat MKMapOriginHight = 175.f;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    self.tableView.allowsSelection = YES;
+
     [self.dropDownMenuView removeFromSuperview];
     [self.searchBar removeFromSuperview];
 
@@ -1489,12 +1493,12 @@ static CGFloat MKMapOriginHight = 175.f;
 
 - (IBAction)filterButtonPress:(id)sender {
     if (self.searchBar.hidden == false) {
-        [self hideSearch];
+        [self dropSearch];
     }
     if (self.dropDownMenuView.hidden == false) {
-        [self hideDrop];
+        [self dropMenu];
     }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"How wouls you like to filter users and topics nearby" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z",@"Recently talked about",@"Most Apinions", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"How wouls you like to filter users and topics nearby" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z",@"Recently talked about",@"Most Apinions",@"Newest Users", nil];
     actionSheet.delegate = self;
     [actionSheet showInView:self.view];
     
@@ -1524,7 +1528,17 @@ static CGFloat MKMapOriginHight = 175.f;
         [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
         [self.tableView reloadData];
     }else if (buttonIndex == 3){
-        //Cancel
+
+        filterType = @"createdAt";
+        filterAssending = false;
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+        [self.tableViewData sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [self.tableView reloadData];
+
+    
+    }else if (buttonIndex == 4){
+        
+        
     }
 }
 - (IBAction)segmentedValueDidChange:(id)sender {

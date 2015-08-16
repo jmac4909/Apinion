@@ -304,7 +304,9 @@
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             
-//            [PFObject pinAll:objects withName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
+            [PFObject unpinAllObjectsWithName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
+            
+            [PFObject pinAll:objects withName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
 
             
             self.selectedUserPosts = objects;
@@ -863,6 +865,9 @@
         {
            
             PFObject *post = [self.selectedUserPosts objectAtIndex:selectedCellIndexPath.row];
+            if ([PFUser currentUser].objectId == self.selectedUserData.objectId) {
+                [post setObject:@"True" forKey:@"ReportBySelected"];
+            }
             NSNumber *reports = [post objectForKey:@"Reports"];
             NSNumber *newReport = [NSNumber numberWithInt:reports.intValue + 1];
             [post setObject:newReport forKey:@"Reports"];
@@ -948,7 +953,10 @@
     [postQuery whereKey:@"Hidden" notEqualTo:@"True"];
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            [PFObject pinAllInBackground:objects];
+            
+            [PFObject unpinAllObjectsWithName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
+            
+            [PFObject pinAll:objects withName:[NSString stringWithFormat:@"%@",self.selectedUserData.objectId]];
             
             
             self.selectedUserPosts = objects;

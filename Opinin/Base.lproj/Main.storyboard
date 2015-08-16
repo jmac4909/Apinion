@@ -3,7 +3,6 @@
     <dependencies>
         <deployment version="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
@@ -844,19 +843,6 @@
                                 <action selector="pressDropDownButton:" destination="lg4-yC-NOO" id="IUu-Ia-vjw"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="search" id="vXU-w9-DLc">
-                                <color key="tintColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="pressSearchButton:" destination="lg4-yC-NOO" id="IRf-zU-kj6"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="filterIcon" id="YcH-CS-0De">
-                                <connections>
-                                    <action selector="filterButtonPress:" destination="lg4-yC-NOO" id="zVk-FD-Bfp"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZfE-0s-nk7">
                         <autoresizingMask key="autoresizingMask"/>
@@ -895,6 +881,17 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTH-Tl-n8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="search" id="vXU-w9-DLc">
+                    <color key="tintColor" red="0.56078431370000004" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="pressSearchButton:" destination="lg4-yC-NOO" id="IRf-zU-kj6"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem image="filterIcon" id="YcH-CS-0De">
+                    <connections>
+                        <action selector="filterButtonPress:" destination="lg4-yC-NOO" id="zVk-FD-Bfp"/>
+                    </connections>
+                </barButtonItem>
                 <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b2W-fJ-ri9">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="296"/>
                     <autoresizingMask key="autoresizingMask"/>
